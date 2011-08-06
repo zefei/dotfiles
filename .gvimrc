@@ -1,4 +1,5 @@
-set guifont=Monospace\ 12
+set guifont=Menlo:h15
+set antialias
 set guioptions-=m
 set guioptions-=T
 set lines=45

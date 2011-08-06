@@ -6,5 +6,7 @@ if [ -f /etc/bashrc ]; then
 fi
 
 # User specific aliases and functions
-export TERM=xterm-256color
-alias jasmine='jasmine-node --coffee'
+alias grep='grep --color=auto'
+alias ll='ls -lG'
+alias l.='ls -dG .*'
+alias ls='ls -G'
