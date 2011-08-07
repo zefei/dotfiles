@@ -10,3 +10,4 @@ alias grep='grep --color=auto'
 alias ll='ls -lG'
 alias l.='ls -dG .*'
 alias ls='ls -G'
+export EDITOR=vim

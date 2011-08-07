@@ -1,4 +1,4 @@
-set guifont=Menlo:h15
+set guifont=Monaco:h15
 set antialias
 set guioptions-=m
 set guioptions-=T
