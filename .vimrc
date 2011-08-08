@@ -3,6 +3,17 @@ filetype off
 call pathogen#runtime_append_all_bundles()
 call pathogen#helptags()
 
+" Functions
+function! SystemIs(sys)
+  if a:sys == 'win'
+    return has('win32')
+  elseif a:sys == 'linux'
+    return has('unix') && matchstr(system('uname'), 'Darwin') != 'Darwin'
+  elseif a:sys == 'mac'
+    return has('unix') && matchstr(system('uname'), 'Darwin') == 'Darwin'
+  endif
+endfunction
+
 " General
 set nocompatible
 filetype plugin indent on
@@ -15,7 +26,11 @@ set history=50
 set showcmd
 set ffs=unix,dos
 set encoding=utf-8
-set undodir=~/.vimundo
+if SystemIs('win')
+  set undodir=~/_vimundo
+else
+  set undodir=~/.vimundo
+endif
 set undofile
 
 " UI
@@ -80,18 +95,21 @@ set foldmethod=indent
 set foldnestmax=5
 set foldlevel=5
 
+
 " Mappings
 noremap <F1> <nop>
 inoremap <F1> <nop>
 inoremap <C-TAB> <C-X><C-O>
-vnoremap <C-C> y
-vnoremap <C-X> "0d
-vnoremap <C-V> "0p
-inoremap <C-V> <ESC>"0pa
-noremap <C-Z> u
-inoremap <C-Z> <ESC>ua
-noremap <C-Y> <C-R>
-inoremap <C-Y> <ESC><C-R>a
+if !SystemIs('mac')
+  vnoremap <C-C> y
+  vnoremap <C-X> "0d
+  vnoremap <C-V> "0p
+  inoremap <C-V> <ESC>"0pa
+  noremap <C-Z> u
+  inoremap <C-Z> <ESC>ua
+  noremap <C-Y> <C-R>
+  inoremap <C-Y> <ESC><C-R>a
+endif
 noremap <F2> :bp!<CR>
 inoremap <F2> <ESC>:bp!<CR>
 noremap <F3> :bn!<CR>
@@ -104,12 +122,21 @@ noremap <F7> :wa<CR>
 inoremap <F7> <ESC>:wa<CR>a
 noremap <F8> :confirm bd<CR>
 inoremap <F8> <ESC>:confirm bd<CR>
-noremap <F10> :source ~/.vimrc<CR>
-inoremap <F10> <ESC>:source ~/.vimrc<CR>
-noremap <F11> :confirm e ~/.gvimrc<CR>
-inoremap <F11> <ESC>:confirm e ~/.gvimrc<CR>
-noremap <F12> :confirm e ~/.vimrc<CR>
-inoremap <F12> <ESC>:confirm e ~/.vimrc<CR>
+if SystemIs('win')
+  noremap <F10> :source ~/_vimrc<CR>
+  inoremap <F10> <ESC>:source ~/_vimrc<CR>
+  noremap <F11> :confirm e ~/_gvimrc<CR>
+  inoremap <F11> <ESC>:confirm e ~/_gvimrc<CR>
+  noremap <F12> :confirm e ~/_vimrc<CR>
+  inoremap <F12> <ESC>:confirm e ~/_vimrc<CR>
+else
+  noremap <F10> :source ~/.vimrc<CR>
+  inoremap <F10> <ESC>:source ~/.vimrc<CR>
+  noremap <F11> :confirm e ~/.gvimrc<CR>
+  inoremap <F11> <ESC>:confirm e ~/.gvimrc<CR>
+  noremap <F12> :confirm e ~/.vimrc<CR>
+  inoremap <F12> <ESC>:confirm e ~/.vimrc<CR>
+endif
 
 " NERDTree
 let NERDTreeQuitOnOpen=1
