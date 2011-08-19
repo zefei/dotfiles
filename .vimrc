@@ -50,8 +50,8 @@ if &t_Co == 256 || has('gui_running')
   colorscheme lucius
   set cursorline
   if g:lucius_style == "dark"
-    hi Search      guifg=#000000           guibg=#ffaa33           gui=none
-    hi Search      ctermfg=0               ctermbg=214             cterm=none
+    "hi Search      guifg=#000000           guibg=#ffaa33           gui=none
+    "hi Search      ctermfg=0               ctermbg=214             cterm=none
     hi BufLine     guifg=#767986           guibg=#363946           gui=none
     hi BufLine     ctermfg=244             ctermbg=237             cterm=none
     hi BufLineSel  guifg=NONE              guibg=#005f85           gui=bold
