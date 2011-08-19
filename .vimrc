@@ -49,24 +49,6 @@ if &t_Co == 256 || has('gui_running')
   let g:lucius_style='dark'
   colorscheme lucius
   set cursorline
-  if g:lucius_style == "dark"
-    "hi Search      guifg=#000000           guibg=#ffaa33           gui=none
-    "hi Search      ctermfg=0               ctermbg=214             cterm=none
-    hi BufLine     guifg=#767986           guibg=#363946           gui=none
-    hi BufLine     ctermfg=244             ctermbg=237             cterm=none
-    hi BufLineSel  guifg=NONE              guibg=#005f85           gui=bold
-    hi BufLineSel  ctermfg=NONE            ctermbg=24              cterm=bold
-  elseif g:lucius_style == "light"
-    hi BufLine     guifg=#305070           guibg=#90b0d0           gui=none
-    hi BufLine     ctermfg=239             ctermbg=110             cterm=none
-    hi BufLineSel  guifg=NONE              guibg=#d0e0f0           gui=bold
-    hi BufLineSel  ctermfg=NONE            ctermbg=153             cterm=bold
-  elseif g:lucius_style == "blue"
-    hi BufLine     guifg=#8090a0           guibg=#405060           gui=none
-    hi BufLine     ctermfg=244             ctermbg=237             cterm=none
-    hi BufLineSel  guifg=NONE              guibg=#204050           gui=bold
-    hi BufLineSel  ctermfg=NONE            ctermbg=24              cterm=bold
-  endif
 endif
 
 " Searching
@@ -151,7 +133,7 @@ let g:buftabs_marker_modified=" +"
 let g:buftabs_show_number=0
 let g:buftabs_blacklist = [ "^NERD_tree_[0-9]*$" ]
 set laststatus=2
-set statusline=%#BufLine#\ ---\ %###{buftabs}%=\ Ln\ %-5.5l\ Col\ %-4.4v
+set statusline=%#LineNr#\ ---\ %###{buftabs}%=\ Ln\ %-5.5l\ Col\ %-4.4v
 let g:buftabs_other_components_length=23
 if &t_Co == 256 || has('gui_running')
   let g:buftabs_inactive_highlight_group="BufLine"
