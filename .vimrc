@@ -61,6 +61,7 @@ set incsearch
 
 " Formatting
 set fo=tcrqn
+au FileType * setlocal fo-=c fo-=r fo-=o
 set ai
 set si
 set cindent
@@ -79,8 +80,6 @@ set foldlevel=5
 
 
 " Mappings
-noremap <F1> <nop>
-inoremap <F1> <nop>
 inoremap <C-TAB> <C-X><C-O>
 if !SystemIs('mac')
   vnoremap <C-C> y
@@ -92,36 +91,36 @@ if !SystemIs('mac')
   noremap <C-Y> <C-R>
   inoremap <C-Y> <ESC><C-R>a
 endif
-noremap <F2> :bp!<CR>
-inoremap <F2> <ESC>:bp!<CR>
-noremap <F3> :bn!<CR>
-inoremap <F3> <ESC>:bn!<CR>
+noremap <F1> :bp!<CR>
+inoremap <F1> <ESC>:bp!<CR>
+noremap <F2> :bn!<CR>
+inoremap <F2> <ESC>:bn!<CR>
+noremap <F3> :TagbarToggle<CR>
+inoremap <F3> <ESC>:TagbarToggle<CR>
 noremap <F4> :NERDTreeToggle<CR>
 inoremap <F4> <ESC>:NERDTreeToggle<CR>
 noremap <F5> :nohlsearch<CR>
+inoremap <F6> <ESC>:FufCoverageFile<CR>
+noremap <F6> :FufCoverageFile<CR>
 inoremap <F5> <ESC>:nohlsearch<CR>a
 noremap <F7> :wa<CR>
 inoremap <F7> <ESC>:wa<CR>a
 noremap <F8> :confirm bd<CR>
 inoremap <F8> <ESC>:confirm bd<CR>
+noremap <F11> :VimwikiIndex<CR>
+inoremap <F11> <ESC>:VimwikiIndex<CR>
 if SystemIs('win')
-  noremap <F10> :source ~/_vimrc<CR>
-  inoremap <F10> <ESC>:source ~/_vimrc<CR>
-  noremap <F11> :confirm e ~/_gvimrc<CR>
-  inoremap <F11> <ESC>:confirm e ~/_gvimrc<CR>
   noremap <F12> :confirm e ~/_vimrc<CR>
   inoremap <F12> <ESC>:confirm e ~/_vimrc<CR>
 else
-  noremap <F10> :source ~/.vimrc<CR>
-  inoremap <F10> <ESC>:source ~/.vimrc<CR>
-  noremap <F11> :confirm e ~/.gvimrc<CR>
-  inoremap <F11> <ESC>:confirm e ~/.gvimrc<CR>
   noremap <F12> :confirm e ~/.vimrc<CR>
   inoremap <F12> <ESC>:confirm e ~/.vimrc<CR>
 endif
 
 " NERDTree
 let NERDTreeQuitOnOpen=1
+let NERDTreeChDirMode=2
+let NERDTreeWinSize=40
 
 " SuperTab
 let g:SuperTabMappingTabLiteral='<C-`>'
@@ -131,7 +130,7 @@ let g:buftabs_only_basename=1
 let g:buftabs_in_statusline=1
 let g:buftabs_marker_modified=" +"
 let g:buftabs_show_number=0
-let g:buftabs_blacklist = [ "^NERD_tree_[0-9]*$" ]
+let g:buftabs_blacklist = [ "^NERD_tree_[0-9]*$", "^__Tagbar__$", "^\[fuf\]$" ]
 set laststatus=2
 set statusline=%#LineNr#\ ---\ %###{buftabs}%=\ Ln\ %-5.5l\ Col\ %-4.4v
 let g:buftabs_other_components_length=23
@@ -143,6 +142,15 @@ else
 endif
 let g:buftabs_marker_start=' '
 let g:buftabs_marker_end=' '
+
+" Tagbar
+let g:tagbar_left = 1
+let g:tagbar_autoclose = 1
+let g:tagbar_autofocus = 1
+let g:tagbar_width = 40
+
+" vimwiki
+let g:vimwiki_list = [{ 'path': '~/Dropbox/vimwiki', 'path_html': '~/vimwiki/content/', 'auto_export': 1 }]
 
 " Patching matchparen.vim
 autocmd WinLeave * execute '3match none'
