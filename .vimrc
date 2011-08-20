@@ -107,8 +107,6 @@ noremap <F7> :wa<CR>
 inoremap <F7> <ESC>:wa<CR>a
 noremap <F8> :confirm bd<CR>
 inoremap <F8> <ESC>:confirm bd<CR>
-noremap <F11> :VimwikiIndex<CR>
-inoremap <F11> <ESC>:VimwikiIndex<CR>
 if SystemIs('win')
   noremap <F12> :confirm e ~/_vimrc<CR>
   inoremap <F12> <ESC>:confirm e ~/_vimrc<CR>
@@ -148,9 +146,6 @@ let g:tagbar_left = 1
 let g:tagbar_autoclose = 1
 let g:tagbar_autofocus = 1
 let g:tagbar_width = 40
-
-" vimwiki
-let g:vimwiki_list = [{ 'path': '~/Dropbox/vimwiki', 'path_html': '~/vimwiki/content/', 'auto_export': 1 }]
 
 " Patching matchparen.vim
 autocmd WinLeave * execute '3match none'
