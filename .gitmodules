@@ -1,6 +1,6 @@
 [submodule ".vim/bundle/buftabs"]
 	path = .vim/bundle/buftabs
-	url = git@github.com:zefei/buftabs.git
+	url = https://zefei@github.com/zefei/buftabs.git
 [submodule ".vim/bundle/JavaScript-Indent"]
 	path = .vim/bundle/JavaScript-Indent
 	url = https://github.com/vim-scripts/JavaScript-Indent.git
@@ -27,7 +27,7 @@
 	url = https://github.com/tpope/vim-rails.git
 [submodule ".vim/bundle/Lucius"]
 	path = .vim/bundle/Lucius
-	url = git@github.com:zefei/Lucius.git
+	url = https://zefei@github.com/zefei/Lucius.git
 [submodule ".vim/bundle/L9"]
 	path = .vim/bundle/L9
 	url = https://github.com/vim-scripts/L9.git
