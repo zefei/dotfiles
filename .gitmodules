@@ -28,9 +28,6 @@
 [submodule ".vim/bundle/Lucius"]
 	path = .vim/bundle/Lucius
 	url = https://zefei@github.com/zefei/Lucius.git
-[submodule ".vim/bundle/L9"]
-	path = .vim/bundle/L9
-	url = https://github.com/vim-scripts/L9.git
 [submodule ".vim/bundle/tagbar"]
 	path = .vim/bundle/tagbar
 	url = https://github.com/majutsushi/tagbar.git

@@ -82,6 +82,7 @@ set foldlevel=5
 
 " Mappings
 inoremap <C-TAB> <C-X><C-O>
+imap <C-T> <C-R><TAB>
 if !SystemIs('mac')
   vnoremap <C-C> y
   vnoremap <C-X> "0d
@@ -147,7 +148,6 @@ let g:tagbar_autofocus = 1
 let g:tagbar_width = 40
 
 " CtrlP
-let g:ctrlp_map = '<F6>'
 let g:ctrlp_working_path_mode = 0
 
 " Patching matchparen.vim
