@@ -32,7 +32,6 @@ else
   set undodir=~/.vimundo
 endif
 set undofile
-set wildignore+=*/.git/*,*/.svn/*
 
 " UI
 syntax on
@@ -103,6 +102,8 @@ noremap <F4> :NERDTreeToggle<CR>
 inoremap <F4> <ESC>:NERDTreeToggle<CR>
 noremap <F5> :nohlsearch<CR>
 inoremap <F5> <ESC>:nohlsearch<CR>a
+noremap <F6> :Gstatus<CR>
+inoremap <F6> <ESC>:Gstatus<CR>
 noremap <F7> :wa<CR>
 inoremap <F7> <ESC>:wa<CR>a
 noremap <F8> :confirm bd<CR>
@@ -149,6 +150,7 @@ let g:tagbar_width = 40
 
 " CtrlP
 let g:ctrlp_working_path_mode = 0
+let g:ctrlp_custom_ignore = '\.git$\|\.hg$\|\.svn$\|\.DS_Store$'
 
 " Patching matchparen.vim
 autocmd WinLeave * execute '3match none'
