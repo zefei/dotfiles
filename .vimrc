@@ -32,6 +32,7 @@ else
   set undodir=~/.vimundo
 endif
 set undofile
+set wildignore+=*/.git/*,*/.svn/*
 
 " UI
 syntax on
@@ -100,8 +101,6 @@ inoremap <F3> <ESC>:TagbarToggle<CR>
 noremap <F4> :NERDTreeToggle<CR>
 inoremap <F4> <ESC>:NERDTreeToggle<CR>
 noremap <F5> :nohlsearch<CR>
-inoremap <F6> <ESC>:FufCoverageFile<CR>
-noremap <F6> :FufCoverageFile<CR>
 inoremap <F5> <ESC>:nohlsearch<CR>a
 noremap <F7> :wa<CR>
 inoremap <F7> <ESC>:wa<CR>a
@@ -128,7 +127,7 @@ let g:buftabs_only_basename=1
 let g:buftabs_in_statusline=1
 let g:buftabs_marker_modified=" +"
 let g:buftabs_show_number=0
-let g:buftabs_blacklist = [ "^NERD_tree_[0-9]*$", "^__Tagbar__$", "^\[fuf\]$" ]
+let g:buftabs_blacklist = [ "^NERD_tree_[0-9]*$", "^__Tagbar__$" ]
 set laststatus=2
 set statusline=%#LineNr#\ ---\ %###{buftabs}%=\ Ln\ %-5.5l\ Col\ %-4.4v
 let g:buftabs_other_components_length=23
@@ -146,6 +145,10 @@ let g:tagbar_left = 1
 let g:tagbar_autoclose = 1
 let g:tagbar_autofocus = 1
 let g:tagbar_width = 40
+
+" CtrlP
+let g:ctrlp_map = '<F6>'
+let g:ctrlp_working_path_mode = 0
 
 " Patching matchparen.vim
 autocmd WinLeave * execute '3match none'
