@@ -148,6 +148,10 @@ let g:tagbar_autoclose = 1
 let g:tagbar_autofocus = 1
 let g:tagbar_width = 40
 
+" delimitMate
+let delimitMate_expand_cr = 1
+let delimitMate_expand_space = 1
+
 " CtrlP
 let g:ctrlp_working_path_mode = 0
 let g:ctrlp_custom_ignore = '\.git$\|\.hg$\|\.svn$\|\.DS_Store$'

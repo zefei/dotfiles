@@ -1,9 +1,6 @@
 [submodule ".vim/bundle/buftabs"]
 	path = .vim/bundle/buftabs
 	url = https://zefei@github.com/zefei/buftabs.git
-[submodule ".vim/bundle/JavaScript-Indent"]
-	path = .vim/bundle/JavaScript-Indent
-	url = https://github.com/vim-scripts/JavaScript-Indent.git
 [submodule ".vim/bundle/matchit.zip"]
 	path = .vim/bundle/matchit.zip
 	url = https://github.com/vim-scripts/matchit.zip.git
@@ -46,3 +43,6 @@
 [submodule ".vim/bundle/vim-fugitive"]
 	path = .vim/bundle/vim-fugitive
 	url = https://github.com/tpope/vim-fugitive.git
+[submodule ".vim/bundle/vim-javascript"]
+	path = .vim/bundle/vim-javascript
+	url = https://github.com/pangloss/vim-javascript.git
