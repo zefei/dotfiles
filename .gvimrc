@@ -3,7 +3,7 @@ if SystemIs('win')
 elseif SystemIs('linux')
   set guifont=Monospace\ 12
 elseif SystemIs('mac')
-  set guifont=Monaco:h15
+  set guifont=Menlo\ Regular:h16
 endif
 set antialias
 set guioptions-=m

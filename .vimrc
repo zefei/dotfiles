@@ -46,9 +46,8 @@ set so=5
 
 " Color
 if &t_Co == 256 || has('gui_running')
-  let g:lucius_style='dark'
-  colorscheme lucius
   set cursorline
+  colorscheme simple-dark
 endif
 
 " Searching
@@ -134,8 +133,8 @@ set laststatus=2
 set statusline=%#LineNr#\ ---\ %###{buftabs}%=\ Ln\ %-5.5l\ Col\ %-4.4v
 let g:buftabs_other_components_length=23
 if &t_Co == 256 || has('gui_running')
-  let g:buftabs_inactive_highlight_group="BufLine"
-  let g:buftabs_active_highlight_group="BufLineSel"
+  let g:buftabs_inactive_highlight_group="TabLine"
+  let g:buftabs_active_highlight_group="TabLineSel"
 else
   let g:buftabs_active_highlight_group="Search"
 endif
@@ -147,6 +146,7 @@ let g:tagbar_left = 1
 let g:tagbar_autoclose = 1
 let g:tagbar_autofocus = 1
 let g:tagbar_width = 40
+hi link TagbarKind Directory
 
 " delimitMate
 let delimitMate_expand_cr = 1
@@ -158,3 +158,8 @@ let g:ctrlp_custom_ignore = '\.git$\|\.hg$\|\.svn$\|\.DS_Store$'
 
 " Patching matchparen.vim
 autocmd WinLeave * execute '3match none'
+
+
+map <F11> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
+      \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
+      \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>

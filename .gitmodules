@@ -22,9 +22,6 @@
 [submodule ".vim/bundle/vim-rails"]
 	path = .vim/bundle/vim-rails
 	url = https://github.com/tpope/vim-rails.git
-[submodule ".vim/bundle/Lucius"]
-	path = .vim/bundle/Lucius
-	url = https://zefei@github.com/zefei/Lucius.git
 [submodule ".vim/bundle/tagbar"]
 	path = .vim/bundle/tagbar
 	url = https://github.com/majutsushi/tagbar.git
@@ -46,3 +43,6 @@
 [submodule ".vim/bundle/vim-javascript"]
 	path = .vim/bundle/vim-javascript
 	url = https://github.com/pangloss/vim-javascript.git
+[submodule ".vim/bundle/simple-dark"]
+	path = .vim/bundle/simple-dark
+	url = git@github.com:zefei/simple-dark.git
