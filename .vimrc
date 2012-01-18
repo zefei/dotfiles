@@ -73,10 +73,7 @@ set wrap
 set linebreak
 set textwidth=80
 set showbreak=>>>\ 
-let &cc = '+1'
-for i in range(2, 200)
-  let &cc .= ',+' . i
-endfor
+set cc=+1
 
 " Folding
 set foldenable
