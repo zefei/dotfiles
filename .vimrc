@@ -112,8 +112,8 @@ noremap <F5> :nohlsearch<CR>
 inoremap <F5> <ESC>:nohlsearch<CR>a
 noremap <F6> :Gstatus<CR>
 inoremap <F6> <ESC>:Gstatus<CR>
-noremap <F7> :wa<CR>
-inoremap <F7> <ESC>:wa<CR>a
+noremap <F7> :wa<CR>:call Buftabs_show(-1)<CR>
+inoremap <F7> <ESC>:wa<CR>:call Buftabs_show(-1)<CR>a
 noremap <F8> :confirm bd<CR>
 inoremap <F8> <ESC>:confirm bd<CR>
 if SystemIs('win')
@@ -142,10 +142,7 @@ set laststatus=2
 set statusline=%#LineNr#\ ---\ %###{buftabs}%=\ Ln\ %-5.5l\ Col\ %-4.4v
 let g:buftabs_other_components_length=23
 if &t_Co == 256 || has('gui_running')
-  let g:buftabs_inactive_highlight_group="TabLine"
   let g:buftabs_active_highlight_group="TabLineSel"
-else
-  let g:buftabs_active_highlight_group="Search"
 endif
 let g:buftabs_marker_start=' '
 let g:buftabs_marker_end=' '
