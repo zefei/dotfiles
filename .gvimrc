@@ -9,4 +9,5 @@ set antialias
 set guioptions-=m
 set guioptions-=T
 set lines=45
-set columns=140
+set columns=120
+set linespace=2

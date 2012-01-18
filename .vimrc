@@ -41,7 +41,7 @@ set numberwidth=5
 set mouse=a
 set noerrorbells
 set visualbell t_vb=
-autocmd GUIEnter * set visualbell t_vb=
+au GUIEnter * set visualbell t_vb=
 set so=5
 
 " Color
@@ -59,8 +59,9 @@ set hlsearch
 set incsearch
 
 " Formatting
-set fo=tcrqn
-au FileType * setlocal fo-=c fo-=r fo-=o
+set fo=tcroqwanmM
+au FileType * setlocal fo-=t
+au FileType markdown setlocal fo+=t
 set ai
 set si
 set cindent
@@ -68,8 +69,14 @@ set expandtab
 set tabstop=2
 set softtabstop=2
 set shiftwidth=2
+set wrap
+set linebreak
 set textwidth=80
-set wrap linebreak textwidth=0
+set showbreak=>>>\ 
+let &cc = '+1'
+for i in range(2, 200)
+  let &cc .= ',+' . i
+endfor
 
 " Folding
 set foldenable
@@ -77,8 +84,10 @@ set foldmethod=indent
 set foldnestmax=5
 set foldlevel=5
 
-
 " Mappings
+noremap <SPACE> za
+noremap j gj
+noremap k gk
 inoremap <C-TAB> <C-X><C-O>
 imap <C-T> <C-R><TAB>
 if !SystemIs('mac')
@@ -158,8 +167,3 @@ let g:ctrlp_custom_ignore = '\.git$\|\.hg$\|\.svn$\|\.DS_Store$'
 
 " Patching matchparen.vim
 autocmd WinLeave * execute '3match none'
-
-
-map <F11> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
-      \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
-      \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
