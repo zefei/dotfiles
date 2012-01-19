@@ -107,10 +107,6 @@ noremap <F4> :NERDTreeToggle<CR>
 inoremap <F4> <ESC>:NERDTreeToggle<CR>
 noremap <F5> :nohlsearch<CR>
 inoremap <F5> <ESC>:nohlsearch<CR>a
-noremap <F6> :Gstatus<CR>
-inoremap <F6> <ESC>:Gstatus<CR>
-noremap <F7> :wa<CR>:call Buftabs_show(-1)<CR>
-inoremap <F7> <ESC>:wa<CR>:call Buftabs_show(-1)<CR>a
 noremap <F8> :confirm bd<CR>
 inoremap <F8> <ESC>:confirm bd<CR>
 if SystemIs('win')
@@ -120,6 +116,13 @@ else
   noremap <F12> :confirm e ~/.vimrc<CR>
   inoremap <F12> <ESC>:confirm e ~/.vimrc<CR>
 endif
+
+" Commands
+command W wa | call Buftabs_show(-1)
+command G Gstatus
+command SH ConqueTerm bash
+command IRB ConqueTerm irb
+command PY ConqueTerm python
 
 " NERDTree
 let NERDTreeQuitOnOpen=1
@@ -158,6 +161,15 @@ let delimitMate_expand_space = 1
 " CtrlP
 let g:ctrlp_working_path_mode = 0
 let g:ctrlp_custom_ignore = '\.git$\|\.hg$\|\.svn$\|\.DS_Store$'
+
+" ConqueTerm
+let g:ConqueTerm_ReadUnfocused = 1
+let g:ConqueTerm_InsertOnEnter = 1
+let g:ConqueTerm_CloseOnEnd = 1
+let g:ConqueTerm_ToggleKey = ''
+let g:ConqueTerm_ExecFileKey = ''
+let g:ConqueTerm_SendFileKey = ''
+let g:ConqueTerm_SendVisKey = ''
 
 " Patching matchparen.vim
 autocmd WinLeave * execute '3match none'

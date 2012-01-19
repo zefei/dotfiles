@@ -11,5 +11,5 @@ alias ll='ls -lG'
 alias l.='ls -dG .*'
 alias ls='ls -G'
 alias python32='VERSIONER_PYTHON_PREFER_32_BIT=yes python'
-alias mvim='mvim >/dev/null 2>&1 --remote'
+alias mvim='mvim --remote-silent'
 export EDITOR=vim
