@@ -32,6 +32,7 @@ else
   set undodir=~/.vimundo
 endif
 set undofile
+set fillchars=vert:\ 
 
 " UI
 syntax on
@@ -49,6 +50,9 @@ if &t_Co == 256 || has('gui_running')
   set cursorline
   colorscheme simple-dark
 endif
+map <F11> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
+\ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
+\ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
 
 " Searching
 set ignorecase
@@ -86,7 +90,6 @@ noremap <SPACE> za
 noremap j gj
 noremap k gk
 inoremap <C-TAB> <C-X><C-O>
-imap <C-T> <C-R><TAB>
 if !SystemIs('mac')
   vnoremap <C-C> y
   vnoremap <C-X> "0d
@@ -107,6 +110,10 @@ noremap <F4> :NERDTreeToggle<CR>
 inoremap <F4> <ESC>:NERDTreeToggle<CR>
 noremap <F5> :nohlsearch<CR>
 inoremap <F5> <ESC>:nohlsearch<CR>a
+noremap <F6> :CtrlP<CR>
+inoremap <F6> <ESC>:CtrlP<CR>
+noremap <F7> :Gstatus<CR>
+inoremap <F7> <ESC>:Gstatus<CR>
 noremap <F8> :confirm bd<CR>
 inoremap <F8> <ESC>:confirm bd<CR>
 if SystemIs('win')
@@ -119,10 +126,6 @@ endif
 
 " Commands
 command W wa | call Buftabs_show(-1)
-command G Gstatus
-command SH ConqueTerm bash
-command IRB ConqueTerm irb
-command PY ConqueTerm python
 
 " NERDTree
 let NERDTreeQuitOnOpen=1
@@ -161,15 +164,6 @@ let delimitMate_expand_space = 1
 " CtrlP
 let g:ctrlp_working_path_mode = 0
 let g:ctrlp_custom_ignore = '\.git$\|\.hg$\|\.svn$\|\.DS_Store$'
-
-" ConqueTerm
-let g:ConqueTerm_ReadUnfocused = 1
-let g:ConqueTerm_InsertOnEnter = 1
-let g:ConqueTerm_CloseOnEnd = 1
-let g:ConqueTerm_ToggleKey = ''
-let g:ConqueTerm_ExecFileKey = ''
-let g:ConqueTerm_SendFileKey = ''
-let g:ConqueTerm_SendVisKey = ''
 
 " Patching matchparen.vim
 autocmd WinLeave * execute '3match none'

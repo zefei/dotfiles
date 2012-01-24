@@ -46,6 +46,3 @@
 [submodule ".vim/bundle/simple-dark"]
 	path = .vim/bundle/simple-dark
 	url = git@github.com:zefei/simple-dark.git
-[submodule ".vim/bundle/vim-conque"]
-	path = .vim/bundle/vim-conque
-	url = https://github.com/rson/vim-conque.git
