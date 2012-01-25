@@ -44,15 +44,8 @@ set noerrorbells
 set visualbell t_vb=
 au GUIEnter * set visualbell t_vb=
 set so=5
-
-" Color
-if &t_Co == 256 || has('gui_running')
-  set cursorline
-  colorscheme simple-dark
-endif
-map <F11> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
-\ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
-\ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
+set cursorline
+colorscheme simple-dark
 
 " Searching
 set ignorecase
@@ -61,6 +54,7 @@ set showmatch
 set mat=0
 set hlsearch
 set incsearch
+set gdefault
 
 " Formatting
 set fo=tcroqwanmM
@@ -86,9 +80,18 @@ set foldnestmax=5
 set foldlevel=5
 
 " Mappings
-nnoremap <SPACE> za
+let mapleader = ';'
 noremap j gj
 noremap k gk
+noremap / /\v
+noremap <TAB> %
+nnoremap <LEADER>w <C-W>
+nnoremap <LEADER>f <C-F>
+nnoremap <LEADER>b <C-B>
+nnoremap <LEADER>u <C-U>
+nnoremap <LEADER>d <C-D>
+nnoremap <LEADER>r <C-R>
+nnoremap <SPACE> za
 inoremap <C-TAB> <C-X><C-O>
 inoremap <C-O> <ESC>o
 inoremap <C-A> <ESC>A
