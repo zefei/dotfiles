@@ -86,46 +86,49 @@ set foldnestmax=5
 set foldlevel=5
 
 " Mappings
-noremap <SPACE> za
+nnoremap <SPACE> za
 noremap j gj
 noremap k gk
 inoremap <C-TAB> <C-X><C-O>
+inoremap <C-O> <ESC>o
+inoremap <C-A> <ESC>A
+" <C-R><TAB>: (snipmate) list all snippets
+imap <C-T> <C-R><TAB>
 if !SystemIs('mac')
   vnoremap <C-C> y
   vnoremap <C-X> "0d
   vnoremap <C-V> "0p
-  inoremap <C-V> <ESC>"0pa
-  noremap <C-Z> u
-  inoremap <C-Z> <ESC>ua
-  noremap <C-Y> <C-R>
-  inoremap <C-Y> <ESC><C-R>a
+  inoremap <C-V> <C-O>"0p
+  nnoremap <C-Z> u
+  inoremap <C-Z> <C-O>u
+  nnoremap <C-Y> <C-R>
+  inoremap <C-Y> <C-O><C-R>
 endif
-noremap <F1> :bp!<CR>
+nnoremap <F1> :bp!<CR>
 inoremap <F1> <ESC>:bp!<CR>
-noremap <F2> :bn!<CR>
+nnoremap <F2> :bn!<CR>
 inoremap <F2> <ESC>:bn!<CR>
-noremap <F3> :TagbarToggle<CR>
+nnoremap <F3> :TagbarToggle<CR>
 inoremap <F3> <ESC>:TagbarToggle<CR>
-noremap <F4> :NERDTreeToggle<CR>
+nnoremap <F4> :NERDTreeToggle<CR>
 inoremap <F4> <ESC>:NERDTreeToggle<CR>
-noremap <F5> :nohlsearch<CR>
-inoremap <F5> <ESC>:nohlsearch<CR>a
-noremap <F6> :CtrlP<CR>
+nnoremap <F5> :nohlsearch<CR>
+inoremap <F5> <C-O>:nohlsearch<CR>
+nnoremap <F6> :CtrlP<CR>
 inoremap <F6> <ESC>:CtrlP<CR>
-noremap <F7> :Gstatus<CR>
-inoremap <F7> <ESC>:Gstatus<CR>
-noremap <F8> :confirm bd<CR>
+nnoremap <F8> :confirm bd<CR>
 inoremap <F8> <ESC>:confirm bd<CR>
 if SystemIs('win')
-  noremap <F12> :confirm e ~/_vimrc<CR>
+  nnoremap <F12> :confirm e ~/_vimrc<CR>
   inoremap <F12> <ESC>:confirm e ~/_vimrc<CR>
 else
-  noremap <F12> :confirm e ~/.vimrc<CR>
+  nnoremap <F12> :confirm e ~/.vimrc<CR>
   inoremap <F12> <ESC>:confirm e ~/.vimrc<CR>
 endif
 
 " Commands
 command W wa | call Buftabs_show(-1)
+command G Gstatus
 
 " NERDTree
 let NERDTreeQuitOnOpen=1
@@ -142,8 +145,8 @@ let g:buftabs_marker_modified=" +"
 let g:buftabs_show_number=0
 let g:buftabs_blacklist = [ "^NERD_tree_[0-9]*$", "^__Tagbar__$" ]
 set laststatus=2
-set statusline=%#LineNr#\ ---\ %###{buftabs}%=\ Ln\ %-5.5l\ Col\ %-4.4v
-let g:buftabs_other_components_length=23
+set statusline=\ #{buftabs}%=\ \ Ln\ %-5.5l\ Col\ %-4.4v
+let g:buftabs_other_components_length=20
 if &t_Co == 256 || has('gui_running')
   let g:buftabs_active_highlight_group="TabLineSel"
 endif
