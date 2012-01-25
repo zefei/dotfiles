@@ -1,18 +1,12 @@
 [submodule ".vim/bundle/buftabs"]
 	path = .vim/bundle/buftabs
 	url = https://zefei@github.com/zefei/buftabs.git
-[submodule ".vim/bundle/matchit.zip"]
-	path = .vim/bundle/matchit.zip
-	url = https://github.com/vim-scripts/matchit.zip.git
 [submodule ".vim/bundle/nerdcommenter"]
 	path = .vim/bundle/nerdcommenter
 	url = https://github.com/scrooloose/nerdcommenter.git
 [submodule ".vim/bundle/nerdtree"]
 	path = .vim/bundle/nerdtree
 	url = https://github.com/scrooloose/nerdtree.git
-[submodule ".vim/bundle/snipmate.vim"]
-	path = .vim/bundle/snipmate.vim
-	url = https://github.com/msanders/snipmate.vim.git
 [submodule ".vim/bundle/supertab"]
 	path = .vim/bundle/supertab
 	url = https://github.com/ervandew/supertab.git
@@ -46,3 +40,9 @@
 [submodule ".vim/bundle/simple-dark"]
 	path = .vim/bundle/simple-dark
 	url = git@github.com:zefei/simple-dark.git
+[submodule ".vim/bundle/matchit.zip"]
+	path = .vim/bundle/matchit.zip
+	url = https://github.com/vim-scripts/matchit.zip.git
+[submodule ".vim/bundle/snipmate.vim"]
+	path = .vim/bundle/snipmate.vim
+	url = https://github.com/msanders/snipmate.vim.git
