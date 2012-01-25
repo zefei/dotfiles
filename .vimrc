@@ -85,12 +85,14 @@ noremap j gj
 noremap k gk
 noremap / /\v
 noremap <TAB> %
-nnoremap <LEADER>w <C-W>
-nnoremap <LEADER>f <C-F>
-nnoremap <LEADER>b <C-B>
-nnoremap <LEADER>u <C-U>
-nnoremap <LEADER>d <C-D>
-nnoremap <LEADER>r <C-R>
+noremap <LEADER>w <C-W>
+noremap <LEADER>j <C-F>
+noremap <LEADER>k <C-B>
+noremap <LEADER>h ^
+noremap <LEADER>l $
+nnoremap <LEADER>f :CtrlP<CR>
+nnoremap <LEADER>b :CtrlPBuffer<CR>
+nnoremap <LEADER>q :confirm bd<CR>
 nnoremap <SPACE> za
 inoremap <C-TAB> <C-X><C-O>
 inoremap <C-O> <ESC>o
@@ -117,8 +119,6 @@ nnoremap <F4> :NERDTreeToggle<CR>
 inoremap <F4> <ESC>:NERDTreeToggle<CR>
 nnoremap <F5> :nohlsearch<CR>
 inoremap <F5> <C-O>:nohlsearch<CR>
-nnoremap <F6> :CtrlP<CR>
-inoremap <F6> <ESC>:CtrlP<CR>
 nnoremap <F8> :confirm bd<CR>
 inoremap <F8> <ESC>:confirm bd<CR>
 
