@@ -84,6 +84,7 @@ let mapleader = ';'
 noremap j gj
 noremap k gk
 noremap / /\v
+nnoremap Y y$
 noremap <TAB> %
 noremap <LEADER>w <C-W>
 noremap <LEADER>j <C-F>
@@ -93,6 +94,7 @@ noremap <LEADER>l $
 nnoremap <LEADER>f :CtrlP<CR>
 nnoremap <LEADER>b :CtrlPBuffer<CR>
 nnoremap <LEADER>q :confirm bd<CR>
+nnoremap <LEADER>a :b! #<CR>
 nnoremap <SPACE> za
 inoremap <C-TAB> <C-X><C-O>
 inoremap <C-O> <ESC>o
