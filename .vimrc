@@ -85,7 +85,7 @@ noremap j gj
 noremap k gk
 noremap / /\v
 nnoremap Y y$
-noremap <TAB> %
+map <TAB> %
 noremap <LEADER>w <C-W>
 noremap <LEADER>j <C-F>
 noremap <LEADER>k <C-B>
@@ -150,7 +150,6 @@ let g:SuperTabMappingTabLiteral='<C-`>'
 
 " buftabs
 let g:buftabs_only_basename=1
-let g:buftabs_in_statusline=1
 let g:buftabs_marker_modified=" +"
 let g:buftabs_show_number=0
 let g:buftabs_blacklist = ["^NERD_tree_[0-9]*$", "^__Tagbar__$"]
