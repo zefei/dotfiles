@@ -49,3 +49,9 @@
 [submodule ".vim/bundle/vim-indent-object"]
 	path = .vim/bundle/vim-indent-object
 	url = https://github.com/michaeljsmith/vim-indent-object.git
+[submodule ".vim/bundle/vim-less"]
+	path = .vim/bundle/vim-less
+	url = https://github.com/groenewege/vim-less.git
+[submodule "/Users/zefei/.vim/bundle/vim-ruby"]
+	path = /Users/zefei/.vim/bundle/vim-ruby
+	url = https://github.com/vim-ruby/vim-ruby.git

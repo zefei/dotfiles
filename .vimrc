@@ -33,6 +33,7 @@ else
 endif
 set undofile
 set fillchars=vert:\ 
+set hidden
 
 " UI
 syntax on
@@ -94,7 +95,7 @@ noremap <LEADER>l $
 nnoremap <LEADER>f :CtrlP<CR>
 nnoremap <LEADER>b :CtrlPBuffer<CR>
 nnoremap <LEADER>q :confirm bd<CR>
-nnoremap <LEADER>a :b! #<CR>
+nnoremap <LEADER>a :b #<CR>
 nnoremap <SPACE> za
 inoremap <C-TAB> <C-X><C-O>
 inoremap <C-O> <ESC>o
@@ -111,10 +112,10 @@ if !SystemIs('mac')
   nnoremap <C-Y> <C-R>
   inoremap <C-Y> <C-O><C-R>
 endif
-nnoremap <F1> :bp!<CR>
-inoremap <F1> <ESC>:bp!<CR>
-nnoremap <F2> :bn!<CR>
-inoremap <F2> <ESC>:bn!<CR>
+nnoremap <F1> :bp<CR>
+inoremap <F1> <ESC>:bp<CR>
+nnoremap <F2> :bn<CR>
+inoremap <F2> <ESC>:bn<CR>
 nnoremap <F3> :TagbarToggle<CR>
 inoremap <F3> <ESC>:TagbarToggle<CR>
 nnoremap <F4> :NERDTreeToggle<CR>
@@ -129,11 +130,11 @@ nnoremap <F11> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> 
 \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
 
 if SystemIs('win')
-  nnoremap <F12> :confirm e ~/_vimrc<CR>
-  inoremap <F12> <ESC>:confirm e ~/_vimrc<CR>
+  nnoremap <F12> :e ~/_vimrc<CR>
+  inoremap <F12> <ESC>:e ~/_vimrc<CR>
 else
-  nnoremap <F12> :confirm e ~/.vimrc<CR>
-  inoremap <F12> <ESC>:confirm e ~/.vimrc<CR>
+  nnoremap <F12> :e ~/.vimrc<CR>
+  inoremap <F12> <ESC>:e ~/.vimrc<CR>
 endif
 
 " Commands
