@@ -137,6 +137,9 @@ else
   inoremap <F12> <ESC>:e ~/.vimrc<CR>
 endif
 
+" auto commands
+autocmd BufNewFile,BufRead *.json set filetype=javascript
+
 " Commands
 command W wa | call Buftabs_show(-1)
 command G Gstatus
