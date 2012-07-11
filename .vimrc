@@ -46,6 +46,9 @@ set visualbell t_vb=
 au GUIEnter * set visualbell t_vb=
 set so=5
 set cursorline
+if $COLORTERM == 'gnome-terminal'
+  set t_Co=256
+endif
 colorscheme simple-dark
 
 " Searching
