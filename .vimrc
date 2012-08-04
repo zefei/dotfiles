@@ -146,7 +146,6 @@ autocmd BufNewFile,BufRead *.json set filetype=javascript
 " Commands
 command W wa | call Buftabs_show(-1)
 command G Gstatus
-command Gpush Git push
 
 " NERDTree
 let NERDTreeQuitOnOpen=1
