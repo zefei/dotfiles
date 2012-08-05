@@ -119,10 +119,10 @@ nnoremap <F1> :bp<CR>
 inoremap <F1> <ESC>:bp<CR>
 nnoremap <F2> :bn<CR>
 inoremap <F2> <ESC>:bn<CR>
-nnoremap <F3> :TagbarToggle<CR>
-inoremap <F3> <ESC>:TagbarToggle<CR>
-nnoremap <F4> :Gstatus<CR>
-inoremap <F4> <ESC>:Gstatus<CR>
+nnoremap <F3> :Gstatus<CR>
+inoremap <F3> <ESC>:Gstatus<CR>
+nnoremap <F4> :NERDTreeToggle<CR>
+inoremap <F4> <ESC>:NERDTreeToggle<CR>
 nnoremap <F5> :nohlsearch<CR>
 inoremap <F5> <C-O>:nohlsearch<CR>
 nnoremap <F8> :confirm bd<CR>
