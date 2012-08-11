@@ -1,7 +1,29 @@
-" Load Pathogen
+" Setup Vundle
+set nocompatible
 filetype off
-call pathogen#runtime_append_all_bundles()
-call pathogen#helptags()
+
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+
+" Bundles
+Bundle 'gmarik/vundle'
+Bundle 'zefei/buftabs'
+Bundle 'kien/ctrlp.vim'
+Bundle 'matchit.zip'
+Bundle 'scrooloose/nerdtree'
+Bundle 'zefei/simple-dark'
+Bundle 'ervandew/supertab'
+Bundle 'kchmck/vim-coffee-script'
+Bundle 'tpope/vim-commentary'
+Bundle 'tpope/vim-endwise'
+Bundle 'tpope/vim-fugitive'
+Bundle 'michaeljsmith/vim-indent-object'
+Bundle 'pangloss/vim-javascript'
+Bundle 'groenewege/vim-less'
+Bundle 'tpope/vim-rails'
+Bundle 'vim-ruby/vim-ruby'
+Bundle 'kana/vim-smartinput'
+Bundle 'tpope/vim-unimpaired'
 
 " Functions
 function! SystemIs(sys)
@@ -101,20 +123,6 @@ nnoremap <LEADER>q :confirm bd<CR>
 nnoremap <LEADER>a :b #<CR>
 nnoremap <SPACE> za
 inoremap <C-TAB> <C-X><C-O>
-inoremap <C-O> <ESC>o
-inoremap <C-A> <ESC>A
-" <C-R><TAB>: (snipmate) list all snippets
-imap <C-T> <C-R><TAB>
-if !SystemIs('mac')
-  vnoremap <C-C> y
-  vnoremap <C-X> "0d
-  vnoremap <C-V> "0p
-  inoremap <C-V> <C-O>"0p
-  nnoremap <C-Z> u
-  inoremap <C-Z> <C-O>u
-  nnoremap <C-Y> <C-R>
-  inoremap <C-Y> <C-O><C-R>
-endif
 nnoremap <F1> :bp<CR>
 inoremap <F1> <ESC>:bp<CR>
 nnoremap <F2> :bn<CR>
@@ -168,17 +176,6 @@ if &t_Co == 256 || has('gui_running')
   let g:buftabs_marker_start=' '
   let g:buftabs_marker_end=' '
 endif
-
-" Tagbar
-let g:tagbar_left = 1
-let g:tagbar_autoclose = 1
-let g:tagbar_autofocus = 1
-let g:tagbar_width = 40
-hi link TagbarKind Directory
-
-" delimitMate
-let delimitMate_expand_cr = 1
-let delimitMate_expand_space = 1
 
 " CtrlP
 let g:ctrlp_working_path_mode = 0
