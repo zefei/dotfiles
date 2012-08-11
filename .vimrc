@@ -7,6 +7,7 @@ call vundle#rc()
 
 " Bundles
 Bundle 'gmarik/vundle'
+Bundle 'Auto-Pairs'
 Bundle 'zefei/buftabs'
 Bundle 'kien/ctrlp.vim'
 Bundle 'matchit.zip'
@@ -18,12 +19,11 @@ Bundle 'tpope/vim-commentary'
 Bundle 'tpope/vim-endwise'
 Bundle 'tpope/vim-fugitive'
 Bundle 'michaeljsmith/vim-indent-object'
-Bundle 'pangloss/vim-javascript'
 Bundle 'groenewege/vim-less'
 Bundle 'tpope/vim-rails'
 Bundle 'vim-ruby/vim-ruby'
-Bundle 'kana/vim-smartinput'
 Bundle 'tpope/vim-unimpaired'
+Bundle 'lukaszb/vim-web-indent'
 
 " Functions
 function! SystemIs(sys)
