@@ -1,11 +1,17 @@
 [user]
-	name = Zefei Xuan
-	email = zefei.xuan@gmail.com
+  name = Zefei Xuan
+  email = zefei.xuan@gmail.com
 [core]
-	excludesfile = /Users/zefei/.gitignore_global
+  excludesfile = /Users/zefei/.gitignore_global
 [difftool "sourcetree"]
-	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-	path = 
+  cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+  path = 
 [mergetool "sourcetree"]
-	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
-	trustExitCode = true
+  cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+  trustExitCode = true
+[alias]
+  co = checkout
+  s = status
+  c = commit
+  d = diff
+  l = log --pretty=format:\"%h %s\" --graph
