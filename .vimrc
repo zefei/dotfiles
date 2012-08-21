@@ -63,7 +63,7 @@ set ruler
 set number
 set numberwidth=5
 set mouse=a
-set list listchars=tab:▸\ ,trail:⋅,nbsp:⋅,eol:↩
+set list listchars=tab:▸\ ,trail:⋅,nbsp:⋅
 set noerrorbells
 set visualbell t_vb=
 au GUIEnter * set visualbell t_vb=
