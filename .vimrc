@@ -86,7 +86,7 @@ set gdefault
 " Formatting
 set fo=tcroqwanmM
 au FileType * setlocal fo-=t
-au FileType markdown setlocal fo+=t
+au FileType text,markdown setlocal fo+=t
 set ai
 set si
 set cindent
@@ -151,6 +151,7 @@ endif
 
 " auto commands
 autocmd BufNewFile,BufRead *.json set filetype=javascript
+autocmd BufNewFile,BufRead *.md set filetype=markdown
 
 " Commands
 command W wa | call Buftabs_show(-1)
