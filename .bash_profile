@@ -3,6 +3,7 @@ if [ -f ~/.bashrc ]; then
 fi
 
 export PATH=/usr/local/bin:/usr/local/sbin:$PATH:$HOME/bin
+export PATH=$PATH:/Library/android-sdk-macosx/platform-tools:/Library/android-sdk-macosx/tools
 export PYTHONPATH=/usr/local/lib/python2.7/site-packages:$PYTHONPATH
 export RACK_ENV=development
 export RAILS_ENV=development
