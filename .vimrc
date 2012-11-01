@@ -11,9 +11,9 @@ Bundle 'Auto-Pairs'
 Bundle 'zefei/buftabs'
 Bundle 'kien/ctrlp.vim'
 Bundle 'matchit.zip'
+Bundle 'Shougo/neocomplcache'
 Bundle 'scrooloose/nerdtree'
 Bundle 'zefei/simple-dark'
-Bundle 'ervandew/supertab'
 Bundle 'kchmck/vim-coffee-script'
 Bundle 'tpope/vim-commentary'
 Bundle 'tpope/vim-endwise'
@@ -161,9 +161,6 @@ let NERDTreeQuitOnOpen=1
 let NERDTreeChDirMode=2
 let NERDTreeWinSize=40
 
-" SuperTab
-let g:SuperTabMappingTabLiteral='<C-`>'
-
 " buftabs
 let g:buftabs_only_basename=1
 let g:buftabs_marker_modified=" +"
@@ -184,3 +181,18 @@ let g:ctrlp_custom_ignore = '\.git$\|\.hg$\|\.svn$\|\.DS_Store$'
 
 " Patching matchparen.vim
 autocmd WinLeave * execute '3match none'
+
+" neocomplcache
+let g:neocomplcache_enable_at_startup = 1
+let g:neocomplcache_enable_smart_case = 1
+let g:neocomplcache_enable_camel_case_completion = 1
+let g:neocomplcache_enable_underbar_completion = 1
+let g:neocomplcache_min_syntax_length = 3
+inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+inoremap <expr><S-TAB>  pumvisible() ? "\<C-p>" : "\<S-TAB>"
+autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+
