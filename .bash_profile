@@ -2,7 +2,7 @@ if [ -f ~/.bashrc ]; then
   . ~/.bashrc
 fi
 
-export PATH=/usr/local/bin:/usr/local/sbin:$PATH:$HOME/bin
+export PATH=/usr/local/bin:/usr/local/sbin:/usr/local/share/npm/bin:$PATH:$HOME/bin
 export PATH=$PATH:/Library/android-sdk-macosx/platform-tools:/Library/android-sdk-macosx/tools
 export PYTHONPATH=/usr/local/lib/python2.7/site-packages:$PYTHONPATH
 export RACK_ENV=development
