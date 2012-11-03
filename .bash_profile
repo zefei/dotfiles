@@ -9,9 +9,16 @@ export RACK_ENV=development
 export RAILS_ENV=development
 export NODE_PATH=/usr/local/lib/node_modules
 export NODE_ENV=development
+export EDITOR=vim
 
 eval "$(rbenv init -)"
 
 if [ -f `brew --prefix`/etc/bash_completion ]; then
   . `brew --prefix`/etc/bash_completion
 fi
+
+alias grep='grep --color=auto'
+alias ll='ls -lG'
+alias l.='ls -dG .*'
+alias ls='ls -G'
+alias mvim='mvim --remote-silent'

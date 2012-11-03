@@ -10,6 +10,7 @@ Bundle 'gmarik/vundle'
 Bundle 'Auto-Pairs'
 Bundle 'zefei/buftabs'
 Bundle 'kien/ctrlp.vim'
+Bundle 'othree/html5.vim'
 Bundle 'matchit.zip'
 Bundle 'Shougo/neocomplcache'
 Bundle 'scrooloose/nerdtree'
@@ -196,3 +197,8 @@ autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 
+" html5 syntax
+let g:html5_event_handler_attributes_complete = 0
+let g:html5_rdfa_attributes_complete = 0
+let g:html5_microdata_attributes_complete = 0
+let g:html5_aria_attributes_complete = 0
