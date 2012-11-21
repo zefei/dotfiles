@@ -24,7 +24,6 @@ Bundle 'groenewege/vim-less'
 Bundle 'tpope/vim-rails'
 Bundle 'vim-ruby/vim-ruby'
 Bundle 'tpope/vim-unimpaired'
-Bundle 'lukaszb/vim-web-indent'
 
 " Functions
 function! SystemIs(sys)
