@@ -90,6 +90,7 @@ au FileType text,markdown setlocal fo+=t
 set ai
 set si
 set cindent
+au FileType text,markdown set nocindent
 set expandtab
 set tabstop=2
 set softtabstop=2
