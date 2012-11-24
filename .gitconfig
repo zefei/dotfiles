@@ -10,4 +10,4 @@
   d = diff
   l = log --pretty=format:\"%h %s\" --graph
 [push]
-	default = simple
+  default = simple

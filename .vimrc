@@ -23,6 +23,7 @@ Bundle 'michaeljsmith/vim-indent-object'
 Bundle 'groenewege/vim-less'
 Bundle 'tpope/vim-rails'
 Bundle 'vim-ruby/vim-ruby'
+Bundle 'tpope/vim-surround'
 
 " Functions
 function! SystemIs(sys)
