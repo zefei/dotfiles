@@ -73,7 +73,9 @@ set cursorline
 if $COLORTERM == 'gnome-terminal'
   set t_Co=256
 endif
-colorscheme simple-light
+if has('gui_running')
+  colorscheme simple-light
+endif
 
 " Searching
 set ignorecase
