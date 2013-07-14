@@ -15,6 +15,7 @@ Bundle 'matchit.zip'
 Bundle 'Shougo/neocomplcache'
 Bundle 'scrooloose/nerdtree'
 Bundle 'zefei/simple-dark'
+Bundle 'zefei/simple-light'
 Bundle 'kchmck/vim-coffee-script'
 Bundle 'tpope/vim-commentary'
 Bundle 'tpope/vim-endwise'
@@ -63,7 +64,6 @@ syntax on
 set ruler
 set number
 set numberwidth=5
-set mouse=a
 set list listchars=tab:▸\ ,trail:⋅,nbsp:⋅
 set noerrorbells
 set visualbell t_vb=
@@ -73,7 +73,7 @@ set cursorline
 if $COLORTERM == 'gnome-terminal'
   set t_Co=256
 endif
-colorscheme simple-dark
+colorscheme simple-light
 
 " Searching
 set ignorecase
@@ -95,6 +95,7 @@ set expandtab
 set tabstop=2
 set softtabstop=2
 set shiftwidth=2
+au Filetype python setlocal ts=4 sts=4 sw=4
 set wrap
 set linebreak
 set textwidth=80
