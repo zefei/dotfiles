@@ -18,6 +18,6 @@ fi
 
 alias grep='grep --color=auto'
 alias ll='ls -lG'
-alias l.='ls -dG .*'
+alias l.='ls -dlG .*'
 alias ls='ls -G'
 alias mvim='mvim --remote-silent'
