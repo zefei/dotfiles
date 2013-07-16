@@ -9,13 +9,13 @@ call vundle#rc()
 Bundle 'gmarik/vundle'
 Bundle 'Auto-Pairs'
 Bundle 'zefei/buftabs'
+Bundle 'zefei/cake16'
 Bundle 'kien/ctrlp.vim'
 Bundle 'othree/html5.vim'
 Bundle 'matchit.zip'
 Bundle 'Shougo/neocomplcache'
 Bundle 'scrooloose/nerdtree'
 Bundle 'zefei/simple-dark'
-Bundle 'zefei/simple-light'
 Bundle 'kchmck/vim-coffee-script'
 Bundle 'tpope/vim-commentary'
 Bundle 'tpope/vim-endwise'
@@ -73,9 +73,7 @@ set cursorline
 if $COLORTERM == 'gnome-terminal'
   set t_Co=256
 endif
-if has('gui_running')
-  colorscheme simple-light
-endif
+colorscheme cake16
 
 " Searching
 set ignorecase
