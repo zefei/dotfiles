@@ -16,6 +16,7 @@ Bundle 'matchit.zip'
 Bundle 'Shougo/neocomplcache'
 Bundle 'scrooloose/nerdtree'
 Bundle 'zefei/simple-dark'
+Bundle 'jiangmiao/simple-javascript-indenter'
 Bundle 'kchmck/vim-coffee-script'
 Bundle 'tpope/vim-commentary'
 Bundle 'tpope/vim-endwise'
@@ -172,11 +173,9 @@ let g:buftabs_blacklist = ["^NERD_tree_[0-9]*$", "^__Tagbar__$"]
 set laststatus=2
 set statusline=\ #{buftabs}%=\ \ Ln\ %-5.5l\ Col\ %-4.4v
 let g:buftabs_other_components_length=20
-if &t_Co == 256 || has('gui_running')
-  let g:buftabs_active_highlight_group="TabLineSel"
-  let g:buftabs_marker_start=' '
-  let g:buftabs_marker_end=' '
-endif
+let g:buftabs_active_highlight_group="TabLineSel"
+let g:buftabs_marker_start=' '
+let g:buftabs_marker_end=' '
 
 " CtrlP
 let g:ctrlp_working_path_mode = 0
@@ -204,3 +203,6 @@ let g:html5_event_handler_attributes_complete = 0
 let g:html5_rdfa_attributes_complete = 0
 let g:html5_microdata_attributes_complete = 0
 let g:html5_aria_attributes_complete = 0
+
+" javascript indent
+let g:SimpleJsIndenter_BriefMode = 1
