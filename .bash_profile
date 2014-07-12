@@ -9,6 +9,7 @@ export RAILS_ENV=development
 export NODE_PATH=/usr/local/lib/node_modules
 export NODE_ENV=development
 export EDITOR=vim
+export LESS=-RFX
 
 eval "$(rbenv init -)"
 
