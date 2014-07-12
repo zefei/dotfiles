@@ -16,11 +16,12 @@ Bundle 'matchit.zip'
 Bundle 'Shougo/neocomplcache'
 Bundle 'scrooloose/nerdtree'
 Bundle 'zefei/simple-dark'
-Bundle 'jiangmiao/simple-javascript-indenter'
+Bundle 'zefei/simple-javascript-indenter'
 Bundle 'kchmck/vim-coffee-script'
 Bundle 'tpope/vim-commentary'
 Bundle 'tpope/vim-endwise'
 Bundle 'tpope/vim-fugitive'
+Bundle 'tikhomirov/vim-glsl'
 Bundle 'michaeljsmith/vim-indent-object'
 Bundle 'digitaltoad/vim-jade'
 Bundle 'groenewege/vim-less'
@@ -88,10 +89,7 @@ set gdefault
 " Formatting
 set fo=croqwanmM
 au FileType text,markdown setlocal fo+=t
-set ai
-set si
-set cindent
-au FileType text,markdown set nocindent
+set autoindent
 set expandtab
 set tabstop=2
 set softtabstop=2
