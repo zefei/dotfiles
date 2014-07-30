@@ -7,6 +7,7 @@ call vundle#rc()
 
 " Bundles
 Bundle 'gmarik/vundle'
+Bundle 'mileszs/ack.vim'
 Bundle 'Auto-Pairs'
 Bundle 'zefei/buftabs'
 Bundle 'zefei/cake16'
@@ -44,7 +45,6 @@ endfunction
 set nocompatible
 filetype plugin indent on
 set backspace=2
-set clipboard=unnamed
 set nobackup
 set nowb
 set noswapfile
@@ -60,6 +60,7 @@ endif
 set undofile
 set fillchars=vert:\ 
 set hidden
+set wildmenu
 
 " UI
 syntax on
@@ -109,10 +110,22 @@ set foldlevel=5
 
 " Mappings
 let mapleader = ';'
+noremap H ^
+noremap L $
 noremap j gj
 noremap k gk
+inoremap <C-A> <HOME>
+inoremap <C-E> <END>
 noremap / /\v
-nnoremap Y y$
+noremap <BS> X
+noremap y "+y
+nnoremap yy "+yy
+noremap Y "+y$
+noremap x "+d
+nnoremap xx "+dd
+noremap X "+D
+noremap p "+p
+noremap P "+P
 map <TAB> %
 noremap <LEADER>w <C-W>
 noremap <LEADER>j <C-F>
@@ -133,7 +146,7 @@ nnoremap <F3> :Gstatus<CR>
 inoremap <F3> <ESC>:Gstatus<CR>
 nnoremap <F4> :NERDTreeToggle<CR>
 inoremap <F4> <ESC>:NERDTreeToggle<CR>
-nnoremap <F5> :nohlsearch<CR>:diffoff!<CR> 
+nnoremap <F5> :nohlsearch<CR>:diffoff!<CR>
 inoremap <F5> <C-O>:nohlsearch<CR><C-O>:diffoff!<CR>
 nnoremap <F8> :confirm bd<CR>
 inoremap <F8> <ESC>:confirm bd<CR>
