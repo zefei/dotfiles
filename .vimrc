@@ -18,6 +18,7 @@ Bundle 'Shougo/neocomplcache'
 Bundle 'scrooloose/nerdtree'
 Bundle 'zefei/simple-dark'
 Bundle 'zefei/simple-javascript-indenter'
+Bundle 'b4winckler/vim-angry'
 Bundle 'kchmck/vim-coffee-script'
 Bundle 'tpope/vim-commentary'
 Bundle 'tpope/vim-endwise'
@@ -28,7 +29,6 @@ Bundle 'digitaltoad/vim-jade'
 Bundle 'groenewege/vim-less'
 Bundle 'tpope/vim-rails'
 Bundle 'vim-ruby/vim-ruby'
-Bundle 'tpope/vim-surround'
 
 " Functions
 function! SystemIs(sys)
@@ -110,8 +110,8 @@ set foldlevel=5
 
 " Mappings
 let mapleader = ';'
-noremap H ^
-noremap L $
+noremap H g^
+noremap L g$
 noremap j gj
 noremap k gk
 inoremap <C-A> <HOME>
@@ -126,40 +126,45 @@ nnoremap xx "+dd
 noremap X "+D
 noremap p "+p
 noremap P "+P
+noremap s ;
+noremap S ,
+inoremap <C-R> <C-R>"
 map <TAB> %
+noremap `` `.
+noremap `~ ``
 noremap <LEADER>w <C-W>
 noremap <LEADER>j <C-F>
 noremap <LEADER>k <C-B>
 noremap <LEADER>h ^
 noremap <LEADER>l $
-nnoremap <LEADER>f :CtrlP<CR>
-nnoremap <LEADER>b :CtrlPBuffer<CR>
-nnoremap <LEADER>q :confirm bd<CR>
-nnoremap <LEADER>a :b #<CR>
+noremap <LEADER>f :<C-U>CtrlP<CR>
+noremap <LEADER>b :<C-U>CtrlPBuffer<CR>
+noremap <LEADER>q :<C-U>confirm bd<CR>
+noremap <LEADER>a :<C-U>b #<CR>
 nnoremap <SPACE> za
 inoremap <C-TAB> <C-X><C-O>
-nnoremap <F1> :bp<CR>
+noremap <F1> :<C-U>bp<CR>
 inoremap <F1> <ESC>:bp<CR>
-nnoremap <F2> :bn<CR>
+noremap <F2> :<C-U>bn<CR>
 inoremap <F2> <ESC>:bn<CR>
-nnoremap <F3> :Gstatus<CR>
+noremap <F3> :<C-U>Gstatus<CR>
 inoremap <F3> <ESC>:Gstatus<CR>
-nnoremap <F4> :NERDTreeToggle<CR>
+noremap <F4> :<C-U>NERDTreeToggle<CR>
 inoremap <F4> <ESC>:NERDTreeToggle<CR>
-nnoremap <F5> :nohlsearch<CR>:diffoff!<CR>
+noremap <F5> :<C-U>nohlsearch<CR>:diffoff!<CR>
 inoremap <F5> <C-O>:nohlsearch<CR><C-O>:diffoff!<CR>
-nnoremap <F8> :confirm bd<CR>
+noremap <F8> :<C-U>confirm bd<CR>
 inoremap <F8> <ESC>:confirm bd<CR>
 
-nnoremap <F11> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
+noremap <F11> :<C-U>echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
 \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
 \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
 
 if SystemIs('win')
-  nnoremap <F12> :e ~/_vimrc<CR>
+  noremap <F12> :<C-U>e ~/_vimrc<CR>
   inoremap <F12> <ESC>:e ~/_vimrc<CR>
 else
-  nnoremap <F12> :e ~/.vimrc<CR>
+  noremap <F12> :<C-U>e ~/.vimrc<CR>
   inoremap <F12> <ESC>:e ~/.vimrc<CR>
 endif
 
@@ -168,8 +173,10 @@ autocmd BufNewFile,BufRead *.json set filetype=javascript
 autocmd BufNewFile,BufRead *.md set filetype=markdown
 
 " Commands
-command W wa | call Buftabs_show(-1)
-command G Gstatus
+command! W wa | call Buftabs_show(-1)
+command! G Gstatus
+let ws = 'w | source %'
+cabbrev ws <C-R>=(getcmdtype()==':' && getcmdpos()==1 ? ws : 'ws')<CR>
 
 " NERDTree
 let NERDTreeQuitOnOpen=1
