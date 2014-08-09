@@ -95,7 +95,6 @@ set expandtab
 set tabstop=2
 set softtabstop=2
 set shiftwidth=2
-au Filetype python setlocal ts=4 sts=4 sw=4
 set wrap
 set linebreak
 set textwidth=80
@@ -105,8 +104,6 @@ set cc=+1
 " Folding
 set foldenable
 set foldmethod=indent
-set foldnestmax=5
-set foldlevel=5
 
 " Mappings
 let mapleader = ';'
@@ -131,30 +128,18 @@ noremap S ,
 inoremap <C-R> <C-R>"
 map <TAB> %
 noremap `` `.
-noremap `~ ``
-noremap <LEADER>w <C-W>
-noremap <LEADER>j <C-F>
-noremap <LEADER>k <C-B>
 noremap <LEADER>h ^
 noremap <LEADER>l $
 noremap <LEADER>f :<C-U>CtrlP<CR>
 noremap <LEADER>b :<C-U>CtrlPBuffer<CR>
 noremap <LEADER>q :<C-U>confirm bd<CR>
 noremap <LEADER>a :<C-U>b #<CR>
-nnoremap <SPACE> za
-inoremap <C-TAB> <C-X><C-O>
+noremap <SPACE> za
 noremap <F1> :<C-U>bp<CR>
-inoremap <F1> <ESC>:bp<CR>
 noremap <F2> :<C-U>bn<CR>
-inoremap <F2> <ESC>:bn<CR>
 noremap <F3> :<C-U>Gstatus<CR>
-inoremap <F3> <ESC>:Gstatus<CR>
 noremap <F4> :<C-U>NERDTreeToggle<CR>
-inoremap <F4> <ESC>:NERDTreeToggle<CR>
 noremap <F5> :<C-U>nohlsearch<CR>:diffoff!<CR>
-inoremap <F5> <C-O>:nohlsearch<CR><C-O>:diffoff!<CR>
-noremap <F8> :<C-U>confirm bd<CR>
-inoremap <F8> <ESC>:confirm bd<CR>
 
 noremap <F11> :<C-U>echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
 \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"

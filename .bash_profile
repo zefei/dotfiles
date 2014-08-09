@@ -23,3 +23,5 @@ alias l.='ls -dlG .*'
 alias ls='ls -G'
 alias mvim='mvim --remote-silent'
 alias nw="/Applications/node-webkit.app/Contents/MacOS/node-webkit"
+
+stty -ixon
