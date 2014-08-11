@@ -118,14 +118,19 @@ set foldlevelstart=99
 
 " Mappings
 let mapleader = ';'
+noremap Q <Nop>
 noremap H g^
 noremap L g$
 noremap j gj
 noremap k gk
-inoremap <C-A> <HOME>
-inoremap <C-E> <END>
+inoremap <C-A> <C-O>g^
+inoremap <C-E> <C-O>g$
+noremap U <C-R>
+noremap , ;
+noremap m ,
+noremap M m
+noremap `` `.
 noremap / /\v
-noremap <BS> X
 noremap y "+y
 nnoremap yy "+yy
 noremap Y "+y$
@@ -134,11 +139,9 @@ nnoremap xx "+dd
 noremap X "+D
 noremap p "+p
 noremap P "+P
-noremap s ;
-noremap S ,
 inoremap <C-R> <C-R>"
 map <TAB> %
-noremap `` `.
+noremap <LEADER><LEADER> <C-W>
 noremap <LEADER>h ^
 noremap <LEADER>l $
 noremap <LEADER>q :<C-U>confirm bd<CR>
@@ -252,10 +255,17 @@ let g:neocomplete#enable_at_startup = 1
 let g:neocomplete#enable_smart_case = 1
 let g:neocomplete#min_keyword_length = 3
 let g:neocomplete#sources#syntax#min_keyword_length = 3
+let g:neocomplete#enable_refresh_always = 1
+
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 inoremap <expr><S-TAB>  pumvisible() ? "\<C-p>" : "\<S-TAB>"
 inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
 inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
+inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+function! s:my_cr_function()
+  return neocomplete#close_popup() . "\<CR>"
+endfunction
+
 autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
 autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
 autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
