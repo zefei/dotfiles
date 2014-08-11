@@ -3,11 +3,11 @@ if SystemIs('win')
 elseif SystemIs('linux')
   set guifont=Monospace\ 12
 elseif SystemIs('mac')
-  set guifont=Menlo:h16
+  set guifont=Menlo:h15
 endif
 set antialias
 set guioptions-=m
 set guioptions-=T
-set lines=45
-set columns=120
+set lines=50
+set columns=180
 set linespace=2
