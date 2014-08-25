@@ -108,6 +108,7 @@ if has('gui_running')
     set guifont=Monospace\ 12
   elseif s:system_is('mac')
     set guifont=Menlo:h15
+    set guifont=Menlo\ Regular\ for\ Powerline:h15
   endif
   set antialias
   set guioptions-=m
@@ -148,18 +149,10 @@ set foldlevelstart=99
 set laststatus=2
 autocmd BufWinEnter,WinEnter,VimEnter * let w:getcwd = getcwd()
 let &statusline = " %{fnamemodify(getwinvar(0, 'getcwd', getcwd()), ':t')} "
-let &statusline .= "%{MyFugitiveStatusline()}"
-let &statusline .= "\u23b8%<%f %M "
-let &statusline .= "%=\u23b8%{&filetype} "
-let &statusline .= "\u23b8%p%% \u23b8%l : %c "
-function! MyFugitiveStatusline()
-  let branch = fugitive#statusline()
-  if branch == ''
-    return ''
-  else
-    return "\u23b8".branch[5:-2].' '
-  endif
-endfunction
+let &statusline .= "%{fugitive#statusline() == '' ? '' : \"\ue0b1 \ue0a0 \".fugitive#statusline()[5:-2].' '}"
+let &statusline .= "\ue0b1 %<%f %M"
+let &statusline .= "%=\ue0b3 %{&filetype == '' ? 'unknown' : &filetype} "
+let &statusline .= "\ue0b3 %p%% \ue0b3 %l : %c "
 
 " Mappings
 let mapleader = ';'
