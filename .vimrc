@@ -155,7 +155,7 @@ let &statusline .= "\u2502 %p%% \u2502 %l : %c "
 function! StatuslineTag()
   if exists('b:git_dir')
     let dir = fnamemodify(b:git_dir[:-6], ':t')
-    return dir." \ue0a0 ".fugitive#statusline()[5:-2]
+    return dir." \ue0a0 ".fugitive#head(7)
   else
     return fnamemodify(getwinvar(0, 'getcwd', getcwd()), ':t')
   endif
