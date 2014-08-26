@@ -148,11 +148,18 @@ set foldlevelstart=99
 " Statusline
 set laststatus=2
 autocmd BufWinEnter,WinEnter,VimEnter * let w:getcwd = getcwd()
-let &statusline = " %{fnamemodify(getwinvar(0, 'getcwd', getcwd()), ':t')} "
-let &statusline .= "%{fugitive#statusline() == '' ? '' : \"\ue0b1 \ue0a0 \".fugitive#statusline()[5:-2].' '}"
+let &statusline = " %{StatuslineTag()} "
 let &statusline .= "\ue0b1 %<%f %M"
-let &statusline .= "%=\ue0b3 %{&filetype == '' ? 'unknown' : &filetype} "
-let &statusline .= "\ue0b3 %p%% \ue0b3 %l : %c "
+let &statusline .= "%=\u2502 %{&filetype == '' ? 'unknown' : &filetype} "
+let &statusline .= "\u2502 %p%% \u2502 %l : %c "
+function! StatuslineTag()
+  if exists('b:git_dir')
+    let dir = fnamemodify(b:git_dir[:-6], ':t')
+    return dir." \ue0a0 ".fugitive#statusline()[5:-2]
+  else
+    return fnamemodify(getwinvar(0, 'getcwd', getcwd()), ':t')
+  endif
+endfunction
 
 " Mappings
 let mapleader = ';'
