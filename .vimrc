@@ -69,11 +69,12 @@ else
   set undodir=~/.vimundo
 endif
 set undofile
-set fillchars=vert:\ 
+let &fillchars="vert:\u2506"
 set hidden
 set wildmenu
 set wildmode=longest,full
 set mousemodel=extend
+set autoread
 
 " UI
 syntax on
@@ -87,8 +88,7 @@ autocmd GUIEnter * set visualbell t_vb=
 set scrolloff=5
 set t_Co=256
 colorscheme cake16
-set splitright
-set splitbelow
+set splitright splitbelow
 autocmd VimEnter,WinEnter * call s:active_ui()
 autocmd WinLeave * call s:inactive_ui()
 function! s:active_ui()
@@ -138,7 +138,7 @@ set shiftwidth=2
 set wrap
 set linebreak
 set textwidth=80
-set showbreak=>>>\ 
+set showbreak=
 
 " Folding
 set foldenable
@@ -194,6 +194,7 @@ noremap <Leader><Leader> <C-W>
 map <Leader><Leader>c <Plug>(wintabs_close_window)
 map <Leader><Leader>q <Plug>(wintabs_close_window)
 map <Leader><Leader>o <Plug>(wintabs_only_window)
+map <Leader><Leader>T <Plug>(wintabs_maximize)
 map <Leader>q <Plug>(wintabs_close)
 map <Leader>o <Plug>(wintabs_only)
 noremap <Leader>a :<C-U>e #<CR>
@@ -215,8 +216,12 @@ map <Leader>9 <Plug>(wintabs_tab_9)
 
 map <F1> <Plug>(wintabs_previous)
 imap <F1> <Esc><Plug>(wintabs_previous)
+map <C-F1> <Plug>(wintabs_move_left)
+imap <C-F1> <C-O><Plug>(wintabs_move_left)
 map <F2> <Plug>(wintabs_next)
 imap <F2> <Esc><Plug>(wintabs_next)
+map <C-F2> <Plug>(wintabs_move_right)
+imap <C-F2> <C-O><Plug>(wintabs_move_right)
 noremap <F3> :<C-U>Gstatus<CR>
 inoremap <F3> <Esc>:Gstatus<CR>
 noremap <F4> :<C-U>call <SID>vimfiler_toggle()<CR>
@@ -343,6 +348,7 @@ let g:html5_aria_attributes_complete = 0
 let g:SimpleJsIndenter_BriefMode = 1
 
 " vim sessions
+let g:session_autoload = 'yes'
 let g:session_autosave = 'yes'
 
 " Gundo
