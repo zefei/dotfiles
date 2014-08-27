@@ -69,7 +69,7 @@ else
   set undodir=~/.vimundo
 endif
 set undofile
-let &fillchars="vert:\u2506"
+let &fillchars="vert:\u2758"
 set hidden
 set wildmenu
 set wildmode=longest,full
@@ -107,14 +107,14 @@ if has('gui_running')
   elseif s:system_is('linux')
     set guifont=Monospace\ 12
   elseif s:system_is('mac')
-    set guifont=Menlo:h15
-    set guifont=Menlo\ Regular\ for\ Powerline:h15
+    set guifont=Menlo:h16
+    set guifont=Menlo\ Regular\ for\ Powerline:h16
   endif
   set antialias
   set guioptions-=m
   set guioptions-=T
-  set lines=50
-  set columns=180
+  set lines=45
+  set columns=100
   set linespace=2
 endif
 
@@ -257,10 +257,12 @@ autocmd BufNewFile,BufRead *.md set filetype=markdown
 autocmd FileType vim setlocal keywordprg=:help
 
 " Commands
+command! Ws w | source %
+command! Single set columns=100
+command! Double set columns=180
 function! s:cabbrev(cmd, new_cmd)
   execute "cabbrev ".a:cmd." <C-R>=(getcmdtype()==':' && getcmdpos()==1 ? '".a:new_cmd."' : '".a:cmd."')<CR>"
 endfunction
-command! Ws w | source %
 call s:cabbrev('ws', 'Ws')
 call s:cabbrev('all', 'WintabsAll')
 call s:cabbrev('tabc', 'WintabsCloseVimtab')
@@ -283,6 +285,7 @@ endfunction
 
 function! s:vimfiler_settings()
   setlocal nobuflisted
+  setlocal colorcolumn=
 
   nmap <buffer> q :call <SID>vimfiler_toggle()<CR>
   nmap <buffer> <ENTER> o
@@ -361,3 +364,10 @@ let g:session_autosave = 'yes'
 " Gundo
 let g:gundo_help = 0
 let g:gundo_close_on_revert = 1
+
+" wintabs
+let g:wintabs_ui_sep_leftmost = ' '
+let g:wintabs_ui_sep_inbetween = '|'
+let g:wintabs_ui_sep_rightmost = ' '
+let g:wintabs_ui_active_left = ' '
+let g:wintabs_ui_active_right = ' '
