@@ -149,9 +149,10 @@ set foldlevelstart=99
 set laststatus=2
 autocmd BufWinEnter,WinEnter,VimEnter * let w:getcwd = getcwd()
 let &statusline = " %{StatuslineTag()} "
-let &statusline .= "\ue0b1 %<%f %{&readonly ? \"\ue0a2 \" : &modified ? '+ ' : ' '}"
+let &statusline .= "\ue0b1 %<%f "
+let &statusline .= "%{&readonly ? \"\ue0a2 \" : &modified ? '+ ' : ''}"
 let &statusline .= "%=\u2571 %{&filetype == '' ? 'unknown' : &filetype} "
-let &statusline .= "\u2571 %p%% \u2571 %l : %c "
+let &statusline .= "\u2571 %l:%2c \u2571 %p%% "
 function! StatuslineTag()
   if exists('b:git_dir')
     let dir = fnamemodify(b:git_dir[:-6], ':t')
