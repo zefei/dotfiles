@@ -10,6 +10,7 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 NeoBundle 'mileszs/ack.vim'
 NeoBundle 'jiangmiao/auto-pairs'
 NeoBundle 'zefei/cake16'
+NeoBundle 'zefei/ocean16'
 NeoBundle 'kien/ctrlp.vim'
 NeoBundle 'sjl/gundo.vim'
 NeoBundle 'othree/html5.vim'
@@ -336,9 +337,11 @@ let g:neocomplete#enable_refresh_always = 1
 
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 inoremap <expr><S-TAB>  pumvisible() ? "\<C-p>" : "\<S-TAB>"
-inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
-inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
-inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+inoremap <expr><C-H> neocomplete#smart_close_popup()."\<C-H>"
+inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-H>"
+inoremap <expr><C-Y>  neocomplete#close_popup()
+inoremap <expr><C-E>  neocomplete#cancel_popup()
+inoremap <silent> <CR> <C-R>=<SID>my_cr_function()<CR>
 function! s:my_cr_function()
   return neocomplete#close_popup() . "\<CR>"
 endfunction
