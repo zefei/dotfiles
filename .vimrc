@@ -31,6 +31,7 @@ NeoBundle 'xolox/vim-misc'
 NeoBundle 'vim-ruby/vim-ruby'
 NeoBundle 'xolox/vim-session'
 NeoBundle 'zefei/vim-wintabs'
+NeoBundle 'tpope/vim-rsi'
 NeoBundle 'Shougo/vimfiler.vim'
 NeoBundle 'Shougo/vimproc.vim', {
       \ 'build' : {
@@ -182,8 +183,6 @@ noremap H g^
 noremap L g$
 noremap j gj
 noremap k gk
-inoremap <C-A> <C-O>g^
-inoremap <C-E> <C-O>g$
 
 noremap y "+y
 nnoremap yy "+yy
@@ -207,6 +206,7 @@ map <Leader><Leader>T <Plug>(wintabs_maximize)
 map <Leader>q <Plug>(wintabs_close)
 map <Leader>o <Plug>(wintabs_only)
 noremap <Leader>a :<C-U>e #<CR>
+noremap <Leader>s :<C-U>%s//
 noremap <Leader>f :<C-U>CtrlP<CR>
 noremap <Leader>b :<C-U>CtrlPBuffer<CR>
 nmap <Leader>c gcc
@@ -256,6 +256,7 @@ endif
 " auto commands
 autocmd BufNewFile,BufRead *.json set filetype=javascript
 autocmd BufNewFile,BufRead *.md set filetype=markdown
+autocmd BufNewFile,BufRead *.hbs set filetype=html
 autocmd FileType vim setlocal keywordprg=:help
 
 " Commands
@@ -340,7 +341,6 @@ inoremap <expr><S-TAB>  pumvisible() ? "\<C-p>" : "\<S-TAB>"
 inoremap <expr><C-H> neocomplete#smart_close_popup()."\<C-H>"
 inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-H>"
 inoremap <expr><C-Y>  neocomplete#close_popup()
-inoremap <expr><C-E>  neocomplete#cancel_popup()
 inoremap <silent> <CR> <C-R>=<SID>my_cr_function()<CR>
 function! s:my_cr_function()
   return neocomplete#close_popup() . "\<CR>"

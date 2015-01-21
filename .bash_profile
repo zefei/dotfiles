@@ -11,8 +11,6 @@ export NODE_ENV=development
 export EDITOR=vim
 export LESS=-RFX
 
-eval "$(rbenv init -)"
-
 if [ -f `brew --prefix`/etc/bash_completion ]; then
   . `brew --prefix`/etc/bash_completion
 fi
@@ -23,5 +21,8 @@ alias l.='ls -dlG .*'
 alias ls='ls -G'
 alias mvim='mvim --remote-silent'
 alias nw="/Applications/node-webkit.app/Contents/MacOS/node-webkit"
+alias pg="postgres -D /usr/local/var/postgres"
 
 stty -ixon
+
+source /usr/local/opt/autoenv/activate.sh
