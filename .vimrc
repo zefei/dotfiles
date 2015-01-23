@@ -11,6 +11,7 @@ NeoBundle 'mileszs/ack.vim'
 NeoBundle 'jiangmiao/auto-pairs'
 NeoBundle 'zefei/cake16'
 NeoBundle 'zefei/ocean16'
+NeoBundle 'rhysd/clever-f.vim'
 NeoBundle 'kien/ctrlp.vim'
 NeoBundle 'sjl/gundo.vim'
 NeoBundle 'othree/html5.vim'
@@ -170,9 +171,6 @@ map <TAB> %
 noremap <SPACE> za
 noremap Q <Nop>
 noremap U <Nop>
-noremap , ;
-noremap m ,
-noremap M m
 noremap `` `.
 noremap / /\v
 noremap <C-P> <C-I>
