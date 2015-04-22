@@ -10,6 +10,7 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 NeoBundle 'mileszs/ack.vim'
 NeoBundle 'jiangmiao/auto-pairs'
 NeoBundle 'zefei/cake16'
+NeoBundle 'zefei/vim-colortuner'
 NeoBundle 'zefei/ocean16'
 NeoBundle 'rhysd/clever-f.vim'
 NeoBundle 'kien/ctrlp.vim'
@@ -19,20 +20,17 @@ NeoBundle 'matchit.zip'
 NeoBundle 'Shougo/neocomplete.vim'
 NeoBundle 'zefei/simple-javascript-indenter'
 NeoBundle 'Shougo/unite.vim'
-NeoBundle 'b4winckler/vim-angry'
 NeoBundle 'kchmck/vim-coffee-script'
 NeoBundle 'tpope/vim-commentary'
 NeoBundle 'tpope/vim-endwise'
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'tikhomirov/vim-glsl'
-NeoBundle 'michaeljsmith/vim-indent-object'
 NeoBundle 'digitaltoad/vim-jade'
 NeoBundle 'groenewege/vim-less'
 NeoBundle 'xolox/vim-misc'
 NeoBundle 'vim-ruby/vim-ruby'
 NeoBundle 'xolox/vim-session'
 NeoBundle 'zefei/vim-wintabs'
-NeoBundle 'tpope/vim-rsi'
 NeoBundle 'Shougo/vimfiler.vim'
 NeoBundle 'Shougo/vimproc.vim', {
       \ 'build' : {
@@ -205,6 +203,7 @@ map <Leader>q <Plug>(wintabs_close)
 map <Leader>o <Plug>(wintabs_only)
 noremap <Leader>a :<C-U>e #<CR>
 noremap <Leader>s :<C-U>%s//
+noremap <Leader>t :<C-U>Colortuner<CR>
 noremap <Leader>f :<C-U>CtrlP<CR>
 noremap <Leader>b :<C-U>CtrlPBuffer<CR>
 nmap <Leader>c gcc
@@ -319,6 +318,7 @@ let g:vimfiler_tree_opened_icon = '▾'
 let g:vimfiler_tree_closed_icon = '▸'
 let g:vimfiler_enable_auto_cd = 1
 let g:vimfiler_no_default_key_mappings = 1
+let g:vimfiler_ignore_pattern = '\%(^\.\|\.pyc$\)'
 
 " CtrlP
 let g:ctrlp_working_path_mode = 0
@@ -373,3 +373,6 @@ let g:wintabs_ui_sep_inbetween = '|'
 let g:wintabs_ui_sep_rightmost = ' '
 let g:wintabs_ui_active_left = ' '
 let g:wintabs_ui_active_right = ' '
+
+" colortuner
+let g:colortuner_preferred_schemes = ['cake16', 'ocean16']
