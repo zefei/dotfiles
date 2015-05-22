@@ -18,7 +18,9 @@ NeoBundle 'sjl/gundo.vim'
 NeoBundle 'othree/html5.vim'
 NeoBundle 'matchit.zip'
 NeoBundle 'Shougo/neocomplete.vim'
-NeoBundle 'zefei/simple-javascript-indenter'
+" NeoBundle 'zefei/simple-javascript-indenter'
+NeoBundle 'pangloss/vim-javascript'
+NeoBundle 'mxw/vim-jsx'
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'kchmck/vim-coffee-script'
 NeoBundle 'tpope/vim-commentary'
@@ -356,8 +358,9 @@ let g:html5_rdfa_attributes_complete = 0
 let g:html5_microdata_attributes_complete = 0
 let g:html5_aria_attributes_complete = 0
 
-" javascript indent
-let g:SimpleJsIndenter_BriefMode = 1
+" javascript
+" let g:SimpleJsIndenter_BriefMode = 1
+let g:jsx_ext_required = 0
 
 " vim sessions
 let g:session_autoload = 'yes'
