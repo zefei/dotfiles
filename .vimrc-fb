@@ -98,15 +98,14 @@ if has('gui_running')
   elseif s:system_is('linux')
     set guifont=Monospace\ 12
   elseif s:system_is('mac')
-    set guifont=Menlo:h16
-    set guifont=Menlo\ Regular\ for\ Powerline:h16
+    set guifont=Menlo:h14
+    set guifont=Sauce\ Code\ Powerline:h14
   endif
   set antialias
   set guioptions-=m
   set guioptions-=T
   set lines=45
   set columns=100
-  set linespace=2
 endif
 
 " Searching
@@ -145,11 +144,12 @@ let &statusline .= "%{&readonly ? \"\ue0a2 \" : &modified ? '+ ' : ''}"
 let &statusline .= "%=\ue0b3 %{&filetype == '' ? 'unknown' : &filetype} "
 let &statusline .= "\ue0b3 %l:%2c \ue0b3 %p%% "
 function! StatuslineTag()
-  let tag = ''
   let session = xolox#session#find_current_session()
-  let tag .= fnamemodify(getwinvar(0, 'getcwd', getcwd()), ':t')
-  let tag .= empty(session) ? '' : " \ue0b1 ".session
-  return tag
+  if empty(session) || session == 'default'
+    return fnamemodify(getwinvar(0, 'getcwd', getcwd()), ':t')
+  else
+    return session
+  endif
 endfunction
 
 " Mappings
@@ -244,8 +244,6 @@ autocmd FileType vim setlocal keywordprg=:help
 
 " Commands
 command! Ws w | source %
-command! Single set columns=100
-command! Double set columns=180
 function! s:cabbrev(cmd, new_cmd)
   execute "cabbrev ".a:cmd." <C-R>=(getcmdtype()==':' && getcmdpos()==1 ? '".a:new_cmd."' : '".a:cmd."')<CR>"
 endfunction
@@ -290,7 +288,7 @@ let g:vimfiler_safe_mode_by_default = 0
 let g:vimfiler_tree_leaf_icon = ' '
 let g:vimfiler_tree_opened_icon = '▾'
 let g:vimfiler_tree_closed_icon = '▸'
-" let g:vimfiler_enable_auto_cd = 1
+let g:vimfiler_enable_auto_cd = 0
 let g:vimfiler_no_default_key_mappings = 1
 let g:vimfiler_ignore_pattern = '\%(^\.\|\.pyc$\)'
 
@@ -377,40 +375,17 @@ let g:flow#autoclose = 1
 let g:flow#enable = 0
 noremap <Leader>f :<C-U>FlowMake<CR>
 
-" fb specifics
-let g:hack#enable = 0
-let g:fb_default_opts = 0
-source $ADMIN_SCRIPTS/master.vimrc
-
-noremap <Leader>l :<C-U>call hack#typecheck()<CR>
+" auto session
 noremap <Leader>ss :<C-U>call <SID>session_switch_branch()<CR>
 noremap <Leader>sc :<C-U>call <SID>session_close()<CR>
 noremap <Leader>so :<C-U>call <SID>session_open()<CR>
 noremap <Leader>sd :<C-U>DeleteSession<CR>
 
-source /home/engshare/admin/scripts/vim/biggrep.vim
-noremap <Leader>t *N:<C-U>call <SID>biggrep_file('t')<CR>
-
-function! s:biggrep_file(corpus)
-  let word = expand("<cword>")
-  let escaped_word = substitute(word, "'", "'\"'\"'", "g")
-  call BigGrep(a:corpus, "s -f '".escaped_word."'", word)
-endfunction
-
-function! s:get_fb_branch()
-  let shell = &shell
-  let &shell = '/bin/bash --rcfile ~/.bash_profile -i'
-  let branch = system("_dotfiles_scm_info %s")
-  let &shell = shell
-  let branch = substitute(branch, '|.*$', '', 'g')
-  return branch
-endfunction
-
 function! s:session_switch_branch()
   let session = xolox#session#find_current_session()
-  let branch = s:get_fb_branch()
+  let branch = s:get_current_branch()
 
-  if branch == session
+  if empty(branch) || branch == session
     return
   endif
 
@@ -438,4 +413,29 @@ function! s:session_open()
     execute 'silent! SaveSession'
   endif
   execute 'OpenSession'
+endfunction
+
+" fb specifics
+let g:hack#enable = 0
+let g:fb_default_opts = 0
+source $ADMIN_SCRIPTS/master.vimrc
+
+noremap <Leader>l :<C-U>call hack#typecheck()<CR>
+
+source /home/engshare/admin/scripts/vim/biggrep.vim
+noremap <Leader>t *N:<C-U>call <SID>biggrep_file('t')<CR>
+
+function! s:biggrep_file(corpus)
+  let word = expand("<cword>")
+  let escaped_word = substitute(word, "'", "'\"'\"'", "g")
+  call BigGrep(a:corpus, "s -f '".escaped_word."'", word)
+endfunction
+
+function! s:get_current_branch()
+  let shell = &shell
+  let &shell = '/bin/bash --rcfile ~/.bash_profile -i'
+  let branch = system("_dotfiles_scm_info %s")
+  let &shell = shell
+  let branch = substitute(branch, '|.*$', '', 'g')
+  return branch
 endfunction
