@@ -1,47 +1,35 @@
-" Setup NeoBundle
-if has('vim_starting')
-  set nocompatible
-  set runtimepath+=~/.vim/bundle/neobundle.vim/
-endif
-
-" Bundles
-call neobundle#begin(expand('~/.vim/bundle/'))
-NeoBundleFetch 'Shougo/neobundle.vim'
-NeoBundle 'mileszs/ack.vim'
-NeoBundle 'jiangmiao/auto-pairs'
-NeoBundle 'zefei/cake16'
-NeoBundle 'zefei/vim-colortuner'
-NeoBundle 'zefei/ocean16'
-NeoBundle 'rhysd/clever-f.vim'
-NeoBundle 'kien/ctrlp.vim'
-NeoBundle 'sjl/gundo.vim'
-NeoBundle 'othree/html5.vim'
-NeoBundle 'matchit.zip'
-NeoBundle 'Shougo/neocomplete.vim'
-NeoBundle 'pangloss/vim-javascript'
-NeoBundle 'mxw/vim-jsx'
-NeoBundle 'Shougo/unite.vim'
-NeoBundle 'kchmck/vim-coffee-script'
-NeoBundle 'tpope/vim-commentary'
-NeoBundle 'tpope/vim-endwise'
-NeoBundle 'tpope/vim-fugitive'
-NeoBundle 'tikhomirov/vim-glsl'
-NeoBundle 'digitaltoad/vim-jade'
-NeoBundle 'groenewege/vim-less'
-NeoBundle 'xolox/vim-misc'
-NeoBundle 'vim-ruby/vim-ruby'
-NeoBundle 'xolox/vim-session'
-NeoBundle 'zefei/vim-wintabs'
-NeoBundle 'Shougo/vimfiler.vim'
-NeoBundle 'Shougo/vimproc.vim', {
-      \ 'build' : {
-      \     'windows' : 'tools\\update-dll-mingw',
-      \     'cygwin' : 'make -f make_cygwin.mak',
-      \     'mac' : 'make -f make_mac.mak',
-      \     'unix' : 'make -f make_unix.mak',
-      \    },
-      \ }
-call neobundle#end()
+" Plugins
+call plug#begin()
+Plug 'mileszs/ack.vim'
+Plug 'jiangmiao/auto-pairs'
+Plug 'zefei/cake16'
+Plug 'zefei/vim-colortuner'
+Plug 'zefei/ocean16'
+Plug 'rhysd/clever-f.vim'
+Plug 'kien/ctrlp.vim'
+Plug 'sjl/gundo.vim'
+Plug 'othree/html5.vim'
+Plug 'matchit.zip'
+Plug 'Shougo/neocomplete.vim'
+Plug 'pangloss/vim-javascript'
+Plug 'mxw/vim-jsx'
+Plug 'jeetsukumaran/vim-markology'
+Plug 'Shougo/unite.vim'
+Plug 'kchmck/vim-coffee-script'
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-endwise'
+Plug 'flowtype/vim-flow'
+Plug 'tpope/vim-fugitive'
+Plug 'tikhomirov/vim-glsl'
+Plug 'digitaltoad/vim-jade'
+Plug 'groenewege/vim-less'
+Plug 'xolox/vim-misc'
+Plug 'vim-ruby/vim-ruby'
+Plug 'xolox/vim-session'
+Plug 'tpope/vim-unimpaired'
+Plug 'zefei/vim-wintabs'
+Plug 'Shougo/vimfiler.vim'
+call plug#end()
 
 " Functions
 function! s:system_is(sys)
@@ -77,6 +65,7 @@ set wildmenu
 set wildmode=longest,full
 set mousemodel=extend
 set autoread
+set ttimeoutlen=10
 
 " UI
 syntax on
@@ -109,15 +98,14 @@ if has('gui_running')
   elseif s:system_is('linux')
     set guifont=Monospace\ 12
   elseif s:system_is('mac')
-    set guifont=Menlo:h16
-    set guifont=Menlo\ Regular\ for\ Powerline:h16
+    set guifont=Menlo:h14
+    set guifont=Sauce\ Code\ Powerline:h14
   endif
   set antialias
   set guioptions-=m
   set guioptions-=T
   set lines=45
   set columns=100
-  set linespace=2
 endif
 
 " Searching
@@ -153,14 +141,14 @@ autocmd BufWinEnter,WinEnter,VimEnter * let w:getcwd = getcwd()
 let &statusline = " %{StatuslineTag()} "
 let &statusline .= "\ue0b1 %<%f "
 let &statusline .= "%{&readonly ? \"\ue0a2 \" : &modified ? '+ ' : ''}"
-let &statusline .= "%=\u2571 %{&filetype == '' ? 'unknown' : &filetype} "
-let &statusline .= "\u2571 %l:%2c \u2571 %p%% "
+let &statusline .= "%=\ue0b3 %{&filetype == '' ? 'unknown' : &filetype} "
+let &statusline .= "\ue0b3 %l:%2c \ue0b3 %p%% "
 function! StatuslineTag()
-  if exists('b:git_dir')
-    let dir = fnamemodify(b:git_dir[:-6], ':t')
-    return dir." \ue0a0 ".fugitive#head(7)
-  else
+  let session = xolox#session#find_current_session()
+  if empty(session) || session == 'default'
     return fnamemodify(getwinvar(0, 'getcwd', getcwd()), ':t')
+  else
+    return session
   endif
 endfunction
 
@@ -175,9 +163,11 @@ noremap / /\v
 noremap <C-P> <C-I>
 noremap <C-J> g;
 noremap <C-K> g,
+noremap ZZ :xa<CR>
+noremap ZQ :qa!<CR>
 
-noremap H g^
-noremap L g$
+noremap H _
+noremap L g_
 noremap j gj
 noremap k gk
 
@@ -203,13 +193,8 @@ map <Leader><Leader>T <Plug>(wintabs_maximize)
 map <Leader>q <Plug>(wintabs_close)
 map <Leader>o <Plug>(wintabs_only)
 noremap <Leader>a :<C-U>e #<CR>
-noremap <Leader>s :<C-U>%s//
-noremap <Leader>t :<C-U>Colortuner<CR>
-noremap <Leader>f :<C-U>CtrlP<CR>
-noremap <Leader>b :<C-U>CtrlPBuffer<CR>
 nmap <Leader>c gcc
 vmap <Leader>c gc
-noremap <Leader>u :<C-U>GundoToggle<CR>
 
 map <Leader>1 <Plug>(wintabs_tab_1)
 map <Leader>2 <Plug>(wintabs_tab_2)
@@ -231,10 +216,10 @@ map <C-F2> <Plug>(wintabs_move_right)
 imap <C-F2> <C-O><Plug>(wintabs_move_right)
 noremap <F3> :<C-U>Gstatus<CR>
 inoremap <F3> <Esc>:Gstatus<CR>
-noremap <F4> :<C-U>call <SID>vimfiler_toggle()<CR>
-inoremap <F4> <Esc>:call <SID>vimfiler_toggle()<CR>
-noremap <F5> :<C-U>nohlsearch<CR>:diffoff!<CR>
-inoremap <F5> <C-O>:nohlsearch<CR><C-O>:diffoff!<CR>
+noremap <F4> :<C-U>VimFiler -toggle<CR>
+inoremap <F4> <Esc>:VimFiler -toggle<CR>
+noremap <F5> :<C-U>nohlsearch<CR>:diffoff!<CR>:cclose<CR>
+inoremap <F5> <C-O>:nohlsearch<CR><C-O>:diffoff!<CR><C-O>:cclose<CR>
 nnoremap <F6> gggqG<C-O><C-O>
 inoremap <F6> <ESC>gggqG<C-O><C-O>a
 
@@ -259,8 +244,6 @@ autocmd FileType vim setlocal keywordprg=:help
 
 " Commands
 command! Ws w | source %
-command! Single set columns=100
-command! Double set columns=180
 function! s:cabbrev(cmd, new_cmd)
   execute "cabbrev ".a:cmd." <C-R>=(getcmdtype()==':' && getcmdpos()==1 ? '".a:new_cmd."' : '".a:cmd."')<CR>"
 endfunction
@@ -270,25 +253,11 @@ call s:cabbrev('tabc', 'WintabsCloseVimtab')
 call s:cabbrev('tabo', 'WintabsOnlyVimtab')
 
 " vimfiler
-function! s:vimfiler_toggle()
-  if &filetype == 'vimfiler'
-    execute 'silent! buffer #'
-    if &filetype == 'vimfiler'
-      execute 'enew'
-    endif
-  elseif exists('t:vimfiler_buffer') && bufexists(t:vimfiler_buffer)
-    execute 'buffer ' . t:vimfiler_buffer
-  else
-    execute 'VimFilerCreate'
-    let t:vimfiler_buffer = @%
-  endif
-endfunction
-
 function! s:vimfiler_settings()
   setlocal nobuflisted
   setlocal colorcolumn=
 
-  nmap <buffer> q :call <SID>vimfiler_toggle()<CR>
+  nmap <buffer> q :<C-U>VimFiler -toggle<CR>
   nmap <buffer> <ENTER> o
   nmap <buffer> <expr> o vimfiler#smart_cursor_map("\<Plug>(vimfiler_expand_tree)", "\<Plug>(vimfiler_edit_file)")
   nmap <buffer> <expr> C vimfiler#smart_cursor_map("\<Plug>(vimfiler_cd_file)", "")
@@ -307,10 +276,12 @@ function! s:vimfiler_settings()
   nmap <buffer> . <Plug>(vimfiler_toggle_visible_ignore_files)
   nmap <buffer> I <Plug>(vimfiler_toggle_visible_ignore_files)
   nmap <buffer> yy <Plug>(vimfiler_yank_full_path)
-  nmap <buffer> cd <Plug>(vimfiler_cd_vim_current_dir)
+  nmap <buffer> cd :<C-U>VimFilerCurrentDir<CR>
   vmap <buffer> <Space> <Plug>(vimfiler_toggle_mark_selected_lines)
 endfunction
 autocmd FileType vimfiler call s:vimfiler_settings()
+
+map <Leader>\ :<C-U>VimFiler -find<CR>
 
 let g:vimfiler_as_default_explorer = 1
 let g:vimfiler_safe_mode_by_default = 0
@@ -324,6 +295,10 @@ let g:vimfiler_ignore_pattern = '\%(^\.\|\.pyc$\)'
 " CtrlP
 let g:ctrlp_working_path_mode = 0
 let g:ctrlp_custom_ignore = '\.git$\|\.hg$\|\.svn$\|\.DS_Store$'
+let g:ctrlp_switch_buffer = 0
+noremap <Leader>f :<C-U>CtrlP<CR>
+noremap <Leader>r :<C-U>CtrlPMRUFiles<CR>
+noremap <Leader>b :<C-U>CtrlPBuffer<CR>
 
 " Patching matchparen.vim
 autocmd WinLeave * execute '3match none'
@@ -364,10 +339,25 @@ let g:jsx_ext_required = 0
 " vim sessions
 let g:session_autoload = 'yes'
 let g:session_autosave = 'yes'
+let g:session_default_to_last = 1
+let g:session_persist_font = 0
+let g:session_persist_colors = 0
 
 " Gundo
 let g:gundo_help = 0
 let g:gundo_close_on_revert = 1
+noremap <Leader>u :<C-U>GundoToggle<CR>
+
+" Markology
+let g:markology_textlower="m "
+let g:markology_textupper=" "
+let g:markology_textother=" "
+nmap mm <Plug>MarkologyPlaceMarkToggle
+nmap mc <Plug>MarkologyClearAll
+nmap M <Plug>MarkologyNextLocalMarkPos
+highlight link MarkologyHLl SignColumn
+highlight link MarkologyHLu Ignore
+highlight link MarkologyHLo Ignore
 
 " wintabs
 let g:wintabs_ui_sep_leftmost = ' '
@@ -378,3 +368,58 @@ let g:wintabs_ui_active_right = ' '
 
 " colortuner
 let g:colortuner_preferred_schemes = ['cake16', 'ocean16']
+noremap <Leader>t :<C-U>Colortuner<CR>
+
+" flow
+let g:flow#autoclose = 1
+let g:flow#enable = 1
+" noremap <Leader>f :<C-U>FlowMake<CR>
+
+" auto session
+noremap <Leader>ss :<C-U>call <SID>session_switch_branch()<CR>
+noremap <Leader>sc :<C-U>call <SID>session_close()<CR>
+noremap <Leader>so :<C-U>call <SID>session_open()<CR>
+noremap <Leader>sd :<C-U>DeleteSession<CR>
+
+function! s:session_switch_branch()
+  let session = xolox#session#find_current_session()
+  let branch = s:get_current_branch()
+
+  if empty(branch) || branch == session
+    return
+  endif
+
+  if !empty(session)
+    execute 'silent! SaveSession'
+  endif
+
+  if index(xolox#session#get_names(0), branch) == -1
+    execute 'silent! CloseSession'
+    execute 'silent! SaveSession '.branch
+  else
+    execute 'silent! OpenSession '.branch
+  endif
+endfunction
+
+function! s:session_close()
+  if !empty(xolox#session#find_current_session())
+    execute 'silent! SaveSession'
+  endif
+  execute 'silent! CloseSession'
+endfunction
+
+function! s:session_open()
+  if !empty(xolox#session#find_current_session())
+    execute 'silent! SaveSession'
+  endif
+  execute 'OpenSession'
+endfunction
+
+function! s:get_current_branch()
+  if exists('b:git_dir')
+    let dir = fnamemodify(b:git_dir[:-6], ':t')
+    return dir.'@'.fugitive#head(7)
+  else
+    return ''
+  endif
+endfunction
