@@ -339,7 +339,7 @@ let g:jsx_ext_required = 0
 " vim sessions
 let g:session_autoload = 'yes'
 let g:session_autosave = 'yes'
-let g:session_default_to_last = 0
+let g:session_default_to_last = 1
 let g:session_persist_font = 0
 let g:session_persist_colors = 0
 
