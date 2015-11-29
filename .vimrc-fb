@@ -384,7 +384,7 @@ noremap <Leader>sd :<C-U>DeleteSession<CR>
 
 function! s:session_switch_branch()
   let session = xolox#session#find_current_session()
-  let branch = s:get_current_branch()
+  let branch = vcprompt#format("%P@%b")
 
   if empty(branch) || branch == session
     return
@@ -430,13 +430,4 @@ function! s:biggrep_file(corpus)
   let word = expand("<cword>")
   let escaped_word = substitute(word, "'", "'\"'\"'", "g")
   call BigGrep(a:corpus, "s -f '".escaped_word."'", word)
-endfunction
-
-function! s:get_current_branch()
-  let shell = &shell
-  let &shell = '/bin/bash --rcfile ~/.bash_profile -i'
-  let branch = system("_dotfiles_scm_info %s")
-  let &shell = shell
-  let branch = substitute(branch, '|.*$', '', 'g')
-  return branch
 endfunction

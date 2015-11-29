@@ -384,7 +384,7 @@ noremap <Leader>sd :<C-U>DeleteSession<CR>
 
 function! s:session_switch_branch()
   let session = xolox#session#find_current_session()
-  let branch = s:get_current_branch()
+  let branch = vcprompt#format("%P@%b")
 
   if empty(branch) || branch == session
     return
@@ -414,13 +414,4 @@ function! s:session_open()
     execute 'silent! SaveSession'
   endif
   execute 'OpenSession'
-endfunction
-
-function! s:get_current_branch()
-  if exists('b:git_dir')
-    let dir = fnamemodify(b:git_dir[:-6], ':t')
-    return dir.'@'.fugitive#head(7)
-  else
-    return ''
-  endif
 endfunction
