@@ -2,9 +2,6 @@
 call plug#begin()
 Plug 'mileszs/ack.vim'
 Plug 'jiangmiao/auto-pairs'
-Plug 'zefei/cake16'
-Plug 'zefei/vim-colortuner'
-Plug 'zefei/ocean16'
 Plug 'rhysd/clever-f.vim'
 Plug 'kien/ctrlp.vim'
 Plug 'sjl/gundo.vim'
@@ -27,8 +24,12 @@ Plug 'xolox/vim-misc'
 Plug 'vim-ruby/vim-ruby'
 Plug 'xolox/vim-session'
 Plug 'tpope/vim-unimpaired'
-Plug 'zefei/vim-wintabs'
 Plug 'Shougo/vimfiler.vim'
+Plug 'zefei/cake16'
+Plug 'zefei/vim-colortuner'
+Plug 'zefei/ocean16'
+Plug 'zefei/vim-vcprompt'
+Plug 'zefei/vim-wintabs'
 call plug#end()
 
 " Functions
@@ -339,7 +340,7 @@ let g:jsx_ext_required = 0
 " vim sessions
 let g:session_autoload = 'yes'
 let g:session_autosave = 'yes'
-let g:session_default_to_last = 1
+let g:session_default_to_last = 0
 let g:session_persist_font = 0
 let g:session_persist_colors = 0
 
