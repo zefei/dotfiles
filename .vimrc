@@ -299,7 +299,6 @@ let g:ctrlp_custom_ignore = '\.git$\|\.hg$\|\.svn$\|\.DS_Store$'
 let g:ctrlp_switch_buffer = 0
 noremap <Leader>f :<C-U>CtrlP<CR>
 noremap <Leader>r :<C-U>CtrlPMRUFiles<CR>
-noremap <Leader>b :<C-U>CtrlPBuffer<CR>
 
 " Patching matchparen.vim
 autocmd WinLeave * execute '3match none'
