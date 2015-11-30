@@ -4,6 +4,7 @@ call plug#begin()
 Plug 'jiangmiao/auto-pairs'
 Plug 'rhysd/clever-f.vim'
 Plug 'kien/ctrlp.vim'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'sjl/gundo.vim'
 Plug 'othree/html5.vim'
 Plug 'matchit.zip'
@@ -301,6 +302,9 @@ let g:ctrlp_switch_buffer = 0
 noremap <Leader>r :<C-U>CtrlPMRUFiles<CR>
 noremap <Leader>b :<C-U>CtrlPBuffer<CR>
 
+" fzf
+noremap <Leader>f :<C-U>FZF!<CR>
+
 " Patching matchparen.vim
 autocmd WinLeave * execute '3match none'
 
@@ -374,7 +378,7 @@ let g:colortuner_preferred_schemes = ['cake16', 'ocean16']
 " flow
 let g:flow#autoclose = 1
 let g:flow#enable = 0
-noremap <Leader>f :<C-U>FlowMake<CR>
+noremap <Leader>lf :<C-U>FlowMake<CR>
 
 " auto session
 noremap <Leader>ss :<C-U>call <SID>session_switch_branch()<CR>
@@ -421,7 +425,7 @@ let g:hack#enable = 0
 let g:fb_default_opts = 0
 source $ADMIN_SCRIPTS/master.vimrc
 
-noremap <Leader>l :<C-U>call hack#typecheck()<CR>
+noremap <Leader>lh :<C-U>call hack#typecheck()<CR>
 
 source /home/engshare/admin/scripts/vim/biggrep.vim
 noremap <Leader>t *N:<C-U>call <SID>biggrep_file('t')<CR>
