@@ -378,7 +378,19 @@ let g:colortuner_preferred_schemes = ['cake16', 'ocean16']
 " flow
 let g:flow#autoclose = 1
 let g:flow#enable = 0
-noremap <Leader>lf :<C-U>FlowMake<CR>
+
+" lint
+noremap <Leader>l :<C-U>call <SID>lint()<CR>
+
+function! s:lint()
+  let extension = expand('%:e')
+
+  if index(['js', 'jsx'], extension) != -1
+    FlowMake
+  elseif index(['php', 'hhi', 'hh'], extension) != -1
+    call hack#typecheck()
+  endif
+endfunction
 
 " auto session
 noremap <Leader>ss :<C-U>call <SID>session_switch_branch()<CR>
@@ -424,8 +436,6 @@ endfunction
 let g:hack#enable = 0
 let g:fb_default_opts = 0
 source $ADMIN_SCRIPTS/master.vimrc
-
-noremap <Leader>lh :<C-U>call hack#typecheck()<CR>
 
 source /home/engshare/admin/scripts/vim/biggrep.vim
 noremap <Leader>t *N:<C-U>call <SID>biggrep_file('t')<CR>

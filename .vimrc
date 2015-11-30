@@ -373,8 +373,20 @@ noremap <Leader>t :<C-U>Colortuner<CR>
 
 " flow
 let g:flow#autoclose = 1
-let g:flow#enable = 1
-" noremap <Leader>f :<C-U>FlowMake<CR>
+let g:flow#enable = 0
+
+" lint
+noremap <Leader>l :<C-U>call <SID>lint()<CR>
+
+function! s:lint()
+  let extension = expand('%:e')
+
+  if index(['js', 'jsx'], extension) != -1
+    FlowMake
+  elseif index(['php', 'hhi', 'hh'], extension) != -1
+    call hack#typecheck()
+  endif
+endfunction
 
 " auto session
 noremap <Leader>ss :<C-U>call <SID>session_switch_branch()<CR>
