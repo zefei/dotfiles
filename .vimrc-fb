@@ -338,9 +338,9 @@ let g:html5_aria_attributes_complete = 0
 let g:jsx_ext_required = 0
 
 " vim sessions
-let g:session_autoload = 'yes'
+let g:session_autoload = 'no'
 let g:session_autosave = 'yes'
-let g:session_default_to_last = 1
+let g:session_default_to_last = 0
 let g:session_persist_font = 0
 let g:session_persist_colors = 0
 
@@ -386,12 +386,12 @@ function! s:session_switch_branch()
   let session = xolox#session#find_current_session()
   let branch = vcprompt#format("%P@%b")
 
-  if empty(branch) || branch == session
-    return
-  endif
-
   if !empty(session)
     execute 'silent! SaveSession'
+  endif
+
+  if empty(branch) || branch == session
+    return
   endif
 
   if index(xolox#session#get_names(0), branch) == -1
