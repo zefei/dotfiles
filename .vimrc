@@ -217,8 +217,8 @@ map <C-F2> <Plug>(wintabs_move_right)
 imap <C-F2> <C-O><Plug>(wintabs_move_right)
 noremap <F3> :<C-U>Gstatus<CR>
 inoremap <F3> <Esc>:Gstatus<CR>
-noremap <F4> :<C-U>VimFiler -toggle<CR>
-inoremap <F4> <Esc>:VimFiler -toggle<CR>
+noremap <F4> :<C-U>call <SID>vimfiler_toggle()<CR>
+inoremap <F4> <ESC>:call <SID>vimfiler_toggle()<CR>
 noremap <F5> :<C-U>nohlsearch<CR>:diffoff!<CR>:cclose<CR>
 inoremap <F5> <C-O>:nohlsearch<CR><C-O>:diffoff!<CR><C-O>:cclose<CR>
 nnoremap <F6> gggqG<C-O><C-O>
@@ -254,11 +254,19 @@ call s:cabbrev('tabc', 'WintabsCloseVimtab')
 call s:cabbrev('tabo', 'WintabsOnlyVimtab')
 
 " vimfiler
+function! s:vimfiler_toggle()
+  if &filetype == 'vimfiler'
+    execute 'WintabsClose'
+  else
+    execute 'VimFiler -toggle'
+  endif
+endfunction
+
 function! s:vimfiler_settings()
   setlocal nobuflisted
   setlocal colorcolumn=
 
-  nmap <buffer> q :<C-U>VimFiler -toggle<CR>
+  nmap <buffer> q :<C-U>call <SID>vimfiler_toggle()<CR>
   nmap <buffer> <ENTER> o
   nmap <buffer> <expr> o vimfiler#smart_cursor_map("\<Plug>(vimfiler_expand_tree)", "\<Plug>(vimfiler_edit_file)")
   nmap <buffer> <expr> C vimfiler#smart_cursor_map("\<Plug>(vimfiler_cd_file)", "")
@@ -282,7 +290,7 @@ function! s:vimfiler_settings()
 endfunction
 autocmd FileType vimfiler call s:vimfiler_settings()
 
-map <Leader>\ :<C-U>VimFiler -find<CR>
+map <Leader>\ :<C-U>VimFiler -toggle -find<CR>
 
 let g:vimfiler_as_default_explorer = 1
 let g:vimfiler_safe_mode_by_default = 0
