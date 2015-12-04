@@ -167,6 +167,10 @@ noremap <C-J> g;
 noremap <C-K> g,
 noremap ZZ :xa<CR>
 noremap ZQ :qa!<CR>
+noremap <Leader>a :<C-U>e #<CR>
+noremap <Leader>t <C-]>
+nmap <Leader>c gcc
+vmap <Leader>c gc
 
 noremap H _
 noremap L g_
@@ -194,9 +198,6 @@ map <Leader><Leader>o <Plug>(wintabs_only_window)
 map <Leader><Leader>T <Plug>(wintabs_maximize)
 map <Leader>q <Plug>(wintabs_close)
 map <Leader>o <Plug>(wintabs_only)
-noremap <Leader>a :<C-U>e #<CR>
-nmap <Leader>c gcc
-vmap <Leader>c gc
 
 map <Leader>1 <Plug>(wintabs_tab_1)
 map <Leader>2 <Plug>(wintabs_tab_2)
@@ -390,7 +391,6 @@ let g:wintabs_ui_active_right = ' '
 
 " colortuner
 let g:colortuner_preferred_schemes = ['cake16', 'ocean16']
-" noremap <Leader>t :<C-U>Colortuner<CR>
 
 " flow
 let g:flow#autoclose = 1
@@ -453,12 +453,5 @@ endfunction
 let g:hack#enable = 0
 let g:fb_default_opts = 0
 source $ADMIN_SCRIPTS/master.vimrc
-
 source /home/engshare/admin/scripts/vim/biggrep.vim
-noremap <Leader>t *N:<C-U>call <SID>biggrep_file('t')<CR>
-
-function! s:biggrep_file(corpus)
-  let word = expand("<cword>")
-  let escaped_word = substitute(word, "'", "'\"'\"'", "g")
-  call BigGrep(a:corpus, "s -f '".escaped_word."'", word)
-endfunction
+autocmd FileType php setlocal iskeyword+=:,-
