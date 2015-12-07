@@ -22,9 +22,9 @@ alias ls='ls -G'
 alias mvim='mvim --remote-silent'
 alias nw="/Applications/node-webkit.app/Contents/MacOS/node-webkit"
 alias pg="postgres -D /usr/local/var/postgres"
-alias rm='rmtrash'
-alias rmdir='rmdirtrash'
-alias sudo='sudo '
+# alias rm='rmtrash'
+# alias rmdir='rmdirtrash'
+# alias sudo='sudo '
 
 stty -ixon
-shopt -s globstar
+# shopt -s globstar
