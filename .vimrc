@@ -7,7 +7,11 @@ Plug 'kien/ctrlp.vim'
 Plug 'sjl/gundo.vim'
 Plug 'othree/html5.vim'
 Plug 'matchit.zip'
-Plug 'Shougo/neocomplete.vim'
+if has('nvim')
+  Plug 'Shougo/deoplete.nvim'
+else
+  Plug 'Shougo/neocomplete.vim'
+endif
 Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
 Plug 'jeetsukumaran/vim-markology'
@@ -44,7 +48,10 @@ function! s:system_is(sys)
 endfunction
 
 " General
-set nocompatible
+if !has('nvim')
+  set nocompatible
+  set encoding=utf-8
+endif
 filetype plugin indent on
 set backspace=2
 set nobackup
@@ -53,7 +60,6 @@ set noswapfile
 set history=10000
 set showcmd
 set fileformats=unix,dos
-set encoding=utf-8
 if s:system_is('win')
   set undodir=~/_vimundo
 else
@@ -69,16 +75,18 @@ set autoread
 set ttimeoutlen=10
 
 " UI
+if !has('nvim')
+  set visualbell t_vb=
+  autocmd GUIEnter * set visualbell t_vb=
+  set t_Co=256
+endif
 syntax on
 set ruler
 set number
 set numberwidth=5
 set list listchars=tab:▸\ ,trail:⋅,nbsp:⋅
 set noerrorbells
-set visualbell t_vb=
-autocmd GUIEnter * set visualbell t_vb=
 set scrolloff=5
-set t_Co=256
 colorscheme cake16
 set splitright splitbelow
 autocmd VimEnter,WinEnter * call s:active_ui()
@@ -312,22 +320,53 @@ noremap <Leader>r :<C-U>CtrlPMRUFiles<CR>
 " Patching matchparen.vim
 autocmd WinLeave * execute '3match none'
 
-" neocomplete
-let g:neocomplete#enable_at_startup = 1
-let g:neocomplete#enable_smart_case = 1
-let g:neocomplete#min_keyword_length = 3
-let g:neocomplete#sources#syntax#min_keyword_length = 3
-let g:neocomplete#enable_refresh_always = 1
+" neocomplete & deoplete
+if has('nvim')
+  let g:deoplete#enable_at_startup = 1
+  let g:deoplete#enable_smart_case = 1
+  let g:deoplete#auto_completion_start_length = 3
+
+  autocmd VimEnter * call <SID>deoplete_init()
+
+  function! s:deoplete_init()
+    call deoplete#init#enable()
+    let g:deoplete#omni_patterns = g:deoplete#_omni_patterns
+    let g:deoplete#omni#input_patterns = g:deoplete#omni#_input_patterns
+    let g:deoplete#omni#input_patterns.php = ['[^. \t]->\w*', '\w*::\w*']
+    let g:deoplete#sources._ = ['omni', 'buffer']
+  endfunction
+
+  inoremap <expr><C-H> deolete#mappings#smart_close_popup()."\<C-H>"
+  inoremap <expr><BS> deolete#mappings#smart_close_popup()."\<C-H>"
+  inoremap <silent> <CR> <C-R>=<SID>my_cr_function()<CR>
+  function! s:my_cr_function()
+    return deoplete#mappings#close_popup()."\<CR>"
+  endfunction
+else
+  let g:neocomplete#enable_at_startup = 1
+  let g:neocomplete#enable_smart_case = 1
+  let g:neocomplete#min_keyword_length = 3
+  let g:neocomplete#sources#syntax#min_keyword_length = 3
+  let g:neocomplete#enable_refresh_always = 1
+
+  inoremap <expr><C-H> neocomplete#smart_close_popup()."\<C-H>"
+  inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-H>"
+  inoremap <expr><C-Y>  neocomplete#close_popup()
+  inoremap <silent> <CR> <C-R>=<SID>my_cr_function()<CR>
+  function! s:my_cr_function()
+    return neocomplete#close_popup() . "\<CR>"
+  endfunction
+
+  if !exists('g:neocomplete#sources#omni#input_patterns')
+    let g:neocomplete#sources#omni#input_patterns = {}
+  endif
+  let g:neocomplete#sources#omni#input_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
+  let g:neocomplete#sources#omni#input_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
+  let g:neocomplete#sources#omni#input_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
+endif
 
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 inoremap <expr><S-TAB>  pumvisible() ? "\<C-p>" : "\<S-TAB>"
-inoremap <expr><C-H> neocomplete#smart_close_popup()."\<C-H>"
-inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-H>"
-inoremap <expr><C-Y>  neocomplete#close_popup()
-inoremap <silent> <CR> <C-R>=<SID>my_cr_function()<CR>
-function! s:my_cr_function()
-  return neocomplete#close_popup() . "\<CR>"
-endfunction
 
 autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
 autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
@@ -335,13 +374,6 @@ autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 autocmd FileType php setlocal omnifunc=hackcomplete#Complete
-
-if !exists('g:neocomplete#sources#omni#input_patterns')
-  let g:neocomplete#sources#omni#input_patterns = {}
-endif
-let g:neocomplete#sources#omni#input_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
-let g:neocomplete#sources#omni#input_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
-let g:neocomplete#sources#omni#input_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
 
 " html5 syntax
 let g:html5_event_handler_attributes_complete = 0
