@@ -333,7 +333,7 @@ if has('nvim')
     let g:deoplete#omni_patterns = g:deoplete#_omni_patterns
     let g:deoplete#omni#input_patterns = g:deoplete#omni#_input_patterns
     let g:deoplete#omni#input_patterns.php = ['[^. \t]->\w*', '\w*::\w*']
-    let g:deoplete#sources._ = ['omni', 'buffer']
+    let g:deoplete#sources._ = ['buffer', 'omni']
   endfunction
 
   inoremap <expr><C-H> deolete#mappings#smart_close_popup()."\<C-H>"
