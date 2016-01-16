@@ -3,6 +3,8 @@
 !f::SendInput ^f
 !k::SendInput ^k
 !l::SendInput ^l
+!n::SendInput ^n
+!+n::SendInput ^+n
 !q::SendInput !{F4}
 !r::SendInput ^r
 !s::SendInput ^s
@@ -10,6 +12,7 @@
 !+t::SendInput ^+t
 !v::SendInput ^v
 !w::SendInput ^w
+!+w::SendInput ^+w
 !x::SendInput ^x
 !z::SendInput ^z
 !+z::SendInput ^y
