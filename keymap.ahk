@@ -1,6 +1,8 @@
 !a::SendInput ^a
 !c::SendInput ^c
 !f::SendInput ^f
+!k::SendInput ^k
+!l::SendInput ^l
 !q::SendInput !{F4}
 !r::SendInput ^r
 !s::SendInput ^s
