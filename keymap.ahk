@@ -26,3 +26,9 @@
 !8::SendInput ^8
 !9::SendInput ^9
 !0::SendInput ^0
+#F7::SendInput {Media_Prev}
+#F8::SendInput {Media_Play_Pause}
+#F9::SendInput {Media_Next}
+#F10::SendInput {Volume_Mute}
+#F11::SendInput {Volume_Down}
+#F12::SendInput {Volume_Up}
