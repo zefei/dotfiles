@@ -5,10 +5,12 @@
 !r::SendInput ^r
 !s::SendInput ^s
 !t::SendInput ^t
+!+t::SendInput ^+t
 !v::SendInput ^v
 !w::SendInput ^w
 !x::SendInput ^x
 !z::SendInput ^z
+!+z::SendInput ^y
 !1::SendInput ^1
 !2::SendInput ^2
 !3::SendInput ^3
