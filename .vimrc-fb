@@ -346,7 +346,7 @@ if has('nvim')
     call deoplete#init#enable()
     let g:deoplete#omni_patterns = g:deoplete#_omni_patterns
     let g:deoplete#omni#input_patterns = g:deoplete#omni#_input_patterns
-    let g:deoplete#omni#input_patterns.php = ['[^. \t]->\w*', '\w*::\w*']
+    " let g:deoplete#omni#input_patterns.php = ['[^. \t]->\w*', '\w*::\w*']
     let g:deoplete#sources._ = ['buffer', 'omni']
   endfunction
 
@@ -374,7 +374,7 @@ else
   if !exists('g:neocomplete#sources#omni#input_patterns')
     let g:neocomplete#sources#omni#input_patterns = {}
   endif
-  let g:neocomplete#sources#omni#input_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
+  " let g:neocomplete#sources#omni#input_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
   let g:neocomplete#sources#omni#input_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
   let g:neocomplete#sources#omni#input_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
 endif
