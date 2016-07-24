@@ -343,10 +343,7 @@ if has('nvim')
   autocmd VimEnter * call <SID>deoplete_init()
 
   function! s:deoplete_init()
-    call deoplete#init#enable()
-    let g:deoplete#omni_patterns = g:deoplete#_omni_patterns
-    let g:deoplete#omni#input_patterns = g:deoplete#omni#_input_patterns
-    " let g:deoplete#omni#input_patterns.php = ['[^. \t]->\w*', '\w*::\w*']
+    call deoplete#initialize()
     let g:deoplete#sources._ = ['buffer', 'omni']
   endfunction
 
