@@ -468,7 +468,7 @@ function! s:session_switch_branch()
     execute 'silent! CloseSession'
     execute 'silent! SaveSession '.branch
   else
-    execute 'silent! OpenSession '.branch
+    execute 'silent! OpenSession! '.branch
   endif
 endfunction
 
@@ -483,5 +483,5 @@ function! s:session_open()
   if !empty(xolox#session#find_current_session())
     execute 'silent! SaveSession'
   endif
-  execute 'OpenSession'
+  execute 'OpenSession!'
 endfunction
