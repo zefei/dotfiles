@@ -1,3 +1,5 @@
+#MaxHotkeysPerInterval 200
+
 !a::SendInput ^a
 !c::SendInput ^c
 !f::SendInput ^f
