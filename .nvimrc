@@ -1,40 +1,40 @@
 " Plugins
 call plug#begin()
-" Plug 'mileszs/ack.vim'
-Plug 'jiangmiao/auto-pairs'
-Plug 'rhysd/clever-f.vim'
+" Plug 'digitaltoad/vim-jade'
+" Plug 'groenewege/vim-less'
+" Plug 'kchmck/vim-coffee-script'
 " Plug 'kien/ctrlp.vim'
+" Plug 'tikhomirov/vim-glsl'
+" Plug 'tpope/vim-fugitive'
+" Plug 'vim-ruby/vim-ruby'
+" Plug 'zefei/ocean16'
+" Plug 'zefei/vim-colortuner'
+Plug 'Shougo/unite.vim'
+Plug 'Shougo/vimfiler.vim'
+Plug 'flowtype/vim-flow'
+Plug 'jeetsukumaran/vim-markology'
+Plug 'jiangmiao/auto-pairs'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'simnalamburt/vim-mundo'
-Plug 'othree/html5.vim'
 Plug 'matchit.zip'
+Plug 'mxw/vim-jsx'
+Plug 'othree/html5.vim'
+Plug 'pangloss/vim-javascript'
+Plug 'rhysd/clever-f.vim'
+Plug 'simnalamburt/vim-mundo'
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-endwise'
+Plug 'tpope/vim-unimpaired'
+Plug 'w0rp/ale'
+Plug 'xolox/vim-misc'
+Plug 'xolox/vim-session'
+Plug 'zefei/cake16'
+Plug 'zefei/vim-vcprompt'
+Plug 'zefei/vim-wintabs'
 if has('nvim')
   Plug 'Shougo/deoplete.nvim'
 else
   Plug 'Shougo/neocomplete.vim'
 endif
-Plug 'pangloss/vim-javascript'
-Plug 'mxw/vim-jsx'
-Plug 'jeetsukumaran/vim-markology'
-Plug 'Shougo/unite.vim'
-" Plug 'kchmck/vim-coffee-script'
-Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-endwise'
-Plug 'flowtype/vim-flow'
-" Plug 'tpope/vim-fugitive'
-" Plug 'tikhomirov/vim-glsl'
-" Plug 'digitaltoad/vim-jade'
-" Plug 'groenewege/vim-less'
-Plug 'xolox/vim-misc'
-" Plug 'vim-ruby/vim-ruby'
-Plug 'xolox/vim-session'
-Plug 'tpope/vim-unimpaired'
-Plug 'Shougo/vimfiler.vim'
-Plug 'zefei/cake16'
-" Plug 'zefei/vim-colortuner'
-" Plug 'zefei/ocean16'
-Plug 'zefei/vim-vcprompt'
-Plug 'zefei/vim-wintabs'
 call plug#end()
 
 " Functions
@@ -153,6 +153,7 @@ let &statusline .= "\ue0b1 %<%f "
 let &statusline .= "%{&readonly ? \"\ue0a2 \" : &modified ? '+ ' : ''}"
 let &statusline .= "%=\ue0b3 %{&filetype == '' ? 'unknown' : &filetype} "
 let &statusline .= "\ue0b3 %l:%2c \ue0b3 %p%% "
+let &statusline .= "\ue0b3 %{ALEGetStatusLine()} "
 function! StatuslineTag()
   let session = xolox#session#find_current_session()
   if empty(session) || session == 'default'
@@ -433,18 +434,19 @@ let g:colortuner_preferred_schemes = ['cake16', 'ocean16']
 let g:flow#autoclose = 1
 let g:flow#enable = 0
 
-" lint
-noremap <Leader>l :<C-U>call <SID>lint()<CR>
-
-function! s:lint()
+" go to definition
+noremap gd :<C-U>call <SID>go_to_definition()<CR>
+function! s:go_to_definition()
   let extension = expand('%:e')
-
   if index(['js', 'jsx'], extension) != -1
-    FlowMake
-  elseif index(['php', 'hhi', 'hh'], extension) != -1
-    call hack#typecheck()
+    FlowJumpToDef
+  else
+    normal! gd
   endif
 endfunction
+
+" ale
+let g:ale_sign_column_always = 1
 
 " auto session
 noremap <Leader>ss :<C-U>call <SID>session_switch_branch()<CR>
@@ -485,3 +487,12 @@ function! s:session_open()
   endif
   execute 'OpenSession!'
 endfunction
+
+" fb specifics
+let g:hack#enable = 0
+let g:fb_default_opts = 0
+try
+  source $ADMIN_SCRIPTS/master.vimrc
+  source /home/engshare/admin/scripts/vim/biggrep.vim
+catch
+endtry

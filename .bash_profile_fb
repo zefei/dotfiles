@@ -1,6 +1,7 @@
 export EDITOR=nvim
 export LESS=-RFX
 export JAVA_HOME="$(/usr/libexec/java_home -v 1.8)"
+export HISTCONTROL=ignoreboth:erasedups
 
 if [ -f `brew --prefix`/etc/bash_completion ]; then
   . `brew --prefix`/etc/bash_completion
@@ -9,6 +10,7 @@ fi
 source ~/.scm-prompt
 export PS1='[\u@\h \w$(_dotfiles_scm_info " @%s")]\n$ '
 export TERM=xterm-256color
+export PATH="/usr/local/sbin:$PATH"
 
 alias grep='grep --color=auto'
 alias ll='ls -lG'
