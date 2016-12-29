@@ -21,6 +21,7 @@ Plug 'othree/html5.vim'
 Plug 'pangloss/vim-javascript'
 Plug 'rhysd/clever-f.vim'
 Plug 'simnalamburt/vim-mundo'
+Plug 'steelsojka/deoplete-flow'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-unimpaired'
@@ -340,13 +341,6 @@ if has('nvim')
   let g:deoplete#enable_at_startup = 1
   let g:deoplete#enable_smart_case = 1
   let g:deoplete#auto_completion_start_length = 3
-
-  autocmd VimEnter * call <SID>deoplete_init()
-
-  function! s:deoplete_init()
-    call deoplete#initialize()
-    let g:deoplete#sources._ = ['buffer', 'omni']
-  endfunction
 
   inoremap <expr><C-H> deolete#mappings#smart_close_popup()."\<C-H>"
   inoremap <expr><BS> deolete#mappings#smart_close_popup()."\<C-H>"
