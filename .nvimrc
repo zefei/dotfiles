@@ -31,6 +31,8 @@ Plug 'xolox/vim-session'
 Plug 'zefei/cake16'
 Plug 'zefei/vim-vcprompt'
 Plug 'zefei/vim-wintabs'
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
 if has('nvim')
   Plug 'Shougo/deoplete.nvim'
 else
