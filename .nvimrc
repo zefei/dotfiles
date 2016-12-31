@@ -28,10 +28,11 @@ Plug 'steelsojka/deoplete-flow'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-unimpaired'
-Plug 'w0rp/ale'
 Plug 'xolox/vim-misc'
 Plug 'xolox/vim-session'
+Plug 'zefei/ale'
 Plug 'zefei/cake16'
+Plug 'zefei/vim-hack'
 Plug 'zefei/vim-vcprompt'
 Plug 'zefei/vim-wintabs'
 if has('nvim')
@@ -444,6 +445,9 @@ endfunction
 
 " ale
 let g:ale_sign_column_always = 1
+let g:ale_lint_on_save = 1
+nmap [e <Plug>(ale_previous_wrap)
+nmap ]e <Plug>(ale_next_wrap)
 
 " auto session
 noremap <Leader>ss :<C-U>call <SID>session_switch_branch()<CR>
