@@ -406,16 +406,14 @@ let g:gundo_close_on_revert = 1
 noremap <Leader>u :<C-U>GundoToggle<CR>
 
 " Markology
-let g:markology_textlower="m "
-let g:markology_textupper=" "
-let g:markology_textother=" "
+let g:markology_textlower = "m "
+let g:markology_textupper = "\t "
+let markology_include = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
 nmap mm <Plug>MarkologyPlaceMarkToggle
 nmap mc <Plug>MarkologyClearAll
-nmap [m <Plug>MarkologyPrevLocalMarkPos
-nmap ]m <Plug>MarkologyNextLocalMarkPos
+nmap M <Plug>MarkologyNextLocalMarkPos
 highlight link MarkologyHLl SignColumn
-highlight link MarkologyHLu Ignore
-highlight link MarkologyHLo Ignore
+highlight link MarkologyHLu SignColumn
 
 " wintabs
 let g:wintabs_ui_sep_leftmost = ' '
