@@ -11,7 +11,10 @@ call plug#begin()
 " Plug 'zefei/vim-colortuner'
 Plug 'Shougo/unite.vim'
 Plug 'Shougo/vimfiler.vim'
+Plug 'SirVer/ultisnips'
+Plug 'ervandew/supertab'
 Plug 'flowtype/vim-flow'
+Plug 'honza/vim-snippets'
 Plug 'jeetsukumaran/vim-markology'
 Plug 'jiangmiao/auto-pairs'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
@@ -31,8 +34,6 @@ Plug 'xolox/vim-session'
 Plug 'zefei/cake16'
 Plug 'zefei/vim-vcprompt'
 Plug 'zefei/vim-wintabs'
-Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets'
 if has('nvim')
   Plug 'Shougo/deoplete.nvim'
 else
@@ -373,15 +374,15 @@ else
   let g:neocomplete#sources#omni#input_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
 endif
 
-inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-inoremap <expr><S-TAB>  pumvisible() ? "\<C-p>" : "\<S-TAB>"
-
 autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
 autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
 autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 " autocmd FileType php setlocal omnifunc=hackcomplete#Complete
+
+" supertab
+let g:SuperTabDefaultCompletionType = "<C-N>"
 
 " html5 syntax
 let g:html5_event_handler_attributes_complete = 0
