@@ -27,7 +27,6 @@ Plug 'simnalamburt/vim-mundo'
 Plug 'steelsojka/deoplete-flow'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-endwise'
-Plug 'tpope/vim-unimpaired'
 Plug 'xolox/vim-misc'
 Plug 'xolox/vim-session'
 Plug 'zefei/ale'
@@ -224,13 +223,9 @@ map <Leader>8 <Plug>(wintabs_tab_8)
 map <Leader>9 <Plug>(wintabs_tab_9)
 
 map <F1> <Plug>(wintabs_previous)
-imap <F1> <Esc><Plug>(wintabs_previous)
-map <C-F1> <Plug>(wintabs_move_left)
-imap <C-F1> <C-O><Plug>(wintabs_move_left)
+map <Leader><F1> <Plug>(wintabs_move_left)
 map <F2> <Plug>(wintabs_next)
-imap <F2> <Esc><Plug>(wintabs_next)
-map <C-F2> <Plug>(wintabs_move_right)
-imap <C-F2> <C-O><Plug>(wintabs_move_right)
+map <Leader><F2> <Plug>(wintabs_move_right)
 noremap <F3> :<C-U>Gstatus<CR>
 inoremap <F3> <Esc>:Gstatus<CR>
 noremap <F4> :<C-U>call <SID>vimfiler_toggle()<CR>
@@ -252,6 +247,9 @@ else
   noremap <F12> :<C-U>e ~/.vimrc<CR>
   inoremap <F12> <Esc>:e ~/.vimrc<CR>
 endif
+
+nnoremap [t :<C-U>tabprevious<CR>
+nnoremap ]t :<C-U>tabnext<CR>
 
 " auto commands
 autocmd BufNewFile,BufRead *.json set filetype=javascript
@@ -413,7 +411,8 @@ let g:markology_textupper=" "
 let g:markology_textother=" "
 nmap mm <Plug>MarkologyPlaceMarkToggle
 nmap mc <Plug>MarkologyClearAll
-nmap M <Plug>MarkologyNextLocalMarkPos
+nmap [m <Plug>MarkologyPrevLocalMarkPos
+nmap ]m <Plug>MarkologyNextLocalMarkPos
 highlight link MarkologyHLl SignColumn
 highlight link MarkologyHLu Ignore
 highlight link MarkologyHLo Ignore
