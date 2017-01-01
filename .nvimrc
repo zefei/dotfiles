@@ -432,11 +432,24 @@ let g:flow#enable = 0
 " go to definition
 noremap gd :<C-U>call <SID>go_to_definition()<CR>
 function! s:go_to_definition()
-  let extension = expand('%:e')
-  if index(['js', 'jsx'], extension) != -1
+  if &filetype =~ 'javascript'
     FlowJumpToDef
+  elseif &filetype =~ 'php'
+    HackGotoDefinition
   else
     normal! gd
+  endif
+endfunction
+
+" get type info
+noremap K :<C-U>call <SID>get_help()<CR>
+function! s:get_help()
+  if &filetype =~ 'javascript'
+    FlowType
+  elseif &filetype =~ 'php'
+    HackType
+  else
+    normal! K
   endif
 endfunction
 
