@@ -435,7 +435,7 @@ function! s:go_to_definition()
   if &filetype =~ 'javascript'
     FlowJumpToDef
   elseif &filetype =~ 'php'
-    HackGotoDefinition
+    HackGotoDef
   else
     normal! gd
   endif
