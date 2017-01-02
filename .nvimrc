@@ -454,6 +454,13 @@ function! s:get_help()
   endif
 endfunction
 
+" merge conflict motion, borrowed from tpope/vim-unimpaired
+noremap [n :<C-U>call <SID>next_conflict(1)<CR>
+noremap ]n :<C-U>call <SID>next_conflict(0)<CR>
+function! s:next_conflict(reverse)
+  call search('^\(@@ .* @@\|[<=>|]\{7}[<=>|]\@!\)', a:reverse ? 'bW' : 'W')
+endfunction
+
 " ale
 let g:ale_sign_column_always = 1
 let g:ale_lint_on_save = 1
