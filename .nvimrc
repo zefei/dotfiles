@@ -1,14 +1,6 @@
 " Plugins
 call plug#begin()
-" Plug 'digitaltoad/vim-jade'
-" Plug 'groenewege/vim-less'
-" Plug 'kchmck/vim-coffee-script'
-" Plug 'kien/ctrlp.vim'
-" Plug 'tikhomirov/vim-glsl'
-" Plug 'tpope/vim-fugitive'
-" Plug 'vim-ruby/vim-ruby'
-" Plug 'zefei/ocean16'
-" Plug 'zefei/vim-colortuner'
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'Shougo/unite.vim'
 Plug 'Shougo/vimfiler.vim'
 Plug 'SirVer/ultisnips'
@@ -36,11 +28,6 @@ Plug 'zefei/deoplete-hack'
 Plug 'zefei/vim-hack'
 Plug 'zefei/vim-vcprompt'
 Plug 'zefei/vim-wintabs'
-if has('nvim')
-  Plug 'Shougo/deoplete.nvim'
-else
-  Plug 'Shougo/neocomplete.vim'
-endif
 call plug#end()
 
 " Functions
@@ -340,47 +327,23 @@ endfunction
 " Patching matchparen.vim
 autocmd WinLeave * execute '3match none'
 
-" neocomplete & deoplete
-if has('nvim')
-  let g:deoplete#enable_at_startup = 1
-  let g:deoplete#enable_smart_case = 1
-  let g:deoplete#auto_completion_start_length = 3
+" deoplete
+let g:deoplete#enable_at_startup = 1
+let g:deoplete#enable_smart_case = 1
+let g:deoplete#auto_completion_start_length = 3
 
-  inoremap <expr><C-H> deolete#mappings#smart_close_popup()."\<C-H>"
-  inoremap <expr><BS> deolete#mappings#smart_close_popup()."\<C-H>"
-  inoremap <silent> <CR> <C-R>=<SID>my_cr_function()<CR>
-  function! s:my_cr_function()
-    return deoplete#mappings#close_popup()."\<CR>"
-  endfunction
-else
-  let g:neocomplete#enable_at_startup = 1
-  let g:neocomplete#enable_smart_case = 1
-  let g:neocomplete#min_keyword_length = 3
-  let g:neocomplete#sources#syntax#min_keyword_length = 3
-  let g:neocomplete#enable_refresh_always = 1
-
-  inoremap <expr><C-H> neocomplete#smart_close_popup()."\<C-H>"
-  inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-H>"
-  inoremap <expr><C-Y>  neocomplete#close_popup()
-  inoremap <silent> <CR> <C-R>=<SID>my_cr_function()<CR>
-  function! s:my_cr_function()
-    return neocomplete#close_popup() . "\<CR>"
-  endfunction
-
-  if !exists('g:neocomplete#sources#omni#input_patterns')
-    let g:neocomplete#sources#omni#input_patterns = {}
-  endif
-  " let g:neocomplete#sources#omni#input_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
-  let g:neocomplete#sources#omni#input_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
-  let g:neocomplete#sources#omni#input_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
-endif
+inoremap <expr><C-H> deolete#mappings#smart_close_popup()."\<C-H>"
+inoremap <expr><BS> deolete#mappings#smart_close_popup()."\<C-H>"
+inoremap <silent> <CR> <C-R>=<SID>my_cr_function()<CR>
+function! s:my_cr_function()
+  return deoplete#mappings#close_popup()."\<CR>"
+endfunction
 
 autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
 autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
 autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-" autocmd FileType php setlocal omnifunc=hackcomplete#Complete
 
 " supertab
 let g:SuperTabDefaultCompletionType = "<C-N>"
@@ -392,7 +355,6 @@ let g:html5_microdata_attributes_complete = 0
 let g:html5_aria_attributes_complete = 0
 
 " javascript
-" let g:SimpleJsIndenter_BriefMode = 1
 let g:jsx_ext_required = 0
 
 " vim sessions
