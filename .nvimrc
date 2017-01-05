@@ -18,10 +18,10 @@ Plug 'simnalamburt/vim-mundo'
 Plug 'steelsojka/deoplete-flow'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-endwise'
-Plug 'w0rp/ale'
 Plug 'wellle/targets.vim'
 Plug 'xolox/vim-misc'
 Plug 'xolox/vim-session'
+Plug 'zefei/ale'
 Plug 'zefei/cake16'
 Plug 'zefei/deoplete-hack'
 Plug 'zefei/vim-flow'
@@ -427,11 +427,19 @@ endfunction
 " ale
 let g:ale_javascript_flow_use_global = 1
 let g:ale_lint_on_save = 1
-let g:ale_linters = {'javascript': ['flow']}
 let g:ale_sign_column_always = 1
 let g:ale_statusline_format = ['⨉ %d', '⚠ %d', 'OK']
 nmap [e <Plug>(ale_previous_wrap)
 nmap ]e <Plug>(ale_next_wrap)
+
+function! s:set_eslint_rulesdir()
+  if &filetype !~ 'javascript'
+    return
+  endif
+  let rulesdir = finddir('js/eslint_rules', fnamemodify(expand('<afile>'), ':p').';')
+  let g:ale_javascript_eslint_options = empty(rulesdir) ? '' : '--rulesdir '.rulesdir
+endfunction
+autocmd BufEnter,BufRead * call <SID>set_eslint_rulesdir()
 
 " auto session
 noremap <Leader>ss :<C-U>call <SID>session_switch_branch()<CR>
