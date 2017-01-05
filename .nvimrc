@@ -427,7 +427,9 @@ endfunction
 " ale
 let g:ale_javascript_flow_use_global = 1
 let g:ale_lint_on_save = 1
+let g:ale_linters = {'javascript': ['flow']}
 let g:ale_sign_column_always = 1
+let g:ale_statusline_format = ['⨉ %d', '⚠ %d', 'OK']
 nmap [e <Plug>(ale_previous_wrap)
 nmap ]e <Plug>(ale_next_wrap)
 
