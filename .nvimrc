@@ -10,18 +10,18 @@ Plug 'jeetsukumaran/vim-markology'
 Plug 'jiangmiao/auto-pairs'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'matchit.zip'
+Plug 'mbbill/undotree'
 Plug 'mxw/vim-jsx'
 Plug 'othree/html5.vim'
-Plug 'pangloss/vim-javascript'
+Plug 'pangloss/vim-javascript', { 'commit': '4839870f29807035541b658c1c835797c944290d' }
 Plug 'rhysd/clever-f.vim'
-Plug 'simnalamburt/vim-mundo'
 Plug 'steelsojka/deoplete-flow'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-endwise'
+Plug 'w0rp/ale'
 Plug 'wellle/targets.vim'
 Plug 'xolox/vim-misc'
 Plug 'xolox/vim-session'
-Plug 'zefei/ale'
 Plug 'zefei/cake16'
 Plug 'zefei/deoplete-hack'
 Plug 'zefei/vim-flow'
@@ -364,10 +364,9 @@ let g:session_default_to_last = 0
 let g:session_persist_font = 0
 let g:session_persist_colors = 0
 
-" Gundo
-let g:gundo_help = 0
-let g:gundo_close_on_revert = 1
-noremap <Leader>u :<C-U>GundoToggle<CR>
+" undotree
+let g:undotree_SetFocusWhenToggle = 1
+noremap <Leader>u :<C-U>UndotreeToggle<CR>
 
 " Markology
 let g:markology_textlower = "m "
