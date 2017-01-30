@@ -26,6 +26,8 @@ alias resetdns='sudo killall -HUP mDNSResponder'
 alias openfocused='open /Users/zefei/fbsource/fbobjc/Apps/Wilde/Facebook/Facebook-Focused.xcworkspace'
 alias cdrn='cd ~/fbsource/fbobjc/Libraries/FBReactKit/js/RKJSModules/Apps/Wilde/Shops'
 alias cdrna='cd ~/fbsource/fbandroid/java/com/facebook/catalyst/js/RKJSModules/Apps/Wilde/Shops'
+alias atomrn='atom ~/fbsource/fbobjc/'
+alias atomrna='atom ~/fbsource/fbandroid/'
 
 stty -ixon
 #shopt -s globstar
