@@ -289,6 +289,7 @@ function! s:vimfiler_settings()
   nmap <buffer> I <Plug>(vimfiler_toggle_visible_ignore_files)
   nmap <buffer> yy <Plug>(vimfiler_yank_full_path)
   nmap <buffer> cd :<C-U>VimFilerCurrentDir<CR>
+  nmap <buffer> s <Plug>(vimfiler_split_edit_file)
   vmap <buffer> <Space> <Plug>(vimfiler_toggle_mark_selected_lines)
 endfunction
 autocmd FileType vimfiler call s:vimfiler_settings()
@@ -303,13 +304,6 @@ let g:vimfiler_tree_closed_icon = '▸'
 let g:vimfiler_enable_auto_cd = 0
 let g:vimfiler_no_default_key_mappings = 1
 let g:vimfiler_ignore_pattern = '\%(^\.\|\.pyc$\)'
-
-" CtrlP
-let g:ctrlp_working_path_mode = 0
-let g:ctrlp_custom_ignore = '\.git$\|\.hg$\|\.svn$\|\.DS_Store$'
-let g:ctrlp_switch_buffer = 0
-" noremap <Leader>f :<C-U>CtrlP<CR>
-" noremap <Leader>r :<C-U>CtrlPMRUFiles<CR>
 
 " fzf
 noremap <Leader>f :<C-U>FZF!<CR>
@@ -384,6 +378,9 @@ let g:wintabs_ui_sep_inbetween = '|'
 let g:wintabs_ui_sep_rightmost = ' '
 let g:wintabs_ui_active_left = ' '
 let g:wintabs_ui_active_right = ' '
+let g:wintabs_autoclose_vim = 1
+let g:wintabs_autoclose_vimtab = 1
+let g:wintabs_switchbuf = 'useopen'
 
 " colortuner
 let g:colortuner_preferred_schemes = ['cake16', 'ocean16']
