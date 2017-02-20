@@ -7,6 +7,8 @@ if [ -f `brew --prefix`/etc/bash_completion ]; then
   . `brew --prefix`/etc/bash_completion
 fi
 
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
 source ~/.scm-prompt
 export PS1='[\u@\h \w$(_dotfiles_scm_info " @%s")]\n$ '
 export TERM=xterm-256color
@@ -40,3 +42,9 @@ export PATH=${PATH}:${ANDROID_SDK}/tools:${ANDROID_SDK}/platform-tools
 export FBANDROID_DIR=/Users/zefei/fbsource/fbandroid
 alias quicklog_update=/Users/zefei/fbsource/fbandroid/scripts/quicklog/quicklog_update.sh
 alias qlu=quicklog_update
+
+# BEGIN: Block added by chef, to set environment strings
+# Please see https://fburl.com/AndroidProvisioning if you do not use bash
+# or if you would rather this bit of code 'live' somewhere else
+. ~/.fbchef/environment
+# END: Block added by chef
