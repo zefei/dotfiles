@@ -1,5 +1,6 @@
 " Plugins
 call plug#begin()
+Plug 'ConradIrwin/vim-bracketed-paste'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'Shougo/unite.vim'
 Plug 'Shougo/vimfiler.vim'
@@ -212,8 +213,10 @@ map <Leader>8 <Plug>(wintabs_tab_8)
 map <Leader>9 <Plug>(wintabs_tab_9)
 
 map <F1> <Plug>(wintabs_previous)
+imap <F1> <Esc><Plug>(wintabs_previous)
 map <Leader><F1> <Plug>(wintabs_move_left)
 map <F2> <Plug>(wintabs_next)
+imap <F2> <Esc><Plug>(wintabs_next)
 map <Leader><F2> <Plug>(wintabs_move_right)
 noremap <F3> :<C-U>Gstatus<CR>
 inoremap <F3> <Esc>:Gstatus<CR>
