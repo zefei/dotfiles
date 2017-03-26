@@ -4,12 +4,11 @@ Plug 'ConradIrwin/vim-bracketed-paste'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'Shougo/unite.vim'
 Plug 'Shougo/vimfiler.vim'
-Plug 'SirVer/ultisnips'
 Plug 'ervandew/supertab'
-Plug 'honza/vim-snippets'
 Plug 'jeetsukumaran/vim-markology'
 Plug 'jiangmiao/auto-pairs'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
 Plug 'matchit.zip'
 Plug 'mbbill/undotree'
 Plug 'mxw/vim-jsx'
@@ -309,17 +308,8 @@ let g:vimfiler_no_default_key_mappings = 1
 let g:vimfiler_ignore_pattern = '\%(^\.\|\.pyc$\)'
 
 " fzf
-noremap <Leader>f :<C-U>FZF!<CR>
-noremap <Leader>r :<C-U>call <SID>fzf_buffers_mru()<CR>
-
-function! s:fzf_buffers_mru()
-  let buffers = filter(range(1, bufnr('$')), 'buflisted(v:val)')
-  let files = map(buffers, 'bufname(v:val)')
-  call extend(files, v:oldfiles)
-  let reduced = map(files, 'fnamemodify(v:val, ":~:.")')
-  let deduped = filter(copy(reduced), 'index(reduced, v:val) == v:key')
-  call fzf#run({'source': deduped, 'sink': 'e', 'options': '+s'})
-endfunction
+noremap <Leader>f :<C-U>Files<CR>
+noremap <Leader>r :<C-U>History<CR>
 
 " Patching matchparen.vim
 autocmd WinLeave * execute '3match none'
