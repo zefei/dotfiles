@@ -11,6 +11,7 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'matchit.zip'
 Plug 'mbbill/undotree'
+Plug 'mitermayer/vim-prettier'
 Plug 'mxw/vim-jsx'
 Plug 'othree/html5.vim'
 Plug 'pangloss/vim-javascript', { 'commit': '4839870f29807035541b658c1c835797c944290d' }
