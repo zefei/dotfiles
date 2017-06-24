@@ -26,25 +26,20 @@ alias sshdev='ssh zefei.sb.facebook.com'
 alias sshdev2='ssh devvm13906.prn1.facebook.com'
 alias resetdns='sudo killall -HUP mDNSResponder'
 alias openfocused='open /Users/zefei/fbsource/fbobjc/Apps/Wilde/Facebook/Facebook-Focused.xcworkspace'
-alias cdrn='cd ~/fbsource/fbobjc/Libraries/FBReactKit/js/RKJSModules/Apps/Wilde/Shops'
-alias cdrna='cd ~/fbsource/fbandroid/java/com/facebook/catalyst/js/RKJSModules/Apps/Wilde/Shops'
-alias atomrn='atom ~/fbsource/fbobjc/'
-alias atomrna='atom ~/fbsource/fbandroid/'
+alias cdrn='cd ~/fbsource/xplat/js/RKJSModules/Apps/Wilde/Shops'
+alias atomrn='atom ~/fbsource/xplat/'
 
 stty -ixon
 #shopt -s globstar
-
-# added by setup_fb4a.sh
-export ANDROID_SDK=/opt/android_sdk
-export ANDROID_NDK_REPOSITORY=/opt/android_ndk
-export ANDROID_HOME=${ANDROID_SDK}
-export PATH=${PATH}:${ANDROID_SDK}/tools:${ANDROID_SDK}/platform-tools
-export FBANDROID_DIR=/Users/zefei/fbsource/fbandroid
-alias quicklog_update=/Users/zefei/fbsource/fbandroid/scripts/quicklog/quicklog_update.sh
-alias qlu=quicklog_update
 
 # BEGIN: Block added by chef, to set environment strings
 # Please see https://fburl.com/AndroidProvisioning if you do not use bash
 # or if you would rather this bit of code 'live' somewhere else
 . ~/.fbchef/environment
 # END: Block added by chef
+
+# added by setup_fb4a.sh
+export ANDROID_SDK=/opt/android_sdk
+export ANDROID_NDK_REPOSITORY=/opt/android_ndk
+export ANDROID_HOME=${ANDROID_SDK}
+export PATH=${PATH}:${ANDROID_SDK}/tools:${ANDROID_SDK}/platform-tools
