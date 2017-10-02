@@ -1,6 +1,7 @@
 export EDITOR=nvim
 export LESS=-RFX
 export JAVA_HOME="$(/usr/libexec/java_home -v 1.8)"
+export PATH=${JAVA_HOME}/bin:${PATH}
 export HISTCONTROL=ignoreboth:erasedups
 
 if [ -f `brew --prefix`/etc/bash_completion ]; then
@@ -26,8 +27,9 @@ alias sshdev='ssh zefei.sb.facebook.com'
 alias sshdev2='ssh devvm13906.prn1.facebook.com'
 alias resetdns='sudo killall -HUP mDNSResponder'
 alias openfocused='open /Users/zefei/fbsource/fbobjc/Apps/Wilde/Facebook/Facebook-Focused.xcworkspace'
-alias cdrn='cd ~/fbsource/xplat/js/RKJSModules/Apps/Wilde/Shops'
+alias cdrn='cd ~/fbsource/xplat/js/RKJSModules/Apps/Wilde'
 alias atomrn='atom ~/fbsource/xplat/'
+alias js1boot='js1 device boot -p android'
 
 stty -ixon
 #shopt -s globstar
