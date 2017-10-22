@@ -9,7 +9,6 @@ Plug 'jeetsukumaran/vim-markology'
 Plug 'jiangmiao/auto-pairs'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-Plug 'matchit.zip'
 Plug 'mbbill/undotree'
 Plug 'mitermayer/vim-prettier'
 Plug 'mxw/vim-jsx'
@@ -19,6 +18,7 @@ Plug 'rhysd/clever-f.vim'
 Plug 'steelsojka/deoplete-flow'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-endwise'
+Plug 'vim-scripts/matchit.zip'
 Plug 'w0rp/ale'
 Plug 'wellle/targets.vim'
 Plug 'xolox/vim-misc'
@@ -372,7 +372,6 @@ let g:wintabs_ui_sep_inbetween = '|'
 let g:wintabs_ui_sep_rightmost = ' '
 let g:wintabs_ui_active_left = ' '
 let g:wintabs_ui_active_right = ' '
-let g:wintabs_autoclose_vim = 1
 let g:wintabs_autoclose_vimtab = 1
 let g:wintabs_switchbuf = 'useopen'
 
