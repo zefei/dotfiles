@@ -65,6 +65,7 @@ let &fillchars="vert:\u2758"
 set hidden
 set wildmenu
 set wildmode=longest,full
+set mouse=a
 set mousemodel=extend
 set autoread
 set ttimeoutlen=10
