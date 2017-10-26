@@ -25,6 +25,7 @@ Plug 'xolox/vim-misc'
 Plug 'xolox/vim-session'
 Plug 'zefei/cake16'
 Plug 'zefei/deoplete-hack'
+Plug 'zefei/vim-colortuner'
 Plug 'zefei/vim-flow'
 Plug 'zefei/vim-hack'
 Plug 'zefei/vim-vcprompt'
@@ -95,6 +96,9 @@ function! s:inactive_ui()
   set nocursorline
   set colorcolumn=
 endfunction
+if has('termguicolors')
+  set termguicolors
+endif
 
 " GUI
 if has('gui_running')
