@@ -13,7 +13,7 @@ Plug 'mbbill/undotree'
 Plug 'mitermayer/vim-prettier'
 Plug 'mxw/vim-jsx'
 Plug 'othree/html5.vim'
-Plug 'pangloss/vim-javascript', { 'commit': '4839870f29807035541b658c1c835797c944290d' }
+Plug 'pangloss/vim-javascript'
 Plug 'rhysd/clever-f.vim'
 Plug 'steelsojka/deoplete-flow'
 Plug 'tpope/vim-commentary'
