@@ -30,6 +30,7 @@ Plug 'zefei/vim-flow'
 Plug 'zefei/vim-hack'
 Plug 'zefei/vim-vcprompt'
 Plug 'zefei/vim-wintabs'
+Plug 'zefei/vim-wintabs-powerline'
 call plug#end()
 
 " Functions
@@ -372,13 +373,9 @@ highlight link MarkologyHLl SignColumn
 highlight link MarkologyHLu SignColumn
 
 " wintabs
-let g:wintabs_ui_sep_leftmost = ' '
-let g:wintabs_ui_sep_inbetween = '|'
-let g:wintabs_ui_sep_rightmost = ' '
-let g:wintabs_ui_active_left = ' '
-let g:wintabs_ui_active_right = ' '
 let g:wintabs_autoclose_vimtab = 1
 let g:wintabs_switchbuf = 'useopen'
+highlight! link TabLineFill StatusLineNC
 
 " colortuner
 let g:colortuner_preferred_schemes = ['cake16', 'ocean16']
