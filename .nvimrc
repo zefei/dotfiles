@@ -375,7 +375,7 @@ highlight link MarkologyHLu SignColumn
 " wintabs
 let g:wintabs_autoclose_vimtab = 1
 let g:wintabs_switchbuf = 'useopen'
-highlight! link TabLineFill StatusLineNC
+let g:wintabs_powerline_higroup_empty = 'StatusLineNC'
 
 " colortuner
 let g:colortuner_preferred_schemes = ['cake16', 'ocean16']
