@@ -71,6 +71,7 @@ set mouse=a
 set mousemodel=extend
 set autoread
 set ttimeoutlen=10
+" set clipboard+=unnamedplus
 
 " UI
 if !has('nvim')
@@ -186,11 +187,11 @@ noremap L g_
 noremap j gj
 noremap k gk
 
-noremap y "cy
-nnoremap yy "cyy
-noremap Y "cy$
-noremap p "cp
-noremap P "cP
+noremap y "+y
+nnoremap yy "+yy
+noremap Y "+y$
+noremap p "+p
+noremap P "+P
 noremap d "dd
 nnoremap dd "ddd
 noremap D "dD
