@@ -48,3 +48,9 @@ export ANDROID_SDK=/opt/android_sdk
 export ANDROID_NDK_REPOSITORY=/opt/android_ndk
 export ANDROID_HOME=${ANDROID_SDK}
 export PATH=${PATH}:${ANDROID_SDK}/tools:${ANDROID_SDK}/platform-tools
+
+# Initialization for FDK command line tools.Sat Nov 18 00:56:56 2017
+FDK_EXE="/Users/zefei/bin/FDK/Tools/osx"
+PATH=${PATH}:"/Users/zefei/bin/FDK/Tools/osx"
+export PATH
+export FDK_EXE
