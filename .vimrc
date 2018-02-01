@@ -6,7 +6,7 @@ Plug 'rhysd/clever-f.vim'
 Plug 'kien/ctrlp.vim'
 Plug 'sjl/gundo.vim'
 Plug 'othree/html5.vim'
-Plug 'matchit.zip'
+Plug 'vim-scripts/matchit.zip'
 if has('nvim')
   Plug 'Shougo/deoplete.nvim'
 else
