@@ -27,7 +27,7 @@ alias mvim='mvim --remote-silent'
 alias at="tmux -CC attach -t main"
 alias ct="tmux -CC new -s main"
 alias sshdev='ssh -R 2489:127.0.0.1:2489 zefei.sb.facebook.com'
-alias sshdev2='ssh -R 2489:127.0.0.1:2489 dev7774.prn1.facebook.com'
+alias sshdev2='ssh -R 2489:127.0.0.1:2489 dev7004.prn2.facebook.com'
 alias resetdns='sudo killall -HUP mDNSResponder'
 alias openfocused='open /Users/zefei/fbsource/fbobjc/Apps/Wilde/Facebook/Facebook-Focused.xcworkspace'
 alias cdrn='cd ~/fbsource/xplat/js/RKJSModules/Apps/Wilde'
@@ -48,3 +48,9 @@ export ANDROID_SDK=/opt/android_sdk
 export ANDROID_NDK_REPOSITORY=/opt/android_ndk
 export ANDROID_HOME=${ANDROID_SDK}
 export PATH=${PATH}:${ANDROID_SDK}/tools:${ANDROID_SDK}/platform-tools
+
+# Initialization for FDK command line tools.Sat Nov 18 00:56:56 2017
+FDK_EXE="/Users/zefei/bin/FDK/Tools/osx"
+PATH=${PATH}:"/Users/zefei/bin/FDK/Tools/osx"
+export PATH
+export FDK_EXE
