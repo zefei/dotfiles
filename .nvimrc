@@ -45,10 +45,6 @@ function! s:system_is(sys)
 endfunction
 
 " General
-if !has('nvim')
-  set nocompatible
-  set encoding=utf-8
-endif
 filetype plugin indent on
 set backspace=2
 set nobackup
@@ -71,14 +67,10 @@ set mouse=a
 set mousemodel=extend
 set autoread
 set ttimeoutlen=10
+let g:python3_host_prog = '/opt/homebrew/bin/python3'
 " set clipboard+=unnamedplus
 
 " UI
-if !has('nvim')
-  set visualbell t_vb=
-  autocmd GUIEnter * set visualbell t_vb=
-  set t_Co=256
-endif
 syntax on
 set ruler
 set number
