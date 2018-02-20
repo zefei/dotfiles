@@ -477,7 +477,27 @@ endfunction
 let g:hack#enable = 0
 let g:fb_default_opts = 0
 try
-  source $ADMIN_SCRIPTS/master.vimrc
-  source /home/engshare/admin/scripts/vim/biggrep.vim
+  " Kill any trailing whitespace on save.
+  if !exists("g:fb_kill_whitespace") | let g:fb_kill_whitespace = 1 | endif
+  if g:fb_kill_whitespace
+    fu! <SID>StripTrailingWhitespaces()
+      let l = line(".")
+      let c = col(".")
+      %s/\s\+$//e
+      call cursor(l, c)
+    endfu
+    au FileType c,cabal,cpp,haskell,javascript,php,python,ruby,readme,tex,text,thrift
+      \ au BufWritePre <buffer>
+      \ :call <SID>StripTrailingWhitespaces()
+  endif
+
+  " Automatically load svn-commit template.
+  if !exists("g:fb_svn_template") | let g:fb_svn_template = 1 | endif
+  if g:fb_svn_template
+    if $SVN_COMMIT_TEMPLATE == ""
+      let $SVN_COMMIT_TEMPLATE = "$ADMIN_SCRIPTS/templates/svn-commit-template.txt"
+    endif
+    autocmd BufNewFile,BufRead svn-commit.*tmp :0r $SVN_COMMIT_TEMPLATE
+  endif
 catch
 endtry
