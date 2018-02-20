@@ -31,7 +31,6 @@ Plug 'tpope/vim-unimpaired'
 Plug 'Shougo/vimfiler.vim'
 Plug 'zefei/cake16'
 Plug 'zefei/vim-colortuner'
-Plug 'zefei/ocean16'
 Plug 'zefei/vim-vcprompt'
 Plug 'zefei/vim-wintabs'
 call plug#end()
