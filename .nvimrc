@@ -145,7 +145,7 @@ let statusline = " %{StatuslineTag()} "
       \."%{&readonly ? \"\ue0a2 \" : &modified ? '+ ' : ''}"
       \."%=\ue0b3 %{&filetype == '' ? 'unknown' : &filetype} "
       \."\ue0b3 %l:%2c \ue0b3 %p%% "
-      \."\ue0b3 %{ALEGetStatusLine()} "
+      \."\ue0b3 %{ALEStatusline()} "
 
 if statusline_display == 'tabline'
   let g:wintabs_display = 'statusline'
@@ -442,6 +442,27 @@ let g:ale_sign_column_always = 1
 let g:ale_statusline_format = ['⨉ %d', '⚠ %d', 'OK']
 nmap [e <Plug>(ale_previous_wrap)
 nmap ]e <Plug>(ale_next_wrap)
+
+" copy-pasta from ale since it's deprecated
+function! ALEStatusline()
+  let [l:error_format, l:warning_format, l:no_errors] = g:ale_statusline_format
+  let l:counts = ale#statusline#Count(bufnr('%'))
+
+  " Build strings based on user formatting preferences.
+  let l:errors = l:counts[0] ? printf(l:error_format, l:counts[0]) : ''
+  let l:warnings = l:counts[1] ? printf(l:warning_format, l:counts[1]) : ''
+
+  " Different formats based on the combination of errors and warnings.
+  if empty(l:errors) && empty(l:warnings)
+    let l:res = l:no_errors
+  elseif !empty(l:errors) && !empty(l:warnings)
+    let l:res = printf('%s %s', l:errors, l:warnings)
+  else
+    let l:res = empty(l:errors) ? l:warnings : l:errors
+  endif
+
+  return l:res
+endfunction
 
 function! s:set_eslint_rulesdir()
   if &filetype !~ 'javascript'
