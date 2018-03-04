@@ -139,14 +139,38 @@ set foldmethod=indent
 set foldlevelstart=99
 
 " Statusline
-set laststatus=2
-autocmd BufWinEnter,WinEnter,VimEnter * let w:getcwd = getcwd()
-let &statusline = " %{StatuslineTag()} "
-let &statusline .= "\ue0b1 %<%f "
-let &statusline .= "%{&readonly ? \"\ue0a2 \" : &modified ? '+ ' : ''}"
-let &statusline .= "%=\ue0b3 %{&filetype == '' ? 'unknown' : &filetype} "
-let &statusline .= "\ue0b3 %l:%2c \ue0b3 %p%% "
-let &statusline .= "\ue0b3 %{ALEGetStatusLine()} "
+let statusline_display = 'tabline'
+let statusline = " %{StatuslineTag()} "
+      \."\ue0b1 %<%f "
+      \."%{&readonly ? \"\ue0a2 \" : &modified ? '+ ' : ''}"
+      \."%=\ue0b3 %{&filetype == '' ? 'unknown' : &filetype} "
+      \."\ue0b3 %l:%2c \ue0b3 %p%% "
+      \."\ue0b3 %{ALEGetStatusLine()} "
+
+if statusline_display == 'tabline'
+  let g:wintabs_display = 'statusline'
+  set showtabline=2
+  hi TabLineStatusLine guifg=bg guibg=#678797 ctermfg=bg ctermbg=12
+  let &tabline = '%#TabLineStatusLine#'.statusline.'%##'
+  augroup set_tabline
+    autocmd!
+    autocmd InsertEnter,InsertLeave,CursorMoved,CursorMovedI * :let &ro=&ro
+  augroup END
+  hi WildMenu guifg=bg guibg=#678797 ctermfg=bg ctermbg=12
+else
+  let g:wintabs_display = 'tabline'
+  set laststatus=2
+  let &statusline = statusline
+  augroup set_tabline
+    autocmd!
+  augroup END
+endif
+
+augroup set_window_getcwd
+  autocmd!
+  autocmd BufWinEnter,WinEnter,VimEnter * let w:getcwd = getcwd()
+augroup END
+
 function! StatuslineTag()
   let session = xolox#session#find_current_session()
   if empty(session) || session == 'default'
@@ -199,6 +223,7 @@ map <Leader><Leader>q <Plug>(wintabs_close_window)
 map <Leader><Leader>o <Plug>(wintabs_only_window)
 map <Leader><Leader>T <Plug>(wintabs_maximize)
 map <Leader>q <Plug>(wintabs_close)
+map <Leader>Q <Plug>(wintabs_undo)
 map <Leader>o <Plug>(wintabs_only)
 
 map <Leader>1 <Plug>(wintabs_tab_1)
@@ -250,6 +275,8 @@ autocmd FileType vim setlocal keywordprg=:help
 
 " Commands
 command! Ws w | source %
+command! ProfileStart profile start profile.log | profile func * | profile file *
+command! ProfileExit profile pause | noautocmd qall!
 function! s:cabbrev(cmd, new_cmd)
   execute "cabbrev ".a:cmd." <C-R>=(getcmdtype()==':' && getcmdpos()==1 ? '".a:new_cmd."' : '".a:cmd."')<CR>"
 endfunction
