@@ -25,6 +25,7 @@ Plug 'xolox/vim-misc'
 Plug 'xolox/vim-session'
 Plug 'zefei/cake16'
 Plug 'zefei/deoplete-hack'
+Plug 'zefei/vim-colors-pencil'
 Plug 'zefei/vim-colortuner'
 Plug 'zefei/vim-flow'
 Plug 'zefei/vim-hack'
@@ -78,7 +79,7 @@ set numberwidth=5
 set list listchars=tab:▸\ ,trail:⋅,nbsp:⋅
 set noerrorbells
 set scrolloff=5
-colorscheme cake16
+colorscheme pencil
 set splitright splitbelow
 autocmd VimEnter,WinEnter * call s:active_ui()
 autocmd WinLeave * call s:inactive_ui()
@@ -150,8 +151,7 @@ let statusline = " %{StatuslineTag()} "
 if statusline_display == 'tabline'
   let g:wintabs_display = 'statusline'
   set showtabline=2
-  hi TabLineStatusLine guifg=bg guibg=#678797 ctermfg=bg ctermbg=12
-  let &tabline = '%#TabLineStatusLine#'.statusline.'%##'
+  let &tabline = '%#StatusLineTL#'.statusline.'%##'
   augroup set_tabline
     autocmd!
     autocmd InsertEnter,InsertLeave,CursorMoved,CursorMovedI * :let &ro=&ro
