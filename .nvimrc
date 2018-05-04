@@ -68,7 +68,6 @@ set mouse=a
 set mousemodel=extend
 set autoread
 set ttimeoutlen=10
-let g:python3_host_prog = '/opt/homebrew/bin/python3'
 " set clipboard+=unnamedplus
 
 " UI
