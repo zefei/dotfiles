@@ -151,7 +151,7 @@ let statusline = " %{StatuslineTag()} "
 if statusline_display == 'tabline'
   let g:wintabs_display = 'statusline'
   set showtabline=2
-  let &tabline = '%#StatusLineTL#'.statusline.'%##'
+  let &tabline = '%#StatusLine#'.statusline.'%##'
   augroup set_tabline
     autocmd!
     autocmd InsertEnter,InsertLeave,CursorMoved,CursorMovedI * :let &ro=&ro
@@ -400,7 +400,6 @@ highlight link MarkologyHLu SignColumn
 " wintabs
 let g:wintabs_autoclose_vimtab = 1
 let g:wintabs_switchbuf = 'useopen'
-let g:wintabs_powerline_higroup_empty = 'StatusLineNC'
 
 " colortuner
 let g:colortuner_preferred_schemes = ['cake16', 'ocean16']
