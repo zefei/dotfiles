@@ -69,7 +69,6 @@ set mousemodel=extend
 set autoread
 set ttimeoutlen=10
 set nostartofline
-" set clipboard+=unnamedplus
 
 " UI
 syntax on
