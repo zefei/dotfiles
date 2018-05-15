@@ -2,8 +2,6 @@
 call plug#begin()
 Plug 'ConradIrwin/vim-bracketed-paste'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'Shougo/unite.vim'
-Plug 'Shougo/vimfiler.vim'
 Plug 'ervandew/supertab'
 Plug 'jeetsukumaran/vim-markology'
 Plug 'jiangmiao/auto-pairs'
@@ -25,6 +23,7 @@ Plug 'xolox/vim-misc'
 Plug 'xolox/vim-session'
 Plug 'zefei/cake16'
 Plug 'zefei/deoplete-hack'
+Plug 'zefei/nerdtree'
 Plug 'zefei/vim-colors-pencil'
 Plug 'zefei/vim-colortuner'
 Plug 'zefei/vim-flow'
@@ -249,8 +248,8 @@ imap <F2> <Esc><Plug>(wintabs_next)
 map <Leader><F2> <Plug>(wintabs_move_right)
 noremap <F3> :<C-U>Gstatus<CR>
 inoremap <F3> <Esc>:Gstatus<CR>
-noremap <F4> :<C-U>call <SID>vimfiler_toggle()<CR>
-inoremap <F4> <ESC>:call <SID>vimfiler_toggle()<CR>
+noremap <F4> :<C-U>NERDTreeToggle<CR>
+inoremap <F4> <ESC>:NERDTreeToggle<CR>
 noremap <F5> :<C-U>nohlsearch<CR>:diffoff!<CR>:cclose<CR>
 inoremap <F5> <C-O>:nohlsearch<CR><C-O>:diffoff!<CR><C-O>:cclose<CR>
 nnoremap <F6> gggqG<C-O><C-O>
@@ -290,54 +289,12 @@ call s:cabbrev('all', 'WintabsAll')
 call s:cabbrev('tabc', 'WintabsCloseVimtab')
 call s:cabbrev('tabo', 'WintabsOnlyVimtab')
 
-" vimfiler
-function! s:vimfiler_toggle()
-  if &filetype == 'vimfiler'
-    execute 'WintabsClose'
-  else
-    execute 'VimFiler -toggle'
-  endif
-endfunction
-
-function! s:vimfiler_settings()
-  setlocal nobuflisted
-  setlocal colorcolumn=
-
-  nmap <buffer> q :<C-U>call <SID>vimfiler_toggle()<CR>
-  nmap <buffer> <ENTER> o
-  nmap <buffer> <expr> o vimfiler#smart_cursor_map("\<Plug>(vimfiler_expand_tree)", "\<Plug>(vimfiler_edit_file)")
-  nmap <buffer> <expr> C vimfiler#smart_cursor_map("\<Plug>(vimfiler_cd_file)", "")
-  nmap <buffer> j <Plug>(vimfiler_loop_cursor_down)
-  nmap <buffer> k <Plug>(vimfiler_loop_cursor_up)
-  nmap <buffer> gg <Plug>(vimfiler_cursor_top)
-  nmap <buffer> R <Plug>(vimfiler_redraw_screen)
-  nmap <buffer> <SPACE> <Plug>(vimfiler_toggle_mark_current_line)
-  nmap <buffer> U <Plug>(vimfiler_clear_mark_all_lines)
-  nmap <buffer> cp <Plug>(vimfiler_copy_file)
-  nmap <buffer> mv <Plug>(vimfiler_move_file)
-  nmap <buffer> rm <Plug>(vimfiler_delete_file)
-  nmap <buffer> mk <Plug>(vimfiler_make_directory)
-  nmap <buffer> e <Plug>(vimfiler_new_file)
-  nmap <buffer> u <Plug>(vimfiler_switch_to_parent_directory)
-  nmap <buffer> . <Plug>(vimfiler_toggle_visible_ignore_files)
-  nmap <buffer> I <Plug>(vimfiler_toggle_visible_ignore_files)
-  nmap <buffer> yy <Plug>(vimfiler_yank_full_path)
-  nmap <buffer> cd :<C-U>VimFilerCurrentDir<CR>
-  nmap <buffer> s <Plug>(vimfiler_split_edit_file)
-  vmap <buffer> <Space> <Plug>(vimfiler_toggle_mark_selected_lines)
-endfunction
-autocmd FileType vimfiler call s:vimfiler_settings()
-
-map <Leader>\ :<C-U>VimFiler -toggle -find<CR>
-
-let g:vimfiler_as_default_explorer = 1
-let g:vimfiler_safe_mode_by_default = 0
-let g:vimfiler_tree_leaf_icon = ' '
-let g:vimfiler_tree_opened_icon = '▾'
-let g:vimfiler_tree_closed_icon = '▸'
-let g:vimfiler_enable_auto_cd = 0
-let g:vimfiler_no_default_key_mappings = 1
-let g:vimfiler_ignore_pattern = '\%(^\.\|\.pyc$\)'
+" NERDTree
+let g:NERDTreeUseCurrentWindow = 1
+let g:NERDTreeCaseSensitiveSort = 1
+let g:NERDTreeQuitOnOpen = 1
+let g:NERDTreeMinimalUI = 1
+noremap <Leader>\ :<C-U>NERDTreeFind<CR>
 
 " fzf
 noremap <Leader>f :<C-U>Files<CR>
