@@ -27,7 +27,7 @@ alias mvim='mvim --remote-silent'
 alias at="tmux -CC attach -t main"
 alias ct="tmux -CC new -s main"
 alias etdev='et -rt="2489:2489" zefei.sb.facebook.com:8080'
-alias sshdev='etdev'
+alias sshdev='ssh -R 2489:127.0.0.1:2489 zefei.sb.facebook.com'
 alias resetdns='sudo killall -HUP mDNSResponder'
 alias openfocused='open /Users/zefei/fbsource/fbobjc/Apps/Wilde/Facebook/Facebook-Focused.xcworkspace'
 alias cdrn='cd ~/fbsource/xplat/js/RKJSModules/Apps/Wilde'
