@@ -139,31 +139,13 @@ set foldmethod=indent
 set foldlevelstart=99
 
 " Statusline
-let statusline_display = 'tabline'
-let statusline = " %{StatuslineTag()} "
+set laststatus=2
+let &statusline = " %{StatuslineTag()} "
       \."\ue0b1 %<%f "
       \."%{&readonly ? \"\ue0a2 \" : &modified ? '+ ' : ''}"
       \."%=\ue0b3 %{&filetype == '' ? 'unknown' : &filetype} "
       \."\ue0b3 %l:%2c \ue0b3 %p%% "
       \."\ue0b3 %{ALEStatusline()} "
-
-if statusline_display == 'tabline'
-  let g:wintabs_display = 'statusline'
-  set showtabline=2
-  let &tabline = '%#StatusLine#'.statusline.'%##'
-  augroup set_tabline
-    autocmd!
-    autocmd InsertEnter,InsertLeave,CursorMoved,CursorMovedI * :let &ro=&ro
-  augroup END
-  hi WildMenu guifg=bg guibg=#678797 ctermfg=bg ctermbg=12
-else
-  let g:wintabs_display = 'tabline'
-  set laststatus=2
-  let &statusline = statusline
-  augroup set_tabline
-    autocmd!
-  augroup END
-endif
 
 augroup set_window_getcwd
   autocmd!
@@ -355,6 +337,7 @@ highlight link MarkologyHLl SignColumn
 highlight link MarkologyHLu SignColumn
 
 " wintabs
+let g:wintabs_display = 'statusline'
 let g:wintabs_autoclose_vimtab = 1
 let g:wintabs_switchbuf = 'useopen'
 
