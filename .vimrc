@@ -59,7 +59,6 @@ else
   set undodir=~/.vimundo
 endif
 set undofile
-let &fillchars="vert:\u2758,stl:\u00a0,stlnc: "
 set hidden
 set wildmenu
 set wildmode=longest,full
