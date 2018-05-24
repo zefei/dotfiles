@@ -332,13 +332,14 @@ let markology_include = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
 nmap mm <Plug>MarkologyPlaceMarkToggle
 nmap mc <Plug>MarkologyClearAll
 nmap M <Plug>MarkologyNextLocalMarkPos
-highlight link MarkologyHLl SignColumn
-highlight link MarkologyHLu SignColumn
+highlight! link MarkologyHLl SignColumn
+highlight! link MarkologyHLu SignColumn
 
 " wintabs
 let g:wintabs_display = 'statusline'
 let g:wintabs_autoclose_vimtab = 1
 let g:wintabs_switchbuf = 'useopen'
+highlight! WintabsInactiveNC ctermfg=243 ctermbg=253 guifg=#767676 guibg=#d9d9d9
 
 " colortuner
 let g:colortuner_preferred_schemes = ['cake16', 'ocean16']
