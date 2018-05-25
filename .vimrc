@@ -62,12 +62,11 @@ set undofile
 set hidden
 set wildmenu
 set wildmode=longest,full
-set mouse=a
+set mouse=
 set mousemodel=extend
 set autoread
 set ttimeoutlen=10
 set nostartofline
-set clipboard+=unnamedplus
 
 " UI
 syntax on
