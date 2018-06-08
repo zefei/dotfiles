@@ -381,12 +381,19 @@ endfunction
 " ale
 let g:ale_javascript_flow_use_global = 1
 let g:ale_lint_on_save = 1
-let g:ale_fix_on_save = 1
 let g:ale_sign_column_always = 1
 let g:ale_statusline_format = ['⨉ %d', '⚠ %d', 'OK']
 let g:ale_fixers = { 'javascript': ['prettier'], 'php': ['hackfmt'] }
 nmap [e <Plug>(ale_previous_wrap)
 nmap ]e <Plug>(ale_next_wrap)
+function! s:set_fix_on_save()
+  if search('@format$', 'nw')
+    let b:ale_fix_on_save = 1
+  else
+    let b:ale_fix_on_save = 0
+  endif
+endfunction
+autocmd BufEnter,BufRead * call <SID>set_fix_on_save()
 
 " copy-pasta from ale since it's deprecated
 function! ALEStatusline()
