@@ -1,5 +1,6 @@
 " Plugins
 call plug#begin()
+Plug 'autozimu/LanguageClient-neovim', {'branch': 'next', 'do': 'bash install.sh'}
 Plug 'ConradIrwin/vim-bracketed-paste'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'ervandew/supertab'
@@ -13,7 +14,6 @@ Plug 'mxw/vim-jsx'
 Plug 'othree/html5.vim'
 Plug 'pangloss/vim-javascript'
 Plug 'rhysd/clever-f.vim'
-Plug 'steelsojka/deoplete-flow'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-endwise'
 Plug 'vim-scripts/matchit.zip'
@@ -22,12 +22,9 @@ Plug 'wellle/targets.vim'
 Plug 'xolox/vim-misc'
 Plug 'xolox/vim-session'
 Plug 'zefei/cake16'
-Plug 'zefei/deoplete-hack'
 Plug 'zefei/nerdtree'
 Plug 'zefei/vim-colors-pencil'
 Plug 'zefei/vim-colortuner'
-Plug 'zefei/vim-flow'
-Plug 'zefei/vim-hack'
 Plug 'zefei/vim-vcprompt'
 Plug 'zefei/vim-wintabs'
 Plug 'zefei/vim-wintabs-powerline'
@@ -269,6 +266,36 @@ call s:cabbrev('all', 'WintabsAll')
 call s:cabbrev('tabc', 'WintabsCloseVimtab')
 call s:cabbrev('tabo', 'WintabsOnlyVimtab')
 
+" LanguageClient
+let g:LanguageClient_serverCommands = {
+    \ 'javascript.jsx': ['flow', 'lsp'],
+    \ 'php': ['hh_client', 'lsp'],
+    \ }
+noremap <Leader>m :<C-U>call LanguageClient_contextMenu()<CR>
+
+" get type info
+noremap K :<C-U>call <SID>get_help()<CR>
+function! s:get_help()
+  if has_key(g:LanguageClient_serverCommands, &filetype)
+    call LanguageClient#textDocument_hover()
+  else
+    normal! K
+  endif
+endfunction
+
+" go to definition
+noremap gd :<C-U>call <SID>go_to_definition()<CR>
+function! s:go_to_definition()
+  if has_key(g:LanguageClient_serverCommands, &filetype)
+    call LanguageClient#textDocument_definition()
+  else
+    normal! gd
+  endif
+endfunction
+
+" go to references
+noremap gr :<C-U>call LanguageClient_textDocument_references()<CR>
+
 " NERDTree
 let g:NERDTreeUseCurrentWindow = 1
 let g:NERDTreeCaseSensitiveSort = 1
@@ -342,34 +369,6 @@ highlight! WintabsInactiveNC ctermfg=243 ctermbg=253 guifg=#767676 guibg=#d9d9d9
 
 " colortuner
 let g:colortuner_preferred_schemes = ['cake16', 'ocean16']
-
-" flow
-let g:flow#autoclose = 1
-let g:flow#enable = 0
-
-" go to definition
-noremap gd :<C-U>call <SID>go_to_definition()<CR>
-function! s:go_to_definition()
-  if &filetype =~ 'javascript'
-    FlowJumpToDef
-  elseif &filetype =~ 'php'
-    HackGotoDef
-  else
-    normal! gd
-  endif
-endfunction
-
-" get type info
-noremap K :<C-U>call <SID>get_help()<CR>
-function! s:get_help()
-  if &filetype =~ 'javascript'
-    FlowType
-  elseif &filetype =~ 'php'
-    HackType
-  else
-    normal! K
-  endif
-endfunction
 
 " merge conflict motion, borrowed from tpope/vim-unimpaired
 noremap [n :<C-U>call <SID>next_conflict(1)<CR>
