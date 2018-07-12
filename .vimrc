@@ -271,30 +271,24 @@ let g:LanguageClient_serverCommands = {
     \ 'javascript.jsx': ['flow', 'lsp'],
     \ 'php': ['hh_client', 'lsp'],
     \ }
+
+function! s:call_lsc(lsc_func, fallback_normal)
+  if has_key(g:LanguageClient_serverCommands, &filetype)
+    try
+      call a:lsc_func()
+    catch
+      execute 'normal! '.a:fallback_normal
+    endtry
+  else
+    execute 'normal! '.a:fallback_normal
+  endif
+endfunction
+
 noremap <Leader>m :<C-U>call LanguageClient_contextMenu()<CR>
-
-" get type info
-noremap K :<C-U>call <SID>get_help()<CR>
-function! s:get_help()
-  if has_key(g:LanguageClient_serverCommands, &filetype)
-    call LanguageClient#textDocument_hover()
-  else
-    normal! K
-  endif
-endfunction
-
-" go to definition
-noremap gd :<C-U>call <SID>go_to_definition()<CR>
-function! s:go_to_definition()
-  if has_key(g:LanguageClient_serverCommands, &filetype)
-    call LanguageClient#textDocument_definition()
-  else
-    normal! gd
-  endif
-endfunction
-
-" go to references
+noremap K :<C-U>call <SID>call_lsc(function('LanguageClient_textDocument_hover'), 'K')<CR>
+noremap gd :<C-U>call <SID>call_lsc(function('LanguageClient_textDocument_definition'), 'gd')<CR>
 noremap gr :<C-U>call LanguageClient_textDocument_references()<CR>
+vnoremap = :<C-U>call <SID>call_lsc(function('LanguageClient_textDocument_rangeFormatting'), '=')<CR>
 
 " NERDTree
 let g:NERDTreeUseCurrentWindow = 1
