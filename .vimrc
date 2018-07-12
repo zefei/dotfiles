@@ -269,7 +269,7 @@ call s:cabbrev('tabo', 'WintabsOnlyVimtab')
 " LanguageClient
 let g:LanguageClient_serverCommands = {
     \ 'javascript.jsx': ['flow', 'lsp'],
-    \ 'php': ['hh_client', 'lsp'],
+    \ 'php': ['hh', 'lsp'],
     \ }
 
 function! s:call_lsc(lsc_func, fallback_normal)
