@@ -306,14 +306,16 @@ autocmd WinLeave * execute '3match none'
 
 " deoplete
 let g:deoplete#enable_at_startup = 1
-let g:deoplete#enable_smart_case = 1
-let g:deoplete#auto_completion_start_length = 3
+call deoplete#custom#option({
+      \'smart_case': v:true,
+      \'sources': {'_': ['around', 'buffer', 'omni', 'LanguageClient']},
+      \})
 
-inoremap <expr><C-H> deolete#mappings#smart_close_popup()."\<C-H>"
-inoremap <expr><BS> deolete#mappings#smart_close_popup()."\<C-H>"
-inoremap <silent> <CR> <C-R>=<SID>my_cr_function()<CR>
-function! s:my_cr_function()
-  return deoplete#mappings#close_popup()."\<CR>"
+inoremap <expr><C-h> deoplete#smart_close_popup()."\<C-h>"
+inoremap <expr><BS>  deoplete#smart_close_popup()."\<C-h>"
+inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+function! s:my_cr_function() abort
+  return deoplete#close_popup() . "\<CR>"
 endfunction
 
 autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
