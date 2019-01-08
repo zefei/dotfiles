@@ -288,6 +288,10 @@ noremap gd :<C-U>call <SID>call_lsc(function('LanguageClient_textDocument_defini
 noremap gr :<C-U>call LanguageClient_textDocument_references()<CR>
 vnoremap = :<C-U>call <SID>call_lsc(function('LanguageClient_textDocument_rangeFormatting'), '=')<CR>
 
+" Python
+let g:python3_host_prog = substitute(system('which python3'), '\n', '', '')
+let g:python_host_prog = substitute(system('which python'), '\n', '', '')
+
 " NERDTree
 let g:NERDTreeUseCurrentWindow = 1
 let g:NERDTreeCaseSensitiveSort = 1
