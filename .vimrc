@@ -71,6 +71,7 @@ set numberwidth=5
 set list listchars=tab:▸\ ,trail:⋅,nbsp:⋅
 set noerrorbells
 set scrolloff=5
+set background=light
 colorscheme pencil
 set splitright splitbelow
 autocmd VimEnter,WinEnter * call s:active_ui()
