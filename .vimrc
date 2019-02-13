@@ -141,6 +141,26 @@ let &statusline = " %{StatuslineTag()} "
       \."\ue0b3 %l:%2c \ue0b3 %p%% "
       \."\ue0b3 %{ALEStatusline()} "
 
+let g:wintabs_statusline = "%!MyStatusline()"
+function! MyStatusline()
+  let vimtabs = wintabs#ui#get_vimtabs_fragment()
+  if vimtabs != ''
+    let vimtabs = "%#WintabsInactiveSepActive#"
+          \.g:wintabs_powerline_sep_tab_transition
+          \."%##"
+          \.vimtabs
+  endif
+  return "%#StatusLine#"
+        \." ".StatuslineTag()." "
+        \."\ue0b1 %<%f "
+        \."%{&readonly ? \"\ue0a2 \" : &modified ? '+ ' : ''}"
+        \."%=\ue0b3 %{&filetype == '' ? 'unknown' : &filetype} "
+        \."\ue0b3 %l:%2c \ue0b3 %p%% "
+        \."\ue0b3 ".ALEStatusline()." "
+        \."%##"
+        \.vimtabs
+endfunction
+
 augroup set_window_getcwd
   autocmd!
   autocmd BufWinEnter,WinEnter,VimEnter * let w:getcwd = getcwd()
