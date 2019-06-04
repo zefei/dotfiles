@@ -43,14 +43,17 @@ stty -ixon
 . ~/.fbchef/environment
 # END: Block added by chef
 
-# added by setup_fb4a.sh
-export ANDROID_SDK=/opt/android_sdk
-export ANDROID_NDK_REPOSITORY=/opt/android_ndk
-export ANDROID_HOME=${ANDROID_SDK}
-export PATH=${PATH}:${ANDROID_SDK}/tools:${ANDROID_SDK}/platform-tools
-
 # Initialization for FDK command line tools.Sat Nov 18 00:56:56 2017
 FDK_EXE="/Users/zefei/bin/FDK/Tools/osx"
 PATH=${PATH}:"/Users/zefei/bin/FDK/Tools/osx"
 export PATH
 export FDK_EXE
+export FBANDROID_DIR=/Users/zefei/fbsource/fbandroid
+alias quicklog_update=/Users/zefei/fbsource/fbandroid/scripts/quicklog/quicklog_update.sh
+alias qlu=quicklog_update
+
+# added by setup_fb4a.sh
+export ANDROID_SDK=/opt/android_sdk
+export ANDROID_NDK_REPOSITORY=/opt/android_ndk
+export ANDROID_HOME=${ANDROID_SDK}
+export PATH=${PATH}:${ANDROID_SDK}/tools:${ANDROID_SDK}/tools/bin:${ANDROID_SDK}/platform-tools
