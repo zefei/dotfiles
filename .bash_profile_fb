@@ -29,7 +29,7 @@ alias etdev='et -rt="2489:2489" zefei.sb.facebook.com:8080'
 alias sshdev='ssh -R 2489:127.0.0.1:2489 zefei.sb.facebook.com'
 alias resetdns='sudo killall -HUP mDNSResponder'
 alias openfocused='open /Users/zefei/fbsource/fbobjc/Apps/Wilde/Facebook/Facebook-Focused.xcworkspace'
-alias cdrn='cd ~/fbsource/xplat/js/RKJSModules/Apps/Wilde'
+alias cdrn='cd ~/fbsource/xplat/js/'
 alias atomrn='atom ~/fbsource/xplat/'
 alias androidemu='cd ~/fbsource/fbandroid/ && nohup ./scripts/start_emulator -gpu host &>/dev/null &'
 
