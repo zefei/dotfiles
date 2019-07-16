@@ -405,7 +405,7 @@ let g:ale_fixers = { 'javascript': ['prettier'], 'php': ['hackfmt'] }
 nmap [e <Plug>(ale_previous_wrap)
 nmap ]e <Plug>(ale_next_wrap)
 function! s:set_fix_on_save()
-  if search('@format$', 'nw')
+  if search('\(@format\|@hackfmt-beta\)$', 'nw')
     let b:ale_fix_on_save = 1
   else
     let b:ale_fix_on_save = 0
