@@ -32,6 +32,7 @@ alias openfocused='open /Users/zefei/fbsource/fbobjc/Apps/Wilde/Facebook/Faceboo
 alias cdrn='cd ~/fbsource/xplat/js/'
 alias atomrn='atom ~/fbsource/xplat/'
 alias androidemu='cd ~/fbsource/fbandroid/ && nohup ./scripts/start_emulator -gpu host &>/dev/null &'
+alias arcpullios='arc pull --stable fbios-no-extensions'
 
 stty -ixon
 #shopt -s globstar
