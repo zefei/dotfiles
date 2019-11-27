@@ -25,14 +25,16 @@ alias l.='ls -dlG .*'
 alias ls='ls -G'
 alias at="tmux -CC attach -t main"
 alias ct="tmux -CC new -s main"
-alias etdev='et -rt="2489:2489" zefei.sb.facebook.com:8080'
+alias etdev='et -r 2489:2489 zefei.sb.facebook.com:8080'
 alias sshdev='ssh -R 2489:127.0.0.1:2489 zefei.sb.facebook.com'
 alias resetdns='sudo killall -HUP mDNSResponder'
-alias openfocused='open /Users/zefei/fbsource/fbobjc/Apps/Wilde/Facebook/Facebook-Focused.xcworkspace'
+alias openfocused='open /Users/zefei/fbsource/fbobjc/Apps/Wilde/Facebook/FacebookWithoutExtensions-Focused.xcworkspace'
 alias cdrn='cd ~/fbsource/xplat/js/'
 alias atomrn='atom ~/fbsource/xplat/'
 alias androidemu='cd ~/fbsource/fbandroid/ && nohup ./scripts/start_emulator -gpu host &>/dev/null &'
 alias arcpullios='arc pull --stable fbios-no-extensions'
+alias startlemon='pm2 start lemonade -- server'
+alias restartlemon='pm2 restart lemonade'
 
 stty -ixon
 #shopt -s globstar
