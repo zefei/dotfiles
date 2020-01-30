@@ -1,9 +1,8 @@
 " Plugins
 call plug#begin()
-Plug 'autozimu/LanguageClient-neovim', {'branch': 'next', 'do': 'bash install.sh'}
-Plug 'ConradIrwin/vim-bracketed-paste'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'ervandew/supertab'
+Plug 'hhvm/vim-hack'
 Plug 'jeetsukumaran/vim-markology'
 Plug 'jiangmiao/auto-pairs'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
@@ -14,7 +13,6 @@ Plug 'rhysd/clever-f.vim'
 Plug 'sheerun/vim-polyglot'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-endwise'
-Plug 'vim-scripts/matchit.zip'
 Plug 'w0rp/ale'
 Plug 'wellle/targets.vim'
 Plug 'xolox/vim-misc'
@@ -139,7 +137,7 @@ let &statusline = " %{StatuslineTag()} "
       \."%{&readonly ? \"\ue0a2 \" : &modified ? '+ ' : ''}"
       \."%=\ue0b3 %{&filetype == '' ? 'unknown' : &filetype} "
       \."\ue0b3 %l:%2c \ue0b3 %p%% "
-      \."\ue0b3 %{ALEStatusline()} "
+      \."\ue0b3 %{LinterStatus()} "
 
 let g:wintabs_statusline = "%!MyStatusline()"
 function! MyStatusline()
@@ -156,7 +154,7 @@ function! MyStatusline()
         \."%{&readonly ? \"\ue0a2 \" : &modified ? '+ ' : ''}"
         \."%=\ue0b3 %{&filetype == '' ? 'unknown' : &filetype} "
         \."\ue0b3 %l:%2c \ue0b3 %p%% "
-        \."\ue0b3 ".ALEStatusline()." "
+        \."\ue0b3 ".LinterStatus()." "
         \."%##"
         \.vimtabs
 endfunction
@@ -285,30 +283,6 @@ call s:cabbrev('all', 'WintabsAll')
 call s:cabbrev('tabc', 'WintabsCloseVimtab')
 call s:cabbrev('tabo', 'WintabsOnlyVimtab')
 
-" LanguageClient
-let g:LanguageClient_serverCommands = {
-    \ 'javascript.jsx': ['flow', 'lsp'],
-    \ 'php': ['hh', 'lsp'],
-    \ }
-
-function! s:call_lsc(lsc_func, fallback_normal)
-  if has_key(g:LanguageClient_serverCommands, &filetype)
-    try
-      call a:lsc_func()
-    catch
-      execute 'normal! '.a:fallback_normal
-    endtry
-  else
-    execute 'normal! '.a:fallback_normal
-  endif
-endfunction
-
-noremap <Leader>m :<C-U>call LanguageClient_contextMenu()<CR>
-noremap K :<C-U>call <SID>call_lsc(function('LanguageClient_textDocument_hover'), 'K')<CR>
-noremap gd :<C-U>call <SID>call_lsc(function('LanguageClient_textDocument_definition'), 'gd')<CR>
-noremap gr :<C-U>call LanguageClient_textDocument_references()<CR>
-vnoremap = :<C-U>call <SID>call_lsc(function('LanguageClient_textDocument_rangeFormatting'), '=')<CR>
-
 " Python
 let g:python3_host_prog = substitute(system('which python3'), '\n', '', '')
 let g:python_host_prog = substitute(system('which python'), '\n', '', '')
@@ -331,7 +305,7 @@ autocmd WinLeave * execute '3match none'
 let g:deoplete#enable_at_startup = 1
 call deoplete#custom#option({
       \'smart_case': v:true,
-      \'sources': {'_': ['around', 'buffer', 'omni', 'LanguageClient']},
+      \'sources': {'_': ['ale', 'around', 'buffer', 'omni']},
       \})
 
 inoremap <expr><C-h> deoplete#smart_close_popup()."\<C-h>"
@@ -397,11 +371,12 @@ function! s:next_conflict(reverse)
 endfunction
 
 " ale
+let g:ale_linters = {'hack': ['hack', 'hhast']}
 let g:ale_javascript_flow_use_global = 1
 let g:ale_lint_on_save = 1
 let g:ale_sign_column_always = 1
 let g:ale_statusline_format = ['⨉ %d', '⚠ %d', 'OK']
-let g:ale_fixers = { 'javascript': ['prettier'], 'php': ['hackfmt'] }
+let g:ale_fixers = { 'javascript': ['prettier'], 'php': ['hackfmt'], 'hack': ['hackfmt'] }
 nmap [e <Plug>(ale_previous_wrap)
 nmap ]e <Plug>(ale_next_wrap)
 function! s:set_fix_on_save()
@@ -413,25 +388,25 @@ function! s:set_fix_on_save()
 endfunction
 autocmd BufEnter,BufRead * call <SID>set_fix_on_save()
 
-" copy-pasta from ale since it's deprecated
-function! ALEStatusline()
-  let [l:error_format, l:warning_format, l:no_errors] = g:ale_statusline_format
-  let l:counts = ale#statusline#Count(bufnr('%'))
-
-  " Build strings based on user formatting preferences.
-  let l:errors = l:counts[0] ? printf(l:error_format, l:counts[0]) : ''
-  let l:warnings = l:counts[1] ? printf(l:warning_format, l:counts[1]) : ''
-
-  " Different formats based on the combination of errors and warnings.
-  if empty(l:errors) && empty(l:warnings)
-    let l:res = l:no_errors
-  elseif !empty(l:errors) && !empty(l:warnings)
-    let l:res = printf('%s %s', l:errors, l:warnings)
+function! s:lsp_with_fallback(lsp_cmd, fallback_cmd)
+  if index(['javascript', 'php', 'hack'], &filetype) >= 0
+    execute a:lsp_cmd
   else
-    let l:res = empty(l:errors) ? l:warnings : l:errors
+    execute a:fallback_cmd
   endif
+endfunction
+noremap K :<C-U>call <SID>lsp_with_fallback('ALEHover', 'normal! K')<CR>
+noremap gd :<C-U>call <SID>lsp_with_fallback('ALEGoToDefinition', 'normal! gd')<CR>
 
-  return l:res
+function! LinterStatus()
+  let l:counts = ale#statusline#Count(bufnr(''))
+  let l:all_errors = l:counts.error + l:counts.style_error
+  let l:all_non_errors = l:counts.total - l:all_errors
+  return l:counts.total == 0 ? 'OK' : printf(
+        \   '%dW %dE',
+        \   all_non_errors,
+        \   all_errors
+        \)
 endfunction
 
 function! s:set_eslint_rulesdir()
@@ -496,7 +471,7 @@ try
       %s/\s\+$//e
       call cursor(l, c)
     endfu
-    au FileType c,cabal,cpp,haskell,javascript,php,python,ruby,readme,tex,text,thrift
+    au FileType c,cabal,cpp,hack,haskell,javascript,php,python,ruby,readme,tex,text,thrift
       \ au BufWritePre <buffer>
       \ :call <SID>StripTrailingWhitespaces()
   endif

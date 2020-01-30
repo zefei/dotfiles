@@ -14,9 +14,6 @@ export TERM=xterm-256color
 # Source Facebook definitions
 source /usr/facebook/ops/rc/master.bashrc
 
-# disable PROMPT_COMMAND to support iterm2 tmux integration
-# export PROMPT_COMMAND=
-
 # add branch to PS1
 source $ADMIN_SCRIPTS/scm-prompt
 export PS1='[\u@\h \w$(_dotfiles_scm_info " @%s")]\n$ '
@@ -27,23 +24,15 @@ alias ct="tmux -CC new -s main"
 alias pylocal="source /home/zefei/virtualenvs/pylocal/bin/activate"
 alias cdds='cd ~/fbsource/fbcode/dataswarm-pipelines'
 alias cdrn='cd ~/fbsource/xplat/js'
+alias set_proxy="export http_proxy='http://fwdproxy:8080';https_proxy='http://fwdproxy:8080'"
 
 export GOPATH=$HOME/go
-export PATH=$PATH:$GOPATH/bin
+export PATH=~/fbsource/xplat/third-party/node/bin:$PATH:$GOPATH/bin
 
 export EDITOR=nvim
 export LESS=-RFX
 
 stty -ixon
-
-# homebrew
-export PATH="$HOME/.linuxbrew/bin:$HOME/.linuxbrew/sbin:$PATH"
-export MANPATH="$HOME/.linuxbrew/share/man:$MANPATH"
-export INFOPATH="$HOME/.linuxbrew/share/info:$INFOPATH"
-
-# export http_proxy="http://fwdproxy:8080"
-# export https_proxy="http://fwdproxy:8080"
-alias set_proxy="export http_proxy='http://fwdproxy:8080';https_proxy='http://fwdproxy:8080'"
 
 # User specific aliases and functions for all shells
 # source $HOME/.ig_profile
