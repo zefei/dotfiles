@@ -295,7 +295,14 @@ let g:NERDTreeMinimalUI = 1
 noremap <Leader>\ :<C-U>NERDTreeFind<CR>
 
 " fzf
-noremap <Leader>f :<C-U>Files<CR>
+function! s:find()
+  if exists(':MYC')
+    execute 'MYC'
+  else
+    execute 'Files'
+  endif
+endfunction
+noremap <Leader>f :<C-U>call <SID>find()<CR>
 noremap <Leader>r :<C-U>History<CR>
 
 " Patching matchparen.vim
@@ -459,6 +466,7 @@ function! s:session_open()
 endfunction
 
 " fb specifics
+set rtp+=/usr/local/share/myc/vim
 let g:hack#enable = 0
 let g:fb_default_opts = 0
 try
