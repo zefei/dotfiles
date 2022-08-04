@@ -32,7 +32,9 @@ alias openfocused='open /Users/zefei/fbsource/fbobjc/Apps/Wilde/Facebook/Faceboo
 alias cdrn='cd ~/fbsource/xplat/js/'
 alias atomrn='atom ~/fbsource/xplat/'
 alias androidemu='cd ~/fbsource/fbandroid/ && nohup ./scripts/start_emulator -gpu host &>/dev/null &'
-alias arcpullios='arc pull --stable fbios-no-extensions'
+alias arcpullios='arc pull -s fbios-pika-no-ext-link-groups-iphonesimulator-local'
+alias arcfocusios='arc focus2 fbios-link-group'
+alias arcfocusandroid='arc focus-android --open --targets instagram-android'
 alias startlemon='pm2 start lemonade -- server'
 alias restartlemon='pm2 restart lemonade'
 
