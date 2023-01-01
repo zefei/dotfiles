@@ -37,33 +37,3 @@
 #F11::SendInput {Volume_Down}
 #F12::SendInput {Volume_Up}
 
-
-#IfWinActive StreetFighterV
-e::w ; Up
-d::s ; Down
-s::a ; Left
-f::d ; Right
-u::g ; LP
-i::h ; MP
-o::j ; HP
-y::k ; LP+MP+HP
-j::b ; LK
-k::n ; MK
-l::m ; HK
-h::, ; LK+MK+HK
-m:: ; Throw
-SendInput {g down}{b down}
-KeyWait, m
-SendInput {g up}{b up}
-Return
-,:: ; V-Skill
-SendInput {h down}{n down}
-KeyWait, `,
-SendInput {h up}{n up}
-Return
-.:: ; V-Trigger
-SendInput {j down}{m down}
-KeyWait, .
-SendInput {j up}{m up}
-Return
-Return
