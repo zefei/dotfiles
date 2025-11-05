@@ -1,8 +1,10 @@
 export EDITOR=nvim
 export LESS=-RFX
-export JAVA_HOME="$(/usr/libexec/java_home -v 1.8)"
+export JAVA_HOME="$(/usr/libexec/java_home -v 11)"
 export PATH=${JAVA_HOME}/bin:${PATH}
 export HISTCONTROL=ignoreboth:erasedups
+
+export PATH="$HOME/homebrew/bin:$HOME/homebrew/sbin:$PATH"
 
 if [ -f `brew --prefix`/etc/bash_completion ]; then
   . `brew --prefix`/etc/bash_completion
@@ -30,13 +32,18 @@ alias sshdev='ssh -R 2489:127.0.0.1:2489 zefei.sb.facebook.com'
 alias resetdns='sudo killall -HUP mDNSResponder'
 alias openfocused='open /Users/zefei/fbsource/fbobjc/Apps/Wilde/Facebook/FacebookWithoutExtensions-Focused.xcworkspace'
 alias cdrn='cd ~/fbsource/xplat/js/'
+alias cdudm='cd ~/fbsource/xplat/instagram/udm/'
+alias cdudmdoc='cd ~/fbsource/fbcode/staticdocs/websites/ig_udm/'
+alias pyreudm='arc pyre check fbsource//xplat/instagram/udm/core:'
 alias atomrn='atom ~/fbsource/xplat/'
-alias androidemu='cd ~/fbsource/fbandroid/ && nohup ./scripts/start_arm64_emulator -gpu host &>/dev/null &'
-alias arcpullios='arc pull -s fbios-pika-no-ext-link-groups-iphonesimulator-local'
-alias arcfocusios='arc focus2 fbios-link-group'
+alias androidemu='cd ~/fbsource/fbandroid/ && nohup ./scripts/start_emulator -gpu host -partition-size 50000 &>/dev/null &'
+alias arcpullios='arc pull -s igios-no-extensions'
+alias arcfocusios='arc focus2 -f instagram'
 alias arcfocusandroid='arc focus-android --open --targets instagram-android'
 alias startlemon='pm2 start lemonade -- server'
 alias restartlemon='pm2 restart lemonade'
+
+ulimit -n 1048576
 
 stty -ixon
 #shopt -s globstar

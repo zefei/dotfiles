@@ -116,6 +116,7 @@ set gdefault
 " Formatting
 set formatoptions=crqwnmMj
 autocmd FileType text,markdown,help setlocal formatoptions+=t
+autocmd FileType yaml setlocal ts=4 sts=4 sw=4 expandtab
 set autoindent
 set expandtab
 set tabstop=2
